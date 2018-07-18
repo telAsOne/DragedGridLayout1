@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!-- 配置自动扫描的包 -->
+	<context:component-scan base-package="com.ydiu.web"></context:component-scan>
+	
+	<!-- 樊佳臣  -->
+	<import resource="fjc/springMvc.xml"/>
+	
+	<!-- 胡平  -->
+	<import resource="hp/springMvc.xml"/>
+	
+	<!-- 江扬正  -->
+	<import resource="jyz/springMvc.xml"/>
+	
+	<!-- 朱辞涵  -->
+	<import resource="zch/springMvc.xml"/>
+	
+	<!-- 李玉婷  -->
+	<import resource="lyt/springMvc.xml"/>
+	
+	<!-- 王冰玉  -->
+	<import resource="wby/springMvc.xml"/>
+	
+	<!-- 谢成辉 -->
+	<import resource="xch/springMvc.xml"/>
+	
+	<!-- 陈然  -->
+	<import resource="cr/springMvc.xml"/>
+	
+	<!-- 黄杰  -->
+	<import resource="hj/springMvc.xml"/>
+	
+	<!-- 金天  -->
+	<import resource="jt/springMvc.xml"/>
+	
+	<!-- 罗坤凤  -->
+	<import resource="lkf/springMvc.xml"/>
+	
+	<!-- 尤思迪  -->
+	<import resource="ysd/springMvc.xml"/>
+	
+	<!-- 李子豪  -->
+	<import resource="lzh/springMvc.xml"/>
+	
+
+	<!-- 配置视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<!-- 处理静态资源 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<mvc:default-servlet-handler/>
+</beans>

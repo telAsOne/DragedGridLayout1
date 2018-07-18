@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.yidu.jyz.mapper.Dao">
+
+	<!-- 查询一级菜单 -->
+	<select id="getCreateMenu" resultType="com.yidu.jyz.entity.Menu">
+		SELECT  create_id createId,
+				create_name createName,
+				create_url createUrl,
+				create_top_id createTopId,
+				state 
+		FROM create_menu 
+		WHERE create_top_id=1
+	</select>
+</mapper>
