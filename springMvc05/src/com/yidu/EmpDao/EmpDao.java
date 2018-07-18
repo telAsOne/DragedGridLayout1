@@ -71,4 +71,5 @@ public interface EmpDao {
 	public  Emp getEmpById(Integer id);
 	
 	public void updateEmp(Emp emp);
+	//巴拉拉小魔仙
 }
