@@ -3,12 +3,13 @@
 <mapper namespace="com.yidu.jt.mapper.Daoa">
 
 	<!-- 查询一级菜单 -->
-	<select id="getCreateMenu" resultType="com.yidu.jt.entity.Menu">
-		SELECT  create_id createId,
-				create_name createName,
-				create_url createUrl,
-				create_top_id createTopId,
-				state 
+	<select id="getCreateMenu" resultType="com.yidu.zch.entity.CreateMenu">
+		SELECT create_id createId,
+			   create_name createName,
+			   create_url createUrl,
+			   create_top_id createTopId,
+			   state 
 		FROM create_menu 
+		where create_top_id=0
 	</select>
 </mapper>
