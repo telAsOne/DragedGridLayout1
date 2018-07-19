@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.yidu.wby.dao.UserDao"> 
+	<!-- 查询所有后台用户 -->
+	<select id="getAllUser" parameterType="com.yidu.wby.entity.User" resultType="com.yidu.wby.entity.User">
+		select admin_id adminId,admin_name adminName,admin_state adminState
+		from admininfo
+		where admin_name like '%${adminName}%'
+	</select>
+	
+	<!-- 新增用户 -->
+	<insert id="addUser" parameterType="com.yidu.wby.entity.User" useGeneratedKeys="true" keyProperty="adminId" keyColumn="admin_id">
+		insert into admininfo(admin_name,admin_psw,admin_state)
+		values(#{adminName},#{adminPsw},#{adminState})
+	</insert>
+	
+	<!-- 查询角色 -->
+	<select id="getRoleList" parameterType="com.yidu.wby.entity.Role" resultType="com.yidu.wby.entity.Role">
+		select role_id roleId,role_name roleName
+		from roleinfo
+		where role_name like '%${roleName}'
+	</select>
+	
+	<!-- 新增用户角色 -->
+	<insert id="addAdminRole">
+		insert into adminorrole(role_id,admin_id)
+		values(#{roleId},#{adminId})
+	</insert>
+	
+	<!-- 根据用户ID查询用户角色 -->
+	<select id="getRoleName" parameterType="int" resultType="String">
+		select r.role_Name from roleinfo r,adminorrole a
+		where r.role_id=a.role_id and a.admin_id=#{adminId}
+	</select>
+	
+	<!-- 根据用户ID修改用户信息 -->
+	<update id="updateUserById" parameterType="com.yidu.wby.entity.User">
+		update admininfo set admin_state=#{adminState}
+		where admin_id=#{adminId}
+	</update>
+	
+	<!-- 根据用户ID修改用户角色 -->
+	<update id="updateAdminRoleById" parameterType="com.yidu.wby.entity.Role">
+		update adminorrole set role_id=#{roleId}
+		where admin_id=#{adminId}
+	</update>
+	
+	
+</mapper>
