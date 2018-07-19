@@ -11,7 +11,9 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<!-- 配置自动扫描的包 -->
-	<context:component-scan base-package="com.yidu"></context:component-scan>
+	<context:component-scan base-package="com.yidu">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 	
 	<!-- 樊佳臣  -->
 	<import resource="fjc/applicationContext.xml"/>
