@@ -55,7 +55,7 @@
 	<import resource="lzh/applicationContext.xml"/>
 	
 	<!-- 配置后置处理器，加载属性文件 -->
-	<context:property-placeholder location="db.properties" />
+	<context:property-placeholder location="classpath:db.properties" />
 	<!-- 配置数据源 -->
 	<bean id="ds" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="user" value="${jdbc_username}"></property>
@@ -63,7 +63,7 @@
 		<property name="driverClass" value="${jdbc_driver}"></property>
 		<property name="jdbcUrl" value="${jdbc_url}"></property>
 	</bean>
-
+<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<!-- 配置MyBatis的sqlsession工厂 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds"></property>
