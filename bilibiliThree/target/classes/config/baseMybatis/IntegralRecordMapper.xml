@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.IntegralRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.IntegralRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="operation_time" property="operationTime" jdbcType="VARCHAR" />
+    <result column="integral_state" property="integralState" jdbcType="INTEGER" />
+    <result column="integral_describe" property="integralDescribe" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from integralrecord
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.IntegralRecord" >
+    insert into integralrecord (id, user_id, operation_time, 
+      integral_state, integral_describe)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{operationTime,jdbcType=VARCHAR}, 
+      #{integralState,jdbcType=INTEGER}, #{integralDescribe,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.IntegralRecord" >
+    update integralrecord
+    set user_id = #{userId,jdbcType=INTEGER},
+      operation_time = #{operationTime,jdbcType=VARCHAR},
+      integral_state = #{integralState,jdbcType=INTEGER},
+      integral_describe = #{integralDescribe,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, user_id, operation_time, integral_state, integral_describe
+    from integralrecord
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, user_id, operation_time, integral_state, integral_describe
+    from integralrecord
+  </select>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.ComicoreviewMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.Comicoreview" >
+    <id column="cr_id" property="crId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="cr_text" property="crText" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="praises" property="praises" jdbcType="INTEGER" />
+    <result column="reply" property="reply" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from comicoreview
+    where cr_id = #{crId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.Comicoreview" >
+    insert into comicoreview (cr_id, user_id, cr_text, 
+      state, praises, reply, 
+      start_time, end_time)
+    values (#{crId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{crText,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{praises,jdbcType=INTEGER}, #{reply,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Comicoreview" >
+    update comicoreview
+    set user_id = #{userId,jdbcType=INTEGER},
+      cr_text = #{crText,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      praises = #{praises,jdbcType=INTEGER},
+      reply = #{reply,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where cr_id = #{crId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select cr_id, user_id, cr_text, state, praises, reply, start_time, end_time
+    from comicoreview
+    where cr_id = #{crId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select cr_id, user_id, cr_text, state, praises, reply, start_time, end_time
+    from comicoreview
+  </select>
+</mapper>

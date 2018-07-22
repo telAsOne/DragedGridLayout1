@@ -1,7 +1,6 @@
-/*数据库*/
+﻿/*数据库*/
 CREATE DATABASE bilibili;
 
-DROP DATABASE bilibili;
 
 /*后台用户表*/
 CREATE TABLE adminInfo(
@@ -17,7 +16,7 @@ CREATE TABLE adminInfo(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME
-)
+);
 
 /*后台角色表*/
 CREATE TABLE roleInfo(
@@ -29,7 +28,7 @@ CREATE TABLE roleInfo(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME
-)
+);
 
 /*后台菜单表*/
 CREATE TABLE menuInfo(
@@ -49,7 +48,7 @@ CREATE TABLE menuInfo(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME 
-)
+);
 
 /*后台用户角色对照表*/
 CREATE TABLE adminorrole(
@@ -63,7 +62,7 @@ CREATE TABLE adminorrole(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME 
-)
+);
 
 /*角色菜单对照表*/
 CREATE TABLE roleormenu(
@@ -77,7 +76,7 @@ CREATE TABLE roleormenu(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME 
-)
+);
 
 /*用户表*/
 CREATE TABLE userInfo(
@@ -107,7 +106,7 @@ CREATE TABLE userInfo(
 	end_time DATETIME,
 	/*头像*/
 	head_portrait VARCHAR(50) NOT NULL
-)
+);
 
 /*视频评论表*/
 CREATE TABLE videoreview(
@@ -127,7 +126,7 @@ CREATE TABLE videoreview(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME 
-)
+);
 
 /*漫画评论表*/
 CREATE TABLE comicoreview(
@@ -147,7 +146,7 @@ CREATE TABLE comicoreview(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME 
-)
+);
 
 /*视频表*/
 CREATE TABLE video(
@@ -171,7 +170,7 @@ CREATE TABLE video(
 	supportSum INT,
 	/*评论次数*/
 	comentSum INT
-)
+);
 
 /*漫画表*/
 CREATE TABLE comic(
@@ -201,7 +200,7 @@ CREATE TABLE comic(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME 	
-)
+);
 
 /*漫画章节表*/
 CREATE TABLE comicchapter(
@@ -217,7 +216,7 @@ CREATE TABLE comicchapter(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME 	
-)
+);
 
 /*漫画分类表*/
 CREATE TABLE comiclabel(
@@ -229,7 +228,7 @@ CREATE TABLE comiclabel(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME 	
-)
+);
 
 /*视频分类表*/
 CREATE TABLE videolabel(
@@ -241,7 +240,7 @@ CREATE TABLE videolabel(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME 	
-)
+);
 
 /*漫画分类对照表*/
 CREATE TABLE comicorlabel(
@@ -253,7 +252,7 @@ CREATE TABLE comicorlabel(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME 	
-)
+);
 
 /*视频分类对照表*/
 CREATE TABLE videoorlabel(
@@ -267,7 +266,7 @@ CREATE TABLE videoorlabel(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME
-)
+);
 
 /*收藏表*/
 CREATE TABLE collection(
@@ -283,7 +282,7 @@ CREATE TABLE collection(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME
-)
+);
 
 /*用户浏览历史表*/
 CREATE TABLE history(
@@ -299,7 +298,7 @@ CREATE TABLE history(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME
-)
+);
 
 /*关注表*/
 CREATE TABLE attention(
@@ -313,7 +312,7 @@ CREATE TABLE attention(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME
-)
+);
 
 /*主贴表*/
 CREATE TABLE topic(
@@ -335,7 +334,7 @@ CREATE TABLE topic(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME
-)
+);
 
 /*回帖表*/
 CREATE TABLE reply(
@@ -355,7 +354,7 @@ CREATE TABLE reply(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME
-)
+);
 
 /*聊天记录表*/
 CREATE TABLE chat(
@@ -373,7 +372,7 @@ CREATE TABLE chat(
 	start_time DATETIME,
 	/*录入数据的时间*/
 	end_time DATETIME
-)
+);
 
 /*用户聊天表*/
 CREATE TABLE userChat(
@@ -389,7 +388,7 @@ CREATE TABLE userChat(
 	userA_look NVARCHAR(200) NOT NULL,
 	/*用户B消息列表是否包含此次聊天*/
 	userB_look NVARCHAR(200)
-)
+);
 
 /*用户聊天详细记录表*/
 CREATE TABLE userChatDetails(
@@ -405,7 +404,7 @@ CREATE TABLE userChatDetails(
 	user_send_msg_id INT(10) NOT NULL,
 	/*接受消息的用户*/
 	user_msg_id INT(10) NOT NULL	
-)
+);
 
 /*用户登记记录表*/
 CREATE TABLE user_record(
@@ -419,7 +418,7 @@ CREATE TABLE user_record(
 	ip_address VARCHAR(100) NOT NULL,
 	/*登录的地址*/
 	login_address VARCHAR(100) NOT NULL
-)
+);
 
 /*用户创作中心菜单表*/
 CREATE TABLE userRitingCenter(
@@ -435,7 +434,7 @@ CREATE TABLE userRitingCenter(
 	address VARCHAR(100) NOT NULL,
 	/*是否打开 检查约束（只有值：1/2）*/
 	is_open CHAR(1) NOT NULL
-)
+);
 
 /*积分记录表*/
 CREATE TABLE integralRecord(
@@ -449,4 +448,4 @@ CREATE TABLE integralRecord(
 	integral_state INT NOT NULL,
 	/*积分使用描述*/
 	integral_describe VARCHAR(100) NOT NULL
-)
+);

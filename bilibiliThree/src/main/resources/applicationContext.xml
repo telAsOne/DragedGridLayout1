@@ -70,7 +70,7 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:config/zchMybatis/*.xml</value>
-				
+				<value>classpath:config/baseMybatis/*.xml</value>
 				<value>classpath:config/hpMybatis/*.xml</value>
 				
 				<value>classpath:config/jyzMybatis/*.xml</value>
