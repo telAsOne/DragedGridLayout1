@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.ChatMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.Chat" >
+    <id column="chat_id" property="chatId" jdbcType="INTEGER" />
+    <result column="chat_content" property="chatContent" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="reply_user_id" property="replyUserId" jdbcType="INTEGER" />
+    <result column="specified" property="specified" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from chat
+    where chat_id = #{chatId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.Chat" >
+    insert into chat (chat_id, chat_content, user_id, 
+      reply_user_id, specified, start_time, 
+      end_time)
+    values (#{chatId,jdbcType=INTEGER}, #{chatContent,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{replyUserId,jdbcType=INTEGER}, #{specified,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Chat" >
+    update chat
+    set chat_content = #{chatContent,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      reply_user_id = #{replyUserId,jdbcType=INTEGER},
+      specified = #{specified,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where chat_id = #{chatId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select chat_id, chat_content, user_id, reply_user_id, specified, start_time, end_time
+    from chat
+    where chat_id = #{chatId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select chat_id, chat_content, user_id, reply_user_id, specified, start_time, end_time
+    from chat
+  </select>
+</mapper>

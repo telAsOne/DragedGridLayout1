@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.ComicMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.Comic" >
+    <id column="comic_id" property="comicId" jdbcType="INTEGER" />
+    <result column="comic_name" property="comicName" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="praises" property="praises" jdbcType="INTEGER" />
+    <result column="chapter" property="chapter" jdbcType="INTEGER" />
+    <result column="recently" property="recently" jdbcType="TIMESTAMP" />
+    <result column="information" property="information" jdbcType="VARCHAR" />
+    <result column="read_number" property="readNumber" jdbcType="INTEGER" />
+    <result column="gift_number" property="giftNumber" jdbcType="INTEGER" />
+    <result column="gift" property="gift" jdbcType="INTEGER" />
+    <result column="portrait" property="portrait" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from comic
+    where comic_id = #{comicId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.Comic" >
+    insert into comic (comic_id, comic_name, state, 
+      praises, chapter, recently, 
+      information, read_number, gift_number, 
+      gift, portrait, start_time, 
+      end_time)
+    values (#{comicId,jdbcType=INTEGER}, #{comicName,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{praises,jdbcType=INTEGER}, #{chapter,jdbcType=INTEGER}, #{recently,jdbcType=TIMESTAMP}, 
+      #{information,jdbcType=VARCHAR}, #{readNumber,jdbcType=INTEGER}, #{giftNumber,jdbcType=INTEGER}, 
+      #{gift,jdbcType=INTEGER}, #{portrait,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Comic" >
+    update comic
+    set comic_name = #{comicName,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      praises = #{praises,jdbcType=INTEGER},
+      chapter = #{chapter,jdbcType=INTEGER},
+      recently = #{recently,jdbcType=TIMESTAMP},
+      information = #{information,jdbcType=VARCHAR},
+      read_number = #{readNumber,jdbcType=INTEGER},
+      gift_number = #{giftNumber,jdbcType=INTEGER},
+      gift = #{gift,jdbcType=INTEGER},
+      portrait = #{portrait,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where comic_id = #{comicId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select comic_id, comic_name, state, praises, chapter, recently, information, read_number, 
+    gift_number, gift, portrait, start_time, end_time
+    from comic
+    where comic_id = #{comicId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select comic_id, comic_name, state, praises, chapter, recently, information, read_number, 
+    gift_number, gift, portrait, start_time, end_time
+    from comic
+  </select>
+</mapper>

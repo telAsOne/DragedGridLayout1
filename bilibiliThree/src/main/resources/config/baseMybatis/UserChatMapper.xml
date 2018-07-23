@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.UserChatMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.UserChat" >
+    <id column="userchat_id" property="userchatId" jdbcType="INTEGER" />
+    <result column="chat_userA" property="chatUsera" jdbcType="INTEGER" />
+    <result column="chat_userB" property="chatUserb" jdbcType="INTEGER" />
+    <result column="statr_time" property="statrTime" jdbcType="TIMESTAMP" />
+    <result column="userA_look" property="useraLook" jdbcType="VARCHAR" />
+    <result column="userB_look" property="userbLook" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userchat
+    where userchat_id = #{userchatId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.UserChat" >
+    insert into userchat (userchat_id, chat_userA, chat_userB, 
+      statr_time, userA_look, userB_look
+      )
+    values (#{userchatId,jdbcType=INTEGER}, #{chatUsera,jdbcType=INTEGER}, #{chatUserb,jdbcType=INTEGER}, 
+      #{statrTime,jdbcType=TIMESTAMP}, #{useraLook,jdbcType=VARCHAR}, #{userbLook,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.UserChat" >
+    update userchat
+    set chat_userA = #{chatUsera,jdbcType=INTEGER},
+      chat_userB = #{chatUserb,jdbcType=INTEGER},
+      statr_time = #{statrTime,jdbcType=TIMESTAMP},
+      userA_look = #{useraLook,jdbcType=VARCHAR},
+      userB_look = #{userbLook,jdbcType=VARCHAR}
+    where userchat_id = #{userchatId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select userchat_id, chat_userA, chat_userB, statr_time, userA_look, userB_look
+    from userchat
+    where userchat_id = #{userchatId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select userchat_id, chat_userA, chat_userB, statr_time, userA_look, userB_look
+    from userchat
+  </select>
+</mapper>

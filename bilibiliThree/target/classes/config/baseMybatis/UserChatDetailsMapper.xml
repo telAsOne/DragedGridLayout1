@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.UserChatDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.UserChatDetails" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="chat_id" property="chatId" jdbcType="INTEGER" />
+    <result column="news_text" property="newsText" jdbcType="VARCHAR" />
+    <result column="statr_time" property="statrTime" jdbcType="TIMESTAMP" />
+    <result column="user_send_msg_id" property="userSendMsgId" jdbcType="INTEGER" />
+    <result column="user_msg_id" property="userMsgId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userchatdetails
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.UserChatDetails" >
+    insert into userchatdetails (id, chat_id, news_text, 
+      statr_time, user_send_msg_id, user_msg_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{chatId,jdbcType=INTEGER}, #{newsText,jdbcType=VARCHAR}, 
+      #{statrTime,jdbcType=TIMESTAMP}, #{userSendMsgId,jdbcType=INTEGER}, #{userMsgId,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.UserChatDetails" >
+    update userchatdetails
+    set chat_id = #{chatId,jdbcType=INTEGER},
+      news_text = #{newsText,jdbcType=VARCHAR},
+      statr_time = #{statrTime,jdbcType=TIMESTAMP},
+      user_send_msg_id = #{userSendMsgId,jdbcType=INTEGER},
+      user_msg_id = #{userMsgId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, chat_id, news_text, statr_time, user_send_msg_id, user_msg_id
+    from userchatdetails
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, chat_id, news_text, statr_time, user_send_msg_id, user_msg_id
+    from userchatdetails
+  </select>
+</mapper>

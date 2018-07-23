@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.VideoreviewMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.Videoreview" >
+    <id column="vr_id" property="vrId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="vr_text" property="vrText" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="praises" property="praises" jdbcType="INTEGER" />
+    <result column="reply" property="reply" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from videoreview
+    where vr_id = #{vrId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.Videoreview" >
+    insert into videoreview (vr_id, user_id, vr_text, 
+      state, praises, reply, 
+      start_time, end_time)
+    values (#{vrId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{vrText,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{praises,jdbcType=INTEGER}, #{reply,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Videoreview" >
+    update videoreview
+    set user_id = #{userId,jdbcType=INTEGER},
+      vr_text = #{vrText,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      praises = #{praises,jdbcType=INTEGER},
+      reply = #{reply,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where vr_id = #{vrId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select vr_id, user_id, vr_text, state, praises, reply, start_time, end_time
+    from videoreview
+    where vr_id = #{vrId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select vr_id, user_id, vr_text, state, praises, reply, start_time, end_time
+    from videoreview
+  </select>
+</mapper>

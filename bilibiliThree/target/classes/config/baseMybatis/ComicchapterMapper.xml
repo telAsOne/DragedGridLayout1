@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.ComicchapterMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.Comicchapter" >
+    <id column="cc_id" property="ccId" jdbcType="INTEGER" />
+    <result column="chapter" property="chapter" jdbcType="INTEGER" />
+    <result column="comic_id" property="comicId" jdbcType="INTEGER" />
+    <result column="cartoon_pictures" property="cartoonPictures" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from comicchapter
+    where cc_id = #{ccId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.Comicchapter" >
+    insert into comicchapter (cc_id, chapter, comic_id, 
+      cartoon_pictures, start_time, end_time
+      )
+    values (#{ccId,jdbcType=INTEGER}, #{chapter,jdbcType=INTEGER}, #{comicId,jdbcType=INTEGER}, 
+      #{cartoonPictures,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Comicchapter" >
+    update comicchapter
+    set chapter = #{chapter,jdbcType=INTEGER},
+      comic_id = #{comicId,jdbcType=INTEGER},
+      cartoon_pictures = #{cartoonPictures,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where cc_id = #{ccId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select cc_id, chapter, comic_id, cartoon_pictures, start_time, end_time
+    from comicchapter
+    where cc_id = #{ccId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select cc_id, chapter, comic_id, cartoon_pictures, start_time, end_time
+    from comicchapter
+  </select>
+</mapper>

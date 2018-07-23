@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.VideoMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.Video" >
+    <id column="video_id" property="videoId" jdbcType="INTEGER" />
+    <result column="video_name" property="videoName" jdbcType="VARCHAR" />
+    <result column="video_image" property="videoImage" jdbcType="VARCHAR" />
+    <result column="video_info" property="videoInfo" jdbcType="VARCHAR" />
+    <result column="video_upOfUser" property="videoUpofuser" jdbcType="INTEGER" />
+    <result column="video_UpTime" property="videoUptime" jdbcType="INTEGER" />
+    <result column="playSum" property="playsum" jdbcType="INTEGER" />
+    <result column="collectSum" property="collectsum" jdbcType="INTEGER" />
+    <result column="supportSum" property="supportsum" jdbcType="INTEGER" />
+    <result column="comentSum" property="comentsum" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from video
+    where video_id = #{videoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.Video" >
+    insert into video (video_id, video_name, video_image, 
+      video_info, video_upOfUser, video_UpTime, 
+      playSum, collectSum, supportSum, 
+      comentSum)
+    values (#{videoId,jdbcType=INTEGER}, #{videoName,jdbcType=VARCHAR}, #{videoImage,jdbcType=VARCHAR}, 
+      #{videoInfo,jdbcType=VARCHAR}, #{videoUpofuser,jdbcType=INTEGER}, #{videoUptime,jdbcType=INTEGER}, 
+      #{playsum,jdbcType=INTEGER}, #{collectsum,jdbcType=INTEGER}, #{supportsum,jdbcType=INTEGER}, 
+      #{comentsum,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Video" >
+    update video
+    set video_name = #{videoName,jdbcType=VARCHAR},
+      video_image = #{videoImage,jdbcType=VARCHAR},
+      video_info = #{videoInfo,jdbcType=VARCHAR},
+      video_upOfUser = #{videoUpofuser,jdbcType=INTEGER},
+      video_UpTime = #{videoUptime,jdbcType=INTEGER},
+      playSum = #{playsum,jdbcType=INTEGER},
+      collectSum = #{collectsum,jdbcType=INTEGER},
+      supportSum = #{supportsum,jdbcType=INTEGER},
+      comentSum = #{comentsum,jdbcType=INTEGER}
+    where video_id = #{videoId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select video_id, video_name, video_image, video_info, video_upOfUser, video_UpTime, 
+    playSum, collectSum, supportSum, comentSum
+    from video
+    where video_id = #{videoId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select video_id, video_name, video_image, video_info, video_upOfUser, video_UpTime, 
+    playSum, collectSum, supportSum, comentSum
+    from video
+  </select>
+</mapper>

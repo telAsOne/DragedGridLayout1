@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.UserInfo" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="uer_psw" property="uerPsw" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="phone" property="phone" jdbcType="INTEGER" />
+    <result column="LEVEL" property="level" jdbcType="INTEGER" />
+    <result column="integral" property="integral" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_login_time" property="endLoginTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="head_portrait" property="headPortrait" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userinfo
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.UserInfo" >
+    insert into userinfo (user_id, user_name, uer_psw, 
+      sex, phone, LEVEL, integral, 
+      email, nickname, start_time, 
+      end_login_time, end_time, head_portrait
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{uerPsw,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=CHAR}, #{phone,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, 
+      #{email,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endLoginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{headPortrait,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.UserInfo" >
+    update userinfo
+    set user_name = #{userName,jdbcType=VARCHAR},
+      uer_psw = #{uerPsw,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      phone = #{phone,jdbcType=INTEGER},
+      LEVEL = #{level,jdbcType=INTEGER},
+      integral = #{integral,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_login_time = #{endLoginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      head_portrait = #{headPortrait,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select user_id, user_name, uer_psw, sex, phone, LEVEL, integral, email, nickname, 
+    start_time, end_login_time, end_time, head_portrait
+    from userinfo
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select user_id, user_name, uer_psw, sex, phone, LEVEL, integral, email, nickname, 
+    start_time, end_login_time, end_time, head_portrait
+    from userinfo
+  </select>
+</mapper>

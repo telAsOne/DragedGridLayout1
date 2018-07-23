@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.MenuInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.MenuInfo" >
+    <id column="menu_id" property="menuId" jdbcType="INTEGER" />
+    <result column="text" property="text" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="iconCls" property="iconcls" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from menuinfo
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.MenuInfo" >
+    insert into menuinfo (menu_id, text, state, 
+      url, pid, iconCls, 
+      start_time, end_time)
+    values (#{menuId,jdbcType=INTEGER}, #{text,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, #{iconcls,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.MenuInfo" >
+    update menuinfo
+    set text = #{text,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=INTEGER},
+      iconCls = #{iconcls,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR}
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select menu_id, text, state, url, pid, iconCls, start_time, end_time
+    from menuinfo
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select menu_id, text, state, url, pid, iconCls, start_time, end_time
+    from menuinfo
+  </select>
+</mapper>

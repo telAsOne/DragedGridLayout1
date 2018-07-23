@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.ComicorlabelMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.Comicorlabel" >
+    <id column="col_id" property="colId" jdbcType="INTEGER" />
+    <result column="cl_id" property="clId" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from comicorlabel
+    where col_id = #{colId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.Comicorlabel" >
+    insert into comicorlabel (col_id, cl_id, start_time, 
+      end_time)
+    values (#{colId,jdbcType=INTEGER}, #{clId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Comicorlabel" >
+    update comicorlabel
+    set cl_id = #{clId,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where col_id = #{colId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select col_id, cl_id, start_time, end_time
+    from comicorlabel
+    where col_id = #{colId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select col_id, cl_id, start_time, end_time
+    from comicorlabel
+  </select>
+</mapper>
