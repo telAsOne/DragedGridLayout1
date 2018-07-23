@@ -54,7 +54,42 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-
+<!-- zch html -->
+	<servlet>
+		<servlet-name>uploadVideo</servlet-name>
+		<jsp-file>/WEB-INF/pages/uploadVideo.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>uploadVideo</servlet-name>
+		<url-pattern>/uploadVideo</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>manageVideo</servlet-name>
+		<jsp-file>/WEB-INF/pages/manageVideo.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>manageVideo</servlet-name>
+		<url-pattern>/manageVideo</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>loadingHead</servlet-name>
+		<jsp-file>/WEB-INF/pages/loadingHead.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>loadingHead</servlet-name>
+		<url-pattern>/loadingHead</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>uploadManage</servlet-name>
+		<jsp-file>/WEB-INF/pages/uploadManage.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>uploadManage</servlet-name>
+		<url-pattern>/uploadManage</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
