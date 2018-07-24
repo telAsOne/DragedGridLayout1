@@ -13,10 +13,13 @@
     where ar_id = #{arId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.adminorrole" >
-    insert into adminorrole (ar_id, role_id, admin_id, 
-      start_time, end_time)
-    values (#{arId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, 
-      #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR})
+    <selectKey resultType="java.lang.Integer" keyProperty="arId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into adminorrole (role_id, admin_id, start_time, 
+      end_time)
+    values (#{roleId,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, #{startTime,jdbcType=VARCHAR}, 
+      #{endTime,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.adminorrole" >
     update adminorrole

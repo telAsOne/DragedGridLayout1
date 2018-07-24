@@ -1,8 +1,11 @@
 package com.yidu.base.allMapper;
 
 import com.yidu.base.allEntity.YserRitingCenter;
+
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+@Repository
 public interface YserRitingCenterMapper {
     int deleteByPrimaryKey(Integer id);
 

@@ -16,12 +16,15 @@
     where cr_id = #{crId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.Comicoreview" >
-    insert into comicoreview (cr_id, user_id, cr_text, 
-      state, praises, reply, 
-      start_time, end_time)
-    values (#{crId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{crText,jdbcType=VARCHAR}, 
-      #{state,jdbcType=VARCHAR}, #{praises,jdbcType=INTEGER}, #{reply,jdbcType=INTEGER}, 
-      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
+    <selectKey resultType="java.lang.Integer" keyProperty="crId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into comicoreview (user_id, cr_text, state, 
+      praises, reply, start_time, 
+      end_time)
+    values (#{userId,jdbcType=INTEGER}, #{crText,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{praises,jdbcType=INTEGER}, #{reply,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Comicoreview" >
     update comicoreview

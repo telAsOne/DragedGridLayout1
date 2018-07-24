@@ -16,12 +16,15 @@
     where menu_id = #{menuId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.MenuInfo" >
-    insert into menuinfo (menu_id, text, state, 
-      url, pid, iconCls, 
-      start_time, end_time)
-    values (#{menuId,jdbcType=INTEGER}, #{text,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
-      #{url,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, #{iconcls,jdbcType=VARCHAR}, 
-      #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR})
+    <selectKey resultType="java.lang.Integer" keyProperty="menuId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into menuinfo (text, state, url, 
+      pid, iconCls, start_time, 
+      end_time)
+    values (#{text,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{pid,jdbcType=INTEGER}, #{iconcls,jdbcType=VARCHAR}, #{startTime,jdbcType=VARCHAR}, 
+      #{endTime,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.MenuInfo" >
     update menuinfo

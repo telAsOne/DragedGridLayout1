@@ -14,12 +14,13 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.YserRitingCenter" >
-    insert into userritingcenter (id, p_id, menu_name, 
-      image, address, is_open
-      )
-    values (#{id,jdbcType=INTEGER}, #{pId,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, 
-      #{image,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{isOpen,jdbcType=CHAR}
-      )
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into userritingcenter (p_id, menu_name, image, 
+      address, is_open)
+    values (#{pId,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{isOpen,jdbcType=CHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.YserRitingCenter" >
     update userritingcenter

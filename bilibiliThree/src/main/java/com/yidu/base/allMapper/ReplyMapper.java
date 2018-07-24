@@ -1,8 +1,11 @@
 package com.yidu.base.allMapper;
 
 import com.yidu.base.allEntity.Reply;
+
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+@Repository
 public interface ReplyMapper {
     int deleteByPrimaryKey(Integer replyId);
 

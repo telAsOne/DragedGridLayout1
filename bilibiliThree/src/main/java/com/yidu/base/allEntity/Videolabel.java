@@ -5,6 +5,8 @@ import java.util.Date;
 public class Videolabel {
     private Integer vlId;
 
+    private Integer vlPid;
+
     private String vlName;
 
     private Date startTime;
@@ -17,6 +19,14 @@ public class Videolabel {
 
     public void setVlId(Integer vlId) {
         this.vlId = vlId;
+    }
+
+    public Integer getVlPid() {
+        return vlPid;
+    }
+
+    public void setVlPid(Integer vlPid) {
+        this.vlPid = vlPid;
     }
 
     public String getVlName() {
@@ -50,6 +60,7 @@ public class Videolabel {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", vlId=").append(vlId);
+        sb.append(", vlPid=").append(vlPid);
         sb.append(", vlName=").append(vlName);
         sb.append(", startTime=").append(startTime);
         sb.append(", endTime=").append(endTime);

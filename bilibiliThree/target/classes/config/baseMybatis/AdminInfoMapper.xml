@@ -14,12 +14,13 @@
     where admin_id = #{adminId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.AdminInfo" >
-    insert into admininfo (admin_id, admin_name, admin_psw, 
-      admin_state, start_time, end_time
-      )
-    values (#{adminId,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{adminPsw,jdbcType=VARCHAR}, 
-      #{adminState,jdbcType=VARCHAR}, #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}
-      )
+    <selectKey resultType="java.lang.Integer" keyProperty="adminId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into admininfo (admin_name, admin_psw, admin_state, 
+      start_time, end_time)
+    values (#{adminName,jdbcType=VARCHAR}, #{adminPsw,jdbcType=VARCHAR}, #{adminState,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.AdminInfo" >
     update admininfo

@@ -1,8 +1,11 @@
 package com.yidu.base.allMapper;
 
 import com.yidu.base.allEntity.Video;
+
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+@Repository
 public interface VideoMapper {
     int deleteByPrimaryKey(Integer videoId);
 

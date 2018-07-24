@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.VideoorlabelMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.Videoorlabel" >
+    <id column="vol_id" property="volId" jdbcType="INTEGER" />
+    <result column="video_id" property="videoId" jdbcType="INTEGER" />
+    <result column="vl_id" property="vlId" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from videoorlabel
+    where vol_id = #{volId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.Videoorlabel" >
+    <selectKey resultType="java.lang.Integer" keyProperty="volId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into videoorlabel (video_id, vl_id, start_time, 
+      end_time)
+    values (#{videoId,jdbcType=INTEGER}, #{vlId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Videoorlabel" >
+    update videoorlabel
+    set video_id = #{videoId,jdbcType=INTEGER},
+      vl_id = #{vlId,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where vol_id = #{volId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select vol_id, video_id, vl_id, start_time, end_time
+    from videoorlabel
+    where vol_id = #{volId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select vol_id, video_id, vl_id, start_time, end_time
+    from videoorlabel
+  </select>
+</mapper>

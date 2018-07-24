@@ -21,13 +21,16 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.UserInfo" >
-    insert into userinfo (user_id, user_name, uer_psw, 
-      sex, phone, LEVEL, integral, 
+    <selectKey resultType="java.lang.Integer" keyProperty="userId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into userinfo (user_name, uer_psw, sex, 
+      phone, LEVEL, integral, 
       email, nickname, start_time, 
       end_login_time, end_time, head_portrait
       )
-    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{uerPsw,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=CHAR}, #{phone,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, 
+    values (#{userName,jdbcType=VARCHAR}, #{uerPsw,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, 
+      #{phone,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, 
       #{email,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
       #{endLoginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{headPortrait,jdbcType=VARCHAR}
       )

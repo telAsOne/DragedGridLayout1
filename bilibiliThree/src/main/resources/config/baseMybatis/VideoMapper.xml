@@ -18,14 +18,17 @@
     where video_id = #{videoId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.Video" >
-    insert into video (video_id, video_name, video_image, 
-      video_info, video_upOfUser, video_UpTime, 
-      playSum, collectSum, supportSum, 
-      comentSum)
-    values (#{videoId,jdbcType=INTEGER}, #{videoName,jdbcType=VARCHAR}, #{videoImage,jdbcType=VARCHAR}, 
-      #{videoInfo,jdbcType=VARCHAR}, #{videoUpofuser,jdbcType=INTEGER}, #{videoUptime,jdbcType=INTEGER}, 
-      #{playsum,jdbcType=INTEGER}, #{collectsum,jdbcType=INTEGER}, #{supportsum,jdbcType=INTEGER}, 
-      #{comentsum,jdbcType=INTEGER})
+    <selectKey resultType="java.lang.Integer" keyProperty="videoId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into video (video_name, video_image, video_info, 
+      video_upOfUser, video_UpTime, playSum, 
+      collectSum, supportSum, comentSum
+      )
+    values (#{videoName,jdbcType=VARCHAR}, #{videoImage,jdbcType=VARCHAR}, #{videoInfo,jdbcType=VARCHAR}, 
+      #{videoUpofuser,jdbcType=INTEGER}, #{videoUptime,jdbcType=INTEGER}, #{playsum,jdbcType=INTEGER}, 
+      #{collectsum,jdbcType=INTEGER}, #{supportsum,jdbcType=INTEGER}, #{comentsum,jdbcType=INTEGER}
+      )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Video" >
     update video
