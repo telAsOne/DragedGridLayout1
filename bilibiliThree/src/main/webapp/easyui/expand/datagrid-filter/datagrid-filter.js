@@ -195,9 +195,6 @@
 			return data;
 			
 			function isMatch(row, index){
-				if (opts.val == $.fn.combogrid.defaults.val){
-					opts.val = extendedOptions.val;
-				}
 				var rules = opts.filterRules;
 				if (!rules.length){return true;}
 				for(var i=0; i<rules.length; i++){
@@ -627,6 +624,9 @@
 					}
 				});
 				if (name == 'datagrid'){
+					// var start = (opts.pageNumber-1)*parseInt(opts.pageSize);
+					// var end = start + parseInt(opts.pageSize);
+					// data.rows = data.rows.slice(start, end);
 					var pd = getPageData(data.rows);
 					opts.pageNumber = pd.pageNumber;
 					data.rows = pd.rows;
@@ -637,9 +637,12 @@
 			        	row._parentId ? childRows.push(row) : topRows.push(row);
 			        });
 			        data.total = topRows.length;
+					// var start = (opts.pageNumber-1)*parseInt(opts.pageSize);  
+					// var end = start + parseInt(opts.pageSize);  
+					// data.rows = topRows.slice(start, end).concat(childRows);
 			        var pd = getPageData(topRows);
 			        opts.pageNumber = pd.pageNumber;
-			        data.rows = pd.rows.concat(childRows);
+			        data.rows = pd.rows;
 				}
 			}
 			$.map(data.rows, function(row){

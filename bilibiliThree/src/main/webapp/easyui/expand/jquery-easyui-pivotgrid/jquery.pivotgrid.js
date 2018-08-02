@@ -38,9 +38,8 @@
 			},
 			loadFilter: function(data, parentId){
 				var state = $(this).data('pivotgrid');
-				var opts = state.options;
-				data = opts.loadFilter.call(this, data, parentId);
 				state.data = data;
+				var opts = state.options;
 				var originalData = opts.data;
 				var originalUrl = opts.url;
 				var filteredData = getFilteredData(target, data);
@@ -196,25 +195,6 @@
 			return values;
 		}
 	}
-
-	function getCalcOperator(target, field){
-		var ff = field.split('_');
-		var field = ff[ff.length-1];
-		var opts = $.data(target, 'pivotgrid').options;
-		if ($.isFunction(opts.defaultOperator)){
-			return opts.defaultOperator.call(target, field);
-		} else {
-			var op = opts.defaultOperator;
-			for(var i=0; i<opts.pivot.values.length; i++){
-				var v = opts.pivot.values[i];
-				if (v['field'] == field){
-					op = v['op'] || op;
-					break;
-				}
-			}
-			return op;
-		}
-	}
 	
 	function getRows(target, data){
 		var opts = $.data(target, 'pivotgrid').options;
@@ -272,8 +252,7 @@
 					}
 					return row;
 				});
-				var operatorName = getCalcOperator(target, field);
-				return opts.operators[operatorName].call(target, rr, col.tt[col.tt.length-1]);
+				return opts.operators[col.op||'sum'].call(target, rr, col.tt[col.tt.length-1]);
 			}
 		}
 		
@@ -446,17 +425,8 @@
 		function fill(p, d){
 			p.empty();
 			$.map(d, function(name){
-				// var opts = typeof name == 'object' ? name : {field:name};
-				// var text = typeof name == 'object' ? (name.field + '<span style="color:#aaa;margin:0 10px">'+(name.op||'sum')+'</span>') : name;
-				if (p.hasClass('pg-values')){
-					var opts = name;
-					var field = name.field;
-					var operatorName = getCalcOperator(target, field);
-					var text = field + '<span style="color:#aaa;margin:0 10px">'+operatorName+'</span>';
-				} else {
-					var opts = {field:name};
-					var text = name;
-				}
+				var opts = typeof name == 'object' ? name : {field:name};
+				var text = typeof name == 'object' ? (name.field + '<span style="color:#aaa;margin:0 10px">'+(name.op||'sum')+'</span>') : name;
 				var item = $('<a class="pivotgrid-item" href="javascript:void(0)"></a>').appendTo(p);
 				item.linkbutton($.extend({}, opts, {
 					text: text,
@@ -498,9 +468,7 @@
 					var opts = $(source).linkbutton('options');
 					var text = opts.field;
 					if ($(this).hasClass('pg-values')){
-						// text += '<span style="color:#aaa;margin:0 10px">'+(opts.op||'sum')+'</span>';
-						var operatorName = getCalcOperator(target, opts.field);
-						text += '<span style="color:#aaa;margin:0 10px">'+operatorName+'</span>';
+						text += '<span style="color:#aaa;margin:0 10px">'+(opts.op||'sum')+'</span>';
 					}
 					$(source).linkbutton({
 						text: text
@@ -643,7 +611,6 @@
 			ok:'Ok',
 			cancel:'Cancel'
 		},
-		defaultOperator: 'sum',	//function(field){return 'sum'}
 		operators:{
 			sum: function(rows, field){
 				var opts = $(this).pivotgrid('options');

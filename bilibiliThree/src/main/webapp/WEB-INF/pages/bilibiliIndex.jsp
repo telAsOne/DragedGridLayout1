@@ -212,6 +212,86 @@
 			</div>
 		</div>
 	</nav>
+	<div id="banner">
+		<div class="page-width clearfix">
+			<div class="slider fl">
+				<div class="slider-img">
+					<c:forEach items="${slideImg}" var="slide">
+						<a href="${slide.linkaddress}" slider-title="${slide.slideTitle}"><img
+							src="${slide.imageurl}" alt="${slide.slideContent}"></a>
+					</c:forEach>
+				</div>
+				<div class="slider-title">
+					<p>${slideImg[0].slideTitle}</p>
+				</div>
+				<div class="slider-btn">
+					<c:forEach items="${slideImg}" varStatus="varStatus">
+						<c:if test="${varStatus.index == 0}">
+							<span class="cur"></span>
+						</c:if>
+						<c:if test="${varStatus.index > 0}">
+							<span></span>
+						</c:if>
+					</c:forEach>
+				</div>
+				<a href="#" class="slider-more">More</a>
+			</div>
+			<div class="banner-list fr">
+				<ul>
+					<li><a href="#"> <img src="images/cont/main_pic.jpg"
+							alt="#">
+							<div class="info">
+								<p class="title">【初音ミク】39 TECHNO【八王子P】</p>
+								<p class="author">up主：丧尸の桑</p>
+								<p class="play">播放：48243</p>
+							</div>
+					</a></li>
+					<li><a href="#"> <img src="images/cont/main_pic.jpg"
+							alt="#">
+							<div class="info">
+								<p class="title">【初音ミク】39 TECHNO【八王子P】</p>
+								<p class="author">up主：丧尸の桑</p>
+								<p class="play">播放：48243</p>
+							</div>
+					</a></li>
+					<li><a href="#"> <img src="images/cont/main_pic.jpg"
+							alt="#">
+							<div class="info">
+								<p class="title">【初音ミク】39 TECHNO【八王子P】</p>
+								<p class="author">up主：丧尸の桑</p>
+								<p class="play">播放：48243</p>
+							</div>
+					</a></li>
+					<li><a href="#"> <img src="images/cont/main_pic.jpg"
+							alt="#">
+							<div class="info">
+								<p class="title">【初音ミク】39 TECHNO【八王子P】</p>
+								<p class="author">up主：丧尸の桑</p>
+								<p class="play">播放：48243</p>
+							</div>
+					</a></li>
+					<li><a href="#"> <img src="images/cont/main_pic.jpg"
+							alt="#">
+							<div class="info">
+								<p class="title">【初音ミク】39 TECHNO【八王子P】</p>
+								<p class="author">up主：丧尸の桑</p>
+								<p class="play">播放：48243</p>
+							</div>
+					</a></li>
+					<li><a href="#"> <img src="images/cont/main_pic.jpg"
+							alt="#">
+							<div class="info">
+								<p class="title">【初音ミク】39 TECHNO【八王子P】</p>
+								<p class="author">up主：丧尸の桑</p>
+								<p class="play">播放：48243</p>
+							</div>
+					</a></li>
+				</ul>
+				<a href="#" class="btn btn-prev">昨日</a> <a href="#"
+					class="btn btn-next">一周</a>
+			</div>
+		</div>
+	</div>
 	<footer id="footer">
 		<div class="page-width">
 			<ul class="footer-c clearfix">

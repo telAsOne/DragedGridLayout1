@@ -264,12 +264,7 @@ $.extend(groupview, {
 			var isRtl = dc.view1.css('direction').toLowerCase()=='rtl';
 			groupHeader.find('.datagrid-group-title').css(isRtl?'right':'left', -width+'px');
 		}
-		if (fr.length){
-			if (opts.showFilterBar){
-				fr.show();
-			}
-		}
-		// fr.show();
+		fr.show();
 	},
 
 	insertRow: function(target, index, row){

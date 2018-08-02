@@ -1,17 +1,16 @@
 ﻿/*数据库*/
 CREATE DATABASE bilibili;
-
-
+drop database bilibili
 /*后台用户表*/
 CREATE TABLE adminInfo(
 	/*编号*/
-	admin_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	admin_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT，
 	/*用户名*/
 	admin_name NVARCHAR(25) NOT NULL UNIQUE,
 	/*用户密码*/
 	admin_psw NVARCHAR(25) NOT NULL,
 	/*用户状态*/
-	admin_state NVARCHAR(10) NOT NULL DEFAULT '在职',
+	admin_state NVARCHAR(10) NOT NULL CHECK,
 	/*录入数据的时间*/
 	start_time DATETIME,
 	/*录入数据的时间*/
@@ -35,11 +34,11 @@ CREATE TABLE menuInfo(
 	/*编号*/
 	menu_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	/*菜单名称*/
-	menu_name NVARCHAR(50) NOT NULL ,
+	TEXT VARCHAR(50) NOT NULL,
 	/*菜单状态*/
-	state NVARCHAR(25) NOT NULL,
+	state NVARCHAR(25) NOT NULL CHECK,
 	/*菜单对应的页面*/
-	url NVARCHAR(50) NOT NULL,
+	url VARCHAR(100) NOT NULL,
 	/*菜单的上级ID*/
 	pid INT NOT NULL,
 	/*菜单图片*/
@@ -69,9 +68,9 @@ CREATE TABLE roleormenu(
 	/*编号*/
 	mo_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	/*角色ID*/
-	role_id INT NOT NULL,
+	role_id INT NOT NULL，
 	/*菜单ID*/
-	menu_id INT NOT NULL,
+	menu_id INT NOT NULL，
 	/*录入数据的时间*/
 	start_time DATETIME,
 	/*录入数据的时间*/
@@ -91,7 +90,7 @@ CREATE TABLE userInfo(
 	/*用户电话*/
 	phone INT,
 	/*用户等级*/
-	user_level INT NOT NULL,
+	LEVEL INT NOT NULL,
 	/*用户积分*/
 	integral INT NOT NULL,
 	/*用户邮箱*/
@@ -115,9 +114,9 @@ CREATE TABLE videoreview(
 	/*用户ID*/
 	user_id INT NOT NULL,
 	/*用户评论内容*/
-	vr_text NVARCHAR(150) NOT NULL,
+	vr_text VARCHAR(150) NOT NULL,
 	/*审核*/
-	state NVARCHAR(10) NOT NULL DEFAULT '未审核',
+	state VARCHAR(10) NOT NULL,
 	/*获赞数*/
 	praises INT NOT NULL,
 	/*回复那条数据ID*/
@@ -137,7 +136,7 @@ CREATE TABLE comicoreview(
 	/*用户评论的内容*/
 	cr_text NVARCHAR(150) NOT NULL,
 	/*审核*/
-	state NVARCHAR(10) NOT NULL DEFAULT '未审核',
+	state NVARCHAR(10) NOT NULL CHECK,
 	/*获赞数*/
 	praises INT NOT NULL,
 	/*回复那条数据ID*/
@@ -153,7 +152,7 @@ CREATE TABLE video(
 	/*编号*/
 	video_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	/*视频名*/
-	video_name NVARCHAR(50) NOT NULL,
+	video_name NVARCHAR(50) NOT NULL
 	/*视频封面图*/
 	video_image NVARCHAR(50) NOT NULL,
 	/*视频简介*/
@@ -177,9 +176,9 @@ CREATE TABLE comic(
 	/*编号*/
 	comic_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	/*漫画名字*/
-	comic_name NVARCHAR(100) NOT NULL,
+	comic _name NVARCHAR(100) NOT NULL,
 	/*审核 检查约束值：1或2*/
-	state NVARCHAR(10) NOT NULL DEFAULT '未审核',
+	state NVARCHAR(10) NOT NULL CHECK,
 	/*获赞数*/
 	praises INT NOT NULL,
 	/*漫画最新章*/
@@ -209,7 +208,7 @@ CREATE TABLE comicchapter(
 	/*漫画章数*/
 	chapter INT NOT NULL,
 	/*漫画ID*/
-	comic_id INT NOT NULL,
+	comic _id INT NOT NULL,
 	/*漫画图片*/
 	cartoon_pictures NVARCHAR(100) NOT NULL,
 	/*录入数据的时间*/
@@ -234,6 +233,8 @@ CREATE TABLE comiclabel(
 CREATE TABLE videolabel(
 	/*编号*/
 	vl_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  /*上级分类id*/
+  vl_pid int not null,
 	/*视频类型*/
 	vl_name NVARCHAR(50) NOT NULL,
 	/*录入数据的时间*/
@@ -259,7 +260,7 @@ CREATE TABLE videoorlabel(
 	/*编号*/
 	vol_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	/*视频ID*/
-	video_id INT NOT NULL,
+	video _id INT NOT NULL,
 	/*视频分类ID*/
 	vl_id INT NOT NULL,
 	/*录入数据的时间*/
@@ -275,7 +276,7 @@ CREATE TABLE collection(
 	/*用户ID*/
 	user_id INT NOT NULL,
 	/*区分物品ID 检查约束值：1或2*/
-	state INT NOT NULL,
+	state INT NOT NULL CHECK(),
 	/*物品ID*/
 	items_id INT NOT NULL,
 	/*录入数据的时间*/
@@ -307,7 +308,7 @@ CREATE TABLE attention(
 	/*用户ID*/
 	user_id INT NOT NULL,
 	/*被关注的用户ID*/
-	attention_user_id INT NOT NULL,
+	user_id INT NOT NULL,
 	/*录入数据的时间*/
 	start_time DATETIME,
 	/*录入数据的时间*/
@@ -323,9 +324,9 @@ CREATE TABLE topic(
 	/*用户ID*/
 	user_id INT NOT NULL,
 	/*发帖时间*/
-	publishtime DATE NOT NULL,
+	publishtime DATA NOT NULL,
 	/*修改时间*/
-	modifytime DATE NOT NULL,
+	modifytime DATA NOT NULL,
 	/*回复数*/
 	replycount INT NOT NULL,
 	/*点击数*/
@@ -345,9 +346,9 @@ CREATE TABLE reply(
 	/*用户ID*/
 	user_id INT NOT NULL,
 	/*发帖时间*/
-	publishtime DATE NOT NULL,
+	publishtime DATA NOT NULL,
 	/*修改时间*/
-	modifytime DATE NOT NULL,
+	modifytime DATA NOT NULL,
 	/*主贴编号*/
 	topic_id INT NOT NULL,
 	/*录入数据的时间*/
@@ -361,11 +362,11 @@ CREATE TABLE chat(
 	/*编号*/
 	chat_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	/*聊天内容*/
-	chat_content NVARCHAR(200) NOT NULL,
+	TEXT NVARCHAR(200) NOT NULL,
 	/*用户ID*/
 	user_id INT NOT NULL,
 	/*回复用户ID*/
-	reply_user_id INT NOT NULL,
+	user_id INT NOT NULL,
 	/*回复指定消息*/
 	specified INT NOT NULL,
 	/*录入数据的时间*/
@@ -385,10 +386,10 @@ CREATE TABLE userChat(
 	/*创建聊天的时间*/
 	statr_time DATETIME NOT NULL,
 	/*用户A消息列表是否包含此次聊天*/
-	userA_look NVARCHAR(200) NOT NULL,
+	userA_look NVARCHAR NOT NULL,
 	/*用户B消息列表是否包含此次聊天*/
-	userB_look NVARCHAR(200)
-);
+	userB_look NVARCHAR
+)
 
 /*用户聊天详细记录表*/
 CREATE TABLE userChatDetails(
@@ -397,14 +398,14 @@ CREATE TABLE userChatDetails(
 	/*聊天表（双人）id*/
 	chat_id INT NOT NULL,
 	/*消息内容*/
-	news_text NVARCHAR(100) NOT NULL,
+	TEXT NVARCHAR(100) NOT NULL,
 	/*创建聊天时间*/
 	statr_time DATETIME NOT NULL,
 	/*发送消息的用户*/
 	user_send_msg_id INT(10) NOT NULL,
 	/*接受消息的用户*/
 	user_msg_id INT(10) NOT NULL	
-);
+)
 
 /*用户登记记录表*/
 CREATE TABLE user_record(
@@ -418,7 +419,7 @@ CREATE TABLE user_record(
 	ip_address VARCHAR(100) NOT NULL,
 	/*登录的地址*/
 	login_address VARCHAR(100) NOT NULL
-);
+)
 
 /*用户创作中心菜单表*/
 CREATE TABLE userRitingCenter(
@@ -427,14 +428,14 @@ CREATE TABLE userRitingCenter(
 	/*上级菜单ID*/
 	p_id INT NOT NULL,
 	/*菜单名称*/
-	menu_name VARCHAR(100) NOT NULL,
+	menu_ NAME VARCHAR(100) NOT NULL,
 	/*图标*/
 	image VARCHAR(100) NOT NULL,
 	/*链接地址*/
 	address VARCHAR(100) NOT NULL,
 	/*是否打开 检查约束（只有值：1/2）*/
-	is_open CHAR(1) NOT NULL
-);
+	is_open CHAR(1) NOT NULL CHECK
+)
 
 /*积分记录表*/
 CREATE TABLE integralRecord(
@@ -447,5 +448,25 @@ CREATE TABLE integralRecord(
 	/*积分变化*/
 	integral_state INT NOT NULL,
 	/*积分使用描述*/
-	integral_describe VARCHAR(100) NOT NULL
+	integral_ DESCRIBE VARCHAR(100) not null
+ );
+ 
+ /*首页话题列表*/
+CREATE TABLE slideImg(
+	/*编号*/
+	slide_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	/*图片标题*/
+	slide_title NVARCHAR(50) NOT NULL,
+	/*内容*/
+	slide_content NVARCHAR(100) NOT NULL,
+	/*是否显示在首页*/
+	IsShow int NOT NULL,
+	/*图片路径*/
+	ImageUrl NVARCHAR(120) NOT NULL,
+	/*是否启用*/
+	IsEnabled int not null,
+ /*创建时间*/
+ start_time datetime not null,
+ /*最后修改时间*/ 
+ end_time datetime not null
 );

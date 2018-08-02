@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.SlideImgMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.SlideImg" >
+    <id column="slide_id" property="slideId" jdbcType="INTEGER" />
+    <result column="slide_title" property="slideTitle" jdbcType="VARCHAR" />
+    <result column="slide_content" property="slideContent" jdbcType="VARCHAR" />
+    <result column="IsShow" property="isshow" jdbcType="INTEGER" />
+    <result column="ImageUrl" property="imageurl" jdbcType="VARCHAR" />
+    <result column="IsEnabled" property="isenabled" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="linkAddress" property="linkaddress" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from slideimg
+    where slide_id = #{slideId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.SlideImg" >
+    <selectKey resultType="java.lang.Integer" keyProperty="slideId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into slideimg (slide_title, slide_content, IsShow, 
+      ImageUrl, IsEnabled, start_time, 
+      end_time, linkAddress)
+    values (#{slideTitle,jdbcType=VARCHAR}, #{slideContent,jdbcType=VARCHAR}, #{isshow,jdbcType=INTEGER}, 
+      #{imageurl,jdbcType=VARCHAR}, #{isenabled,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{linkaddress,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.SlideImg" >
+    update slideimg
+    set slide_title = #{slideTitle,jdbcType=VARCHAR},
+      slide_content = #{slideContent,jdbcType=VARCHAR},
+      IsShow = #{isshow,jdbcType=INTEGER},
+      ImageUrl = #{imageurl,jdbcType=VARCHAR},
+      IsEnabled = #{isenabled,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      linkAddress = #{linkaddress,jdbcType=VARCHAR}
+    where slide_id = #{slideId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select slide_id, slide_title, slide_content, IsShow, ImageUrl, IsEnabled, start_time, 
+    end_time, linkAddress
+    from slideimg
+    where slide_id = #{slideId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select slide_id, slide_title, slide_content, IsShow, ImageUrl, IsEnabled, start_time, 
+    end_time, linkAddress
+    from slideimg
+  </select>
+   <select id="selectLookImg" resultMap="BaseResultMap" >
+    select slide_id, slide_title, slide_content, IsShow, ImageUrl, IsEnabled, start_time, 
+    end_time, linkAddress
+    from slideimg 
+    where IsShow=0 and IsEnabled = 0
+  </select>
+</mapper>
