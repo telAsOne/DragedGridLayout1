@@ -77,7 +77,7 @@ CREATE TABLE roleormenu(
 	end_time DATETIME 
 );
 
-/*用户表*/
+﻿/*用户表*/
 CREATE TABLE userInfo(
 	/*编号*/
 	user_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -136,7 +136,7 @@ CREATE TABLE comicoreview(
 	/*用户评论的内容*/
 	cr_text NVARCHAR(150) NOT NULL,
 	/*审核*/
-	state NVARCHAR(10) NOT NULL CHECK,
+	state NVARCHAR(10) NOT NULL,
 	/*获赞数*/
 	praises INT NOT NULL,
 	/*回复那条数据ID*/
@@ -152,7 +152,7 @@ CREATE TABLE video(
 	/*编号*/
 	video_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	/*视频名*/
-	video_name NVARCHAR(50) NOT NULL
+	video_name NVARCHAR(50) NOT NULL,
 	/*视频封面图*/
 	video_image NVARCHAR(50) NOT NULL,
 	/*视频简介*/
@@ -178,7 +178,7 @@ CREATE TABLE comic(
 	/*漫画名字*/
 	comic _name NVARCHAR(100) NOT NULL,
 	/*审核 检查约束值：1或2*/
-	state NVARCHAR(10) NOT NULL CHECK,
+	state NVARCHAR(10) NOT NULL ,
 	/*获赞数*/
 	praises INT NOT NULL,
 	/*漫画最新章*/
@@ -208,7 +208,7 @@ CREATE TABLE comicchapter(
 	/*漫画章数*/
 	chapter INT NOT NULL,
 	/*漫画ID*/
-	comic _id INT NOT NULL,
+	comic_id INT NOT NULL,
 	/*漫画图片*/
 	cartoon_pictures NVARCHAR(100) NOT NULL,
 	/*录入数据的时间*/
@@ -260,7 +260,7 @@ CREATE TABLE videoorlabel(
 	/*编号*/
 	vol_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	/*视频ID*/
-	video _id INT NOT NULL,
+	video_id INT NOT NULL,
 	/*视频分类ID*/
 	vl_id INT NOT NULL,
 	/*录入数据的时间*/
@@ -276,7 +276,7 @@ CREATE TABLE collection(
 	/*用户ID*/
 	user_id INT NOT NULL,
 	/*区分物品ID 检查约束值：1或2*/
-	state INT NOT NULL CHECK(),
+	state INT NOT NULL,
 	/*物品ID*/
 	items_id INT NOT NULL,
 	/*录入数据的时间*/
@@ -308,7 +308,7 @@ CREATE TABLE attention(
 	/*用户ID*/
 	user_id INT NOT NULL,
 	/*被关注的用户ID*/
-	user_id INT NOT NULL,
+	attention_userId INT NOT NULL,
 	/*录入数据的时间*/
 	start_time DATETIME,
 	/*录入数据的时间*/
@@ -324,9 +324,9 @@ CREATE TABLE topic(
 	/*用户ID*/
 	user_id INT NOT NULL,
 	/*发帖时间*/
-	publishtime DATA NOT NULL,
+	publishtime DATETIME NOT NULL,
 	/*修改时间*/
-	modifytime DATA NOT NULL,
+	modifytime DATETIME NOT NULL,
 	/*回复数*/
 	replycount INT NOT NULL,
 	/*点击数*/
@@ -366,7 +366,7 @@ CREATE TABLE chat(
 	/*用户ID*/
 	user_id INT NOT NULL,
 	/*回复用户ID*/
-	user_id INT NOT NULL,
+	reply_userId INT NOT NULL,
 	/*回复指定消息*/
 	specified INT NOT NULL,
 	/*录入数据的时间*/
@@ -386,9 +386,9 @@ CREATE TABLE userChat(
 	/*创建聊天的时间*/
 	statr_time DATETIME NOT NULL,
 	/*用户A消息列表是否包含此次聊天*/
-	userA_look NVARCHAR NOT NULL,
+	userA_look NVARCHAR(5) NOT NULL,
 	/*用户B消息列表是否包含此次聊天*/
-	userB_look NVARCHAR
+	userB_look NVARCHAR(5)
 )
 
 /*用户聊天详细记录表*/
@@ -428,13 +428,13 @@ CREATE TABLE userRitingCenter(
 	/*上级菜单ID*/
 	p_id INT NOT NULL,
 	/*菜单名称*/
-	menu_ NAME VARCHAR(100) NOT NULL,
+	menu_NAME VARCHAR(100) NOT NULL,
 	/*图标*/
 	image VARCHAR(100) NOT NULL,
 	/*链接地址*/
 	address VARCHAR(100) NOT NULL,
 	/*是否打开 检查约束（只有值：1/2）*/
-	is_open CHAR(1) NOT NULL CHECK
+	is_open CHAR(1) NOT NULL 
 )
 
 /*积分记录表*/
@@ -448,7 +448,7 @@ CREATE TABLE integralRecord(
 	/*积分变化*/
 	integral_state INT NOT NULL,
 	/*积分使用描述*/
-	integral_ DESCRIBE VARCHAR(100) not null
+	integral_DESCRIBE VARCHAR(100) not null
  );
  
  /*首页话题列表*/
@@ -465,8 +465,25 @@ CREATE TABLE slideImg(
 	ImageUrl NVARCHAR(120) NOT NULL,
 	/*是否启用*/
 	IsEnabled int not null,
+	linkAddress varchar(100),
  /*创建时间*/
- start_time datetime not null,
+ start_time datetime ,
  /*最后修改时间*/ 
- end_time datetime not null
+ end_time datetime 
 );
+
+/*系統消息通知表*/
+CREATE TABLE SystemMessage
+(	
+	/*编号*/
+	stM_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	/*标题*/
+	stM_title VARCHAR(100) NOT NULL,
+	/*内容*/
+	stM_content VARCHAR(500) NOT NULL,
+	/*跳转网址*/
+	stM_skipUrl VARCHAR(50) NOT NULL,
+	/*发布时间*/
+	stM_releaseTime DATETIME
+	
+)；
