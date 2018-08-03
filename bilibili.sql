@@ -1,16 +1,15 @@
-﻿/*数据库*/
+/*数据库*/
 CREATE DATABASE bilibili;
-drop database bilibili
 /*后台用户表*/
 CREATE TABLE adminInfo(
 	/*编号*/
-	admin_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT，
+	admin_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	/*用户名*/
 	admin_name NVARCHAR(25) NOT NULL UNIQUE,
 	/*用户密码*/
 	admin_psw NVARCHAR(25) NOT NULL,
 	/*用户状态*/
-	admin_state NVARCHAR(10) NOT NULL CHECK,
+	admin_state NVARCHAR(10) NOT NULL,
 	/*录入数据的时间*/
 	start_time DATETIME,
 	/*录入数据的时间*/
@@ -36,7 +35,7 @@ CREATE TABLE menuInfo(
 	/*菜单名称*/
 	TEXT VARCHAR(50) NOT NULL,
 	/*菜单状态*/
-	state NVARCHAR(25) NOT NULL CHECK,
+	state NVARCHAR(25) NOT NULL,
 	/*菜单对应的页面*/
 	url VARCHAR(100) NOT NULL,
 	/*菜单的上级ID*/
@@ -68,15 +67,14 @@ CREATE TABLE roleormenu(
 	/*编号*/
 	mo_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	/*角色ID*/
-	role_id INT NOT NULL，
+	role_id INT NOT NULL,
 	/*菜单ID*/
-	menu_id INT NOT NULL，
+	menu_id INT NOT NULL,
 	/*录入数据的时间*/
 	start_time DATETIME,
 	/*录入数据的时间*/
-	end_time DATETIME 
+	end_time DATETIME
 );
-
 ﻿/*用户表*/
 CREATE TABLE userInfo(
 	/*编号*/
@@ -86,7 +84,7 @@ CREATE TABLE userInfo(
 	/*用户密码*/
 	uer_psw NVARCHAR(25) NOT NULL,
 	/*用户性别*/
-	sex CHAR(4) NOT NULL,
+	sex CHAR(1) NOT NULL,
 	/*用户电话*/
 	phone INT,
 	/*用户等级*/
@@ -131,7 +129,7 @@ CREATE TABLE videoreview(
 CREATE TABLE comicoreview(
 	/*编号*/
 	cr_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	/*用户ID*/
+	/*用焪/
 	user_id INT NOT NULL,
 	/*用户评论的内容*/
 	cr_text NVARCHAR(150) NOT NULL,
@@ -176,9 +174,9 @@ CREATE TABLE comic(
 	/*编号*/
 	comic_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	/*漫画名字*/
-	comic _name NVARCHAR(100) NOT NULL,
+	comic_name NVARCHAR(100) NOT NULL,
 	/*审核 检查约束值：1或2*/
-	state NVARCHAR(10) NOT NULL ,
+	st NVARCHAR(10) NOT NULL,
 	/*获赞数*/
 	praises INT NOT NULL,
 	/*漫画最新章*/
@@ -221,7 +219,7 @@ CREATE TABLE comicchapter(
 CREATE TABLE comiclabel(
 	/*编号*/
 	cl_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	/*漫画分类标签*/
+	/*漫画分砇签*/
 	cl_name NVARCHAR(50) NOT NULL,
 	/*录入数据的时间*/
 	start_time DATETIME,
@@ -233,8 +231,8 @@ CREATE TABLE comiclabel(
 CREATE TABLE videolabel(
 	/*编号*/
 	vl_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  /*上级分类id*/
-  vl_pid int not null,
+	  /*上级分类id*/
+	  vl_pid INT NOT NULL,
 	/*视频类型*/
 	vl_name NVARCHAR(50) NOT NULL,
 	/*录入数据的时间*/
@@ -315,7 +313,7 @@ CREATE TABLE attention(
 	end_time DATETIME
 );
 
-/*主贴表*/
+/*临表*/
 CREATE TABLE topic(
 	/*编号*/
 	topic_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -346,9 +344,9 @@ CREATE TABLE reply(
 	/*用户ID*/
 	user_id INT NOT NULL,
 	/*发帖时间*/
-	publishtime DATA NOT NULL,
+	publishtime DATETIME NOT NULL,
 	/*修改时间*/
-	modifytime DATA NOT NULL,
+	modifytime DATETIME NOT NULL,
 	/*主贴编号*/
 	topic_id INT NOT NULL,
 	/*录入数据的时间*/
@@ -374,7 +372,6 @@ CREATE TABLE chat(
 	/*录入数据的时间*/
 	end_time DATETIME
 );
-
 /*用户聊天表*/
 CREATE TABLE userChat(
 	/*编号*/
@@ -389,7 +386,7 @@ CREATE TABLE userChat(
 	userA_look NVARCHAR(5) NOT NULL,
 	/*用户B消息列表是否包含此次聊天*/
 	userB_look NVARCHAR(5)
-)
+);
 
 /*用户聊天详细记录表*/
 CREATE TABLE userChatDetails(
@@ -402,10 +399,10 @@ CREATE TABLE userChatDetails(
 	/*创建聊天时间*/
 	statr_time DATETIME NOT NULL,
 	/*发送消息的用户*/
-	user_send_msg_id INT(10) NOT NULL,
+	user_semsg_id INT(10) NOT NULL,
 	/*接受消息的用户*/
 	user_msg_id INT(10) NOT NULL	
-)
+);
 
 /*用户登记记录表*/
 CREATE TABLE user_record(
@@ -419,7 +416,7 @@ CREATE TABLE user_record(
 	ip_address VARCHAR(100) NOT NULL,
 	/*登录的地址*/
 	login_address VARCHAR(100) NOT NULL
-)
+);
 
 /*用户创作中心菜单表*/
 CREATE TABLE userRitingCenter(
@@ -435,7 +432,7 @@ CREATE TABLE userRitingCenter(
 	address VARCHAR(100) NOT NULL,
 	/*是否打开 检查约束（只有值：1/2）*/
 	is_open CHAR(1) NOT NULL 
-)
+);
 
 /*积分记录表*/
 CREATE TABLE integralRecord(
@@ -448,7 +445,7 @@ CREATE TABLE integralRecord(
 	/*积分变化*/
 	integral_state INT NOT NULL,
 	/*积分使用描述*/
-	integral_DESCRIBE VARCHAR(100) not null
+	integral_DESCRIBE VARCHAR(100) NOT NULL
  );
  
  /*首页话题列表*/
@@ -460,16 +457,16 @@ CREATE TABLE slideImg(
 	/*内容*/
 	slide_content NVARCHAR(100) NOT NULL,
 	/*是否显示在首页*/
-	IsShow int NOT NULL,
+	IsShow INT NOT NULL,
 	/*图片路径*/
 	ImageUrl NVARCHAR(120) NOT NULL,
 	/*是否启用*/
-	IsEnabled int not null,
-	linkAddress varchar(100),
+	IsEnabled INT NOT NULL,
+	linkAddress VARCHAR(100),
  /*创建时间*/
- start_time datetime ,
+ start_time DATETIME ,
  /*最后修改时间*/ 
- end_time datetime 
+ end_time DATETIME 
 );
 
 /*系統消息通知表*/
@@ -486,4 +483,4 @@ CREATE TABLE SystemMessage
 	/*发布时间*/
 	stM_releaseTime DATETIME
 	
-)；
+);
