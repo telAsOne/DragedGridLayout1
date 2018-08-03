@@ -227,11 +227,12 @@ CREATE TABLE comiclabel(
 	/*录入数据的时间*/
 	end_time DATETIME 	
 );
-
 /*视频分类表*/
 CREATE TABLE videolabel(
 	/*编号*/
 	vl_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	/*上级分类id*/
+	vl_pid INT NOT NULL,
 	/*视频类型*/
 	vl_name NVARCHAR(50) NOT NULL,
 	/*录入数据的时间*/
