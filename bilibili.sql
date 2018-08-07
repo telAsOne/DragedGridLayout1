@@ -1,4 +1,4 @@
-/*数据库*/
+﻿/*数据库*/
 CREATE DATABASE bilibili;
 /*后台用户表*/
 CREATE TABLE adminInfo(
@@ -484,4 +484,14 @@ CREATE TABLE SystemMessage
 	/*发布时间*/
 	stM_releaseTime DATETIME
 	
+);
+
+create table userjoin
+(
+  /*id 自动增长 */
+  id int primary key auto_increment,
+  /* 粉丝，来自用户信息表  */
+  joinfrom int,
+  /* 作者，来自用户信息表  */
+  jointo   int
 );
