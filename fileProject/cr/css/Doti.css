@@ -1,0 +1,285 @@
+#fen{
+  float: left;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  height: 500px;
+  width: 640px;
+  margin-left: -5px;
+  margin-top: 5px;
+}
+#five{
+  float: left;
+  height: 30px;
+  width: 600px;
+  padding-left: 0px;
+  margin-top: 10px;
+  margin-left: 20px;
+  border-bottom: 1px solid gainsboro;
+}
+#five>li{
+  line-height: 30px;
+  float: left;
+  height:30px;
+  width: 90px;
+  text-align: center;
+  list-style-type: none;
+  font-family: 宋体;
+  font-size: 12px;
+}
+#five>li:hover{
+  cursor: pointer;
+}
+#five>li:first-child{
+  cursor: pointer;
+  border-bottom: 1px solid cornflowerblue;
+  color: cornflowerblue;
+}
+#zig{
+  float: left;
+  border: 2px dashed #cccccc;
+  border-radius: 5px;
+  height: 120px;
+  width: 190px;
+  margin-left: 20px;
+}
+#lp{
+  width: 40px;
+  height: 40px;
+  margin-top: 20px;
+  margin-left: 70px;
+  float: left;
+}
+#she{
+  float: left;
+  margin-left: 48px;
+  font-size: 14px;
+  color: grey;
+}
+#zz{
+  width: 250px;
+  height: 120px;
+  margin-top: 5px;
+  margin-left: 40px;
+}
+#ten{
+  float: left;
+  width: 600px;
+  padding-left: 0px;
+  margin-top: 10px;
+  margin-left: 20px;
+  border-top: 1px solid gainsboro;
+}
+#ten>li{
+  line-height: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  height: 30px;
+  width: 600px;
+  list-style-type: none;
+  font-size: 18px;
+  border-bottom: 1px solid gainsboro;
+}
+#ten>li:last-child{
+  margin-top: 50px;
+  border: 0px;
+}
+#bot{
+  height: 40px;
+  width: 130px;
+  border-radius: 6px;
+  background-color: dodgerblue;
+  font-size: 14px;
+  border: 0px;
+  color: white;
+  margin-left: 280px;
+}
+#bot:hover{
+  opacity: 0.8;
+}
+span{
+  color: darkgray;
+  font-size: 12px;
+  margin-left: 200px;
+}
+#ren{
+  float: left;
+  border: 1px solid gainsboro;
+  border-radius: 2px;
+  height: 70px;
+  width: 365px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+#ba{
+  width: 80px;
+  height: 60px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+#dia{
+  letter-spacing: 1px;
+  width: 260px;
+  margin-top: 15px;
+  text-align: center;
+  height: 60px;
+  float: right;
+}
+#dia:hover{
+  cursor: pointer;
+}
+#zuo{
+  float: left;
+  border: 1px solid gainsboro;
+  border-radius: 2px;
+  height: 120px;
+  width: 365px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+#acb{
+  float: left;
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+  margin-left: 120px;
+}
+#chg{
+  letter-spacing: 2px;
+  margin-top: 20px;
+  margin-left: 10px;
+  height: 60px;
+  float: left;
+}
+#chg:hover{
+  cursor: pointer;
+}
+#six{
+  float: left;
+  height: 30px;
+  width: 250px;
+  padding-left: 0px;
+  margin-top: -10px;
+  margin-left: 60px;
+  border-radius: 2px;
+  border: 1px solid lightgrey;
+}
+#six>li{
+  line-height: 23px;
+  float: left;
+  height:20px;
+  width: 120px;
+  margin-top: 5px;
+  text-align: center;
+  list-style-type: none;
+  color: grey;
+  font-family: 宋体;
+  font-size: 12px;
+}
+#six>li:first-child{
+  border-right: 1px solid lightgrey;
+}
+#five>li:hover{
+  cursor: pointer;
+}
+#c,#cc{
+  float: left;
+  height:19px;
+  width: 22px;
+  margin-left: 30px;
+  margin-right: -20px;
+}
+#gao{
+  float: left;
+  border: 1px solid gainsboro;
+  border-radius: 2px;
+  height: 190px;
+  width: 365px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+#gog{
+  line-height: 20px;
+  float: left;
+  height: 30px;
+  width: 330px;
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+  padding-left: 3px;
+  border-bottom: 1px solid lightgrey;
+}
+#inp{
+  height: 120px;
+  width: 330px;
+  border: 0px;
+  font-size: 12px;
+  margin-left: 10px;
+  padding: 10px;
+}
+#sen{
+  float: left;
+  border: 1px solid gainsboro;
+  border-radius: 2px;
+  height: 90px;
+  width: 365px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+#uid{
+  float: left;
+  height: 15px;
+  margin-top: 20px;
+  margin-left: 40px;
+  width: 25px;
+  font-size: 10px;
+  color: white;
+  text-align: center;
+  border-radius: 2px;
+  background-color: lightskyblue;
+}
+#ui{
+  float: left;
+  margin-top: 20px;
+  margin-left: 5px;
+  font-size: 10px;
+  color: grey;
+}
+#shi{
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin-top: 15px;
+  margin-left: 90px;
+  margin-bottom: 10px;
+  font-size: 10px;
+  color: grey;
+}
+#d{
+  float: left;
+  margin-top: 20px;
+  font-size: 10px;
+  color: grey;
+}
+#div{
+  clear: both;
+  width: 330px;
+  margin-left: 20px;
+  height: 1px;
+  background-color: lightgrey;
+}
+#ri{
+  float: left;
+  width: 22px;
+  height: 22px;
+  margin-top: 5px;
+  margin-left: 41px;
+  font-size: 10px;
+  color: grey;
+}
+#zi{
+  float: left;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 10px;
+  color: grey;
+}

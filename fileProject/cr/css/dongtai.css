@@ -1,0 +1,88 @@
+#fen{
+  float: left;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  height: 230px;
+  width: 640px;
+  margin-left: -5px;
+  margin-top: 5px;
+}
+#ai{
+  width: 190px;
+  height: 120px;
+  margin-left: 190px;
+  margin-top: 50px;
+}
+#ya{
+  color: darkgrey;
+  font-size: 14px;
+  margin-left: 220px;
+  margin-top: 10px;
+}
+#ren{
+  float: left;
+  border: 1px solid gainsboro;
+  border-radius: 2px;
+  height: 100px;
+  width: 365px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+#uid{
+  float: left;
+  height: 15px;
+  margin-top: 20px;
+  margin-left: 40px;
+  width: 25px;
+  font-size: 10px;
+  color: white;
+  text-align: center;
+  border-radius: 2px;
+  background-color: lightskyblue;
+}
+#ui{
+  float: left;
+  margin-top: 20px;
+  margin-left: 5px;
+  font-size: 10px;
+  color: grey;
+}
+#shi{
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin-top: 15px;
+  margin-left: 90px;
+  margin-bottom: 10px;
+  font-size: 10px;
+  color: grey;
+}
+#d{
+   float: left;
+   margin-top: 20px;
+   font-size: 10px;
+   color: grey;
+ }
+#div{
+  clear: both;
+  width: 330px;
+  margin-left: 20px;
+  height: 1px;
+  background-color: lightgrey;
+}
+#ri{
+  float: left;
+  width: 22px;
+  height: 22px;
+  margin-top: 5px;
+  margin-left: 41px;
+  font-size: 10px;
+  color: grey;
+}
+#zi{
+  float: left;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 10px;
+  color: grey;
+}

@@ -1,0 +1,213 @@
+#kek{
+  width:1024px;
+  margin:0 auto ;
+}
+#one{
+  float: left;
+  width: 400px;
+  height: 20px;
+  margin-top: 0px;
+  padding-left: 0px;
+  padding-top: 6px;
+}
+a{
+  color: black;
+  text-decoration: none;
+}
+#a{
+  width: 15px;
+  height: 15px;
+  padding-right: 3px;
+}
+#aa{
+  width: 15px;
+  height: 15px;
+  padding-right: 5px;
+}
+#one>li{
+  line-height: 23px;
+  float: left;
+  padding-right: 12px;
+  height:15px;
+  list-style-type: none;
+  font-family: 宋体;
+  font-size: 12px;
+}
+#one>li:hover{
+  cursor: pointer;
+  font-size: 13px;
+  color: cornflowerblue;
+}
+#sou{
+  float: left;
+  width: 80px;
+  height: 30px;
+  margin-left: 100px;
+  border-radius: 20px;
+  padding-left: 10px;
+  outline:none;
+  border:1px solid #cccccc;
+}
+#aaa{
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-top: 8px;
+  margin-left: -25px;
+}
+#dog{
+  width: 38px;
+  height: 38px;
+  border-radius: 40px;
+  margin-left:30px;
+  margin-top: -3px;
+  float: left;
+}
+#dog:hover{
+  width: 39px;
+  height: 39px;
+}
+#two{
+  float: left;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: 0px;
+  padding-top: 6px;
+}
+#two>li{
+  line-height: 23px;
+  float: left;
+  padding-right: 12px;
+  height:15px;
+  list-style-type: none;
+  font-family: 宋体;
+  font-size: 12px;
+}
+#two>li:hover{
+  color: cornflowerblue;
+  cursor: pointer;
+  font-size: 14px;
+}
+#tou{
+  width: 52px;
+  height: 55px;
+  float: right;
+  text-align: center;
+  margin-top: -13px;
+  margin-right: 1px;
+  line-height: 58px;
+  font-family: 宋体;
+  font-size: 14px;
+  color: white;
+  background-color: hotpink;
+}
+#tou:hover{
+  color: cornflowerblue;
+  cursor: pointer;
+  font-size: 16px;
+}
+#bli{
+  float: left;
+  width: 1024px;
+  height: 81px;
+  margin-left: -1px;
+  background-color: dodgerblue;
+}
+#bili{
+  float: left;
+  margin-left: 90px;
+  width: 850px;
+  height: 100px;
+}
+#six{
+  float: left;
+  width: 135px;
+  height: 545px;
+  margin-top: 30px;
+  margin-left: 50px;
+  border-radius: 2px;
+  padding:0px;
+  background-color: ghostwhite;
+  border:1px solid gainsboro;
+}
+#six>li{
+  float: left;
+  line-height: 42px;
+  text-align: center;
+  height:42px;
+  width: 135px;
+  list-style-type: none;
+  font-size: 13px;
+}
+#six>li:first-child{
+  color: darkgray;
+  font-size: 15px;
+  letter-spacing: 2px;
+  border-bottom: 1px solid gainsboro;
+}
+#six>li:first-child:hover{
+  background-color: ghostwhite;
+}
+#six>li:hover{
+  cursor: pointer;
+  background-color: gainsboro;
+}
+#sye{
+  float: left;
+  width: 780px;
+  height: 545px;
+  margin-top: 30px;
+  border-radius: 2px;
+  box-shadow: 1px 1px 0px 0px lightgrey;
+  border:1px solid gainsboro;
+}
+#cuk{
+  padding-top: 13px;
+  border-bottom: 1px solid gainsboro;
+}
+#rit>li{
+  color: #555555;
+  font-size: 14px;
+  margin-top: 30px;
+  margin-left: 20px;
+  letter-spacing: 2px;
+  list-style-type: none;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+  color:   darkgrey;
+  font-size: 12px
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color:    darkgrey;
+  font-size: 12px
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:    darkgrey;
+  font-size: 12px
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color:    darkgrey;
+  font-size: 12px
+}
+#suk{
+  margin: 20px;
+  padding-top: 13px;
+  border-bottom: 1px solid gainsboro;
+}
+#but{
+  width: 90px;
+  height: 35px;
+  border: 0px;
+  color: white;
+  outline: none;
+  border-radius: 6px;
+  line-height: 35px;
+  text-align: center;
+  margin-left: 350px;
+  margin-top: 30px;
+  background-color: dodgerblue;
+}
+#but:hover{
+  width: 89px;
+  height: 34px;
+}
