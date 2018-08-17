@@ -3,6 +3,7 @@
 <mapper namespace="com.yidu.base.allMapper.VideolabelMapper" >
   <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.Videolabel" >
     <id column="vl_id" property="vlId" jdbcType="INTEGER" />
+    <result column="vl_pid" property="vlPid" jdbcType="INTEGER" />
     <result column="vl_name" property="vlName" jdbcType="VARCHAR" />
     <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
     <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
@@ -12,25 +13,29 @@
     where vl_id = #{vlId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.Videolabel" >
-    insert into videolabel (vl_id, vl_name, start_time, 
+    <selectKey resultType="java.lang.Integer" keyProperty="vlId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into videolabel (vl_pid, vl_name, start_time, 
       end_time)
-    values (#{vlId,jdbcType=INTEGER}, #{vlName,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+    values (#{vlPid,jdbcType=INTEGER}, #{vlName,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
       #{endTime,jdbcType=TIMESTAMP})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Videolabel" >
     update videolabel
-    set vl_name = #{vlName,jdbcType=VARCHAR},
+    set vl_pid = #{vlPid,jdbcType=INTEGER},
+      vl_name = #{vlName,jdbcType=VARCHAR},
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP}
     where vl_id = #{vlId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select vl_id, vl_name, start_time, end_time
+    select vl_id, vl_pid, vl_name, start_time, end_time
     from videolabel
     where vl_id = #{vlId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select vl_id, vl_name, start_time, end_time
+    select vl_id, vl_pid, vl_name, start_time, end_time
     from videolabel
   </select>
 </mapper>

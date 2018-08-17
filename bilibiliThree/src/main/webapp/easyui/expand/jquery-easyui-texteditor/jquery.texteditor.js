@@ -144,8 +144,8 @@
 		opts.menu.bind('click', function(e){
 			if ($(e.target).hasClass('texteditor-colorcell')){
 				var color = $(e.target).css('backgroundColor');
-				opts.onClick.call(mb, color);
 				opts.menu.menu('hide');
+				opts.onClick.call(mb, color);
 			}
 		});
 		$(mb).menubutton({menu:opts.menu});	// attach the menu

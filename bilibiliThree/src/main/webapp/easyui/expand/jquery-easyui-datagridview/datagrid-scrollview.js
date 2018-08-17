@@ -29,16 +29,11 @@ $.extend($.fn.datagrid.defaults, {
 $.extend($.fn.datagrid.defaults.finder, {
 	getRow: function(target, p){	// p can be row index or tr object
 		var index = (typeof p == 'object') ? p.attr('datagrid-row-index') : p;
-		var data = $.data(target, 'datagrid').data;
 		var opts = $(target).datagrid('options');
 		if (opts.view.type == 'scrollview'){
-			if (index < data.firstRows.length){
-				return data.firstRows[index];
-			} else {
-				index -= opts.view.index;
-			}
+			index -= opts.view.index;
 		}
-		return data.rows[index];
+		return $.data(target, 'datagrid').data.rows[index];
 	}
 });
 
@@ -213,8 +208,6 @@ var scrollview = $.extend({}, $.fn.datagrid.defaults.view, {
 		var dc = state.dc;
 		var view = this;
 
-		opts._emptyMsg = opts.emptyMsg;	// store the emptyMsg value
-		opts.emptyMsg = '';	// erase it to prevent from displaying it
 		state.data.firstRows = state.data.rows;
 		state.data.rows = [];
 
@@ -227,8 +220,8 @@ var scrollview = $.extend({}, $.fn.datagrid.defaults.view, {
 		
 		function init(){
 			var pager = $(target).datagrid('getPager');
-			pager.each(function(){
-				$(this).pagination('options').onSelectPage = function(pageNum, pageSize){
+			pager.pagination({
+				onSelectPage: function(pageNum, pageSize){
 					opts.pageNumber = pageNum || 1;
 					opts.pageSize = pageSize;
 					pager.pagination('refresh',{
@@ -236,7 +229,7 @@ var scrollview = $.extend({}, $.fn.datagrid.defaults.view, {
 						pageSize:pageSize
 					});
 					$(target).datagrid('gotoPage', opts.pageNumber);
-				};
+				}
 			});
 			// erase the onLoadSuccess event, make sure it can't be triggered
 			state.onLoadSuccess = opts.onLoadSuccess;
@@ -389,12 +382,6 @@ var scrollview = $.extend({}, $.fn.datagrid.defaults.view, {
 		var opts = state.options;
 		var index = (page-1)*opts.pageSize;
 
-		// if possible display the empty message
-		opts.emptyMsg = opts._emptyMsg;
-		if (this.setEmptyMsg){
-			this.setEmptyMsg(target);
-		}
-
 		if (index < 0){return}
 		if (opts.onBeforeFetch.call(target, page) == false){return;}
 
@@ -479,7 +466,6 @@ var scrollview = $.extend({}, $.fn.datagrid.defaults.view, {
 			$(target).datagrid('setSelectionState');
 			dc.body2.scrollTop(spos - opts.deltaTopHeight);
 
-			opts.pageNumber = this.page;
 			var pager = $(target).datagrid('getPager');
 			if (pager.length){
 				var popts = pager.pagination('options');
@@ -492,10 +478,7 @@ var scrollview = $.extend({}, $.fn.datagrid.defaults.view, {
 				});
 				popts.displayMsg = displayMsg;
 			}
-			if (this.setEmptyMsg){
-				this.setEmptyMsg(target);
-			}
-			
+
 			opts.onLoadSuccess.call(target, {
 				total: state.data.total,
 				rows: this.rows
@@ -520,6 +503,7 @@ var scrollview = $.extend({}, $.fn.datagrid.defaults.view, {
 		var opts = $.data(target, 'datagrid').options;
 		var rows = $(target).datagrid('getRows');
 		var rowData = opts.finder.getRow(target, rowIndex);
+
 		var oldStyle = _getRowStyle(rowIndex);
 		$.extend(rowData, row);
 		var newStyle = _getRowStyle(rowIndex);
@@ -605,14 +589,10 @@ var scrollview = $.extend({}, $.fn.datagrid.defaults.view, {
 		var state = $.data(target, 'datagrid');
 		var data = state.data;
 		var opts = state.options;
-		data.total--;
 		if (data.firstRows){
-			if (index < data.firstRows.length){
-				data.firstRows.splice(index, 1);
-				this.reload.call(this, target);
-				return;
-			}
+			data.firstRows.splice(index, 1);
 		}
+		data.total--;
 
 		var rows = this.r1.concat(this.r2);
 		if (index < this.index){
@@ -632,42 +612,22 @@ var scrollview = $.extend({}, $.fn.datagrid.defaults.view, {
 	}
 });
 
-$.fn.datagrid.methods.baseUpdateRow = $.fn.datagrid.methods.updateRow;
 $.fn.datagrid.methods.baseGetRowIndex = $.fn.datagrid.methods.getRowIndex;
 $.fn.datagrid.methods.baseScrollTo = $.fn.datagrid.methods.scrollTo;
 $.fn.datagrid.methods.baseGotoPage = $.fn.datagrid.methods.gotoPage;
 $.extend($.fn.datagrid.methods, {
-	updateRow: function(jq, param){
-		return jq.each(function(){
-			var opts = $(this).datagrid('options');
-			var row = opts.finder.getRow(this, param.index);
-			if (row){
-				$(this).datagrid('baseUpdateRow', param);
-			} else {
-				var firstRows = $(this).datagrid('getData').firstRows||[];
-				if (param.index < firstRows.length){
-					$.extend(firstRows[param.index], param.row);
-				}
-			}
-		});
-	},
-	getRowIndex: function(jq, row){
+	getRowIndex: function(jq, id){
 		var opts = jq.datagrid('options');
 		if (opts.view.type == 'scrollview'){
-			var data = jq.datagrid('getData');
-			if (typeof row == 'object'){
-				var index = $.easyui.indexOfArray(data.firstRows, row);
+			// return jq.datagrid('baseGetRowIndex', id) + opts.view.index;
+			var index = jq.datagrid('baseGetRowIndex', id);
+			if (index == -1){
+				return -1;
 			} else {
-				var index = $.easyui.indexOfArray(data.firstRows, opts.idField, row);
-			}
-			if (index >= 0){
-				return index;
-			} else {
-				index = jq.datagrid('baseGetRowIndex', row);
-				return (index == -1) ? -1 : index+opts.view.index;
+				return index + opts.view.index;
 			}
 		} else {
-			return jq.datagrid('baseGetRowIndex', row);
+			return jq.datagrid('baseGetRowIndex', id);
 		}
 	},
 	getRow: function(jq, index){

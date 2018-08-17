@@ -16,17 +16,6 @@
 	margin-right:10px;
 	background-position:right center;
 }
-.panel-hleft>.panel-header .panel-title,
-.panel-hright>.panel-header .panel-title{
-	text-align: left;
-}
-.panel-hleft>.panel-header .panel-title-up,
-.panel-hright>.panel-header .panel-title-up{
-	text-align: right;
-}
-.panel-hright>.panel-body{
-	left: 0;
-}
 
 .window .window-header .panel-icon{
 	right:1px;

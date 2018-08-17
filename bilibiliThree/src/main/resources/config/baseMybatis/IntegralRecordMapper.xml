@@ -13,10 +13,13 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.IntegralRecord" >
-    insert into integralrecord (id, user_id, operation_time, 
-      integral_state, integral_describe)
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{operationTime,jdbcType=VARCHAR}, 
-      #{integralState,jdbcType=INTEGER}, #{integralDescribe,jdbcType=VARCHAR})
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into integralrecord (user_id, operation_time, integral_state, 
+      integral_describe)
+    values (#{userId,jdbcType=INTEGER}, #{operationTime,jdbcType=VARCHAR}, #{integralState,jdbcType=INTEGER}, 
+      #{integralDescribe,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.IntegralRecord" >
     update integralrecord

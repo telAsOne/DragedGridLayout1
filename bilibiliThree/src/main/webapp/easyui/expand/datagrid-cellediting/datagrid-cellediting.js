@@ -82,9 +82,6 @@
 		if (!cell){return;}
 		var input = dg.datagrid('input', cell);
 		if (input){
-			if (input[0].tagName.toLowerCase() == 'textarea'){
-				return;
-			}
 			endCellEdit(this, true);
 		} else {
 			dg.datagrid('editCell', cell);
@@ -291,8 +288,8 @@
 				setTimeout(function(){
 					input.unbind('.cellediting').bind('keydown.cellediting', function(e){
 						if (e.keyCode == 13){
-							return opts.navHandler['13'].call(target, e);
-							// return false;
+							opts.navHandler['13'].call(target, e);
+							return false;
 						}
 					});
 					input.focus();

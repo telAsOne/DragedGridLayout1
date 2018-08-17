@@ -21,16 +21,19 @@
     where comic_id = #{comicId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.Comic" >
-    insert into comic (comic_id, comic_name, state, 
-      praises, chapter, recently, 
-      information, read_number, gift_number, 
-      gift, portrait, start_time, 
-      end_time)
-    values (#{comicId,jdbcType=INTEGER}, #{comicName,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
-      #{praises,jdbcType=INTEGER}, #{chapter,jdbcType=INTEGER}, #{recently,jdbcType=TIMESTAMP}, 
-      #{information,jdbcType=VARCHAR}, #{readNumber,jdbcType=INTEGER}, #{giftNumber,jdbcType=INTEGER}, 
-      #{gift,jdbcType=INTEGER}, #{portrait,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{endTime,jdbcType=TIMESTAMP})
+    <selectKey resultType="java.lang.Integer" keyProperty="comicId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into comic (comic_name, state, praises, 
+      chapter, recently, information, 
+      read_number, gift_number, gift, 
+      portrait, start_time, end_time
+      )
+    values (#{comicName,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{praises,jdbcType=INTEGER}, 
+      #{chapter,jdbcType=INTEGER}, #{recently,jdbcType=TIMESTAMP}, #{information,jdbcType=VARCHAR}, 
+      #{readNumber,jdbcType=INTEGER}, #{giftNumber,jdbcType=INTEGER}, #{gift,jdbcType=INTEGER}, 
+      #{portrait,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Comic" >
     update comic

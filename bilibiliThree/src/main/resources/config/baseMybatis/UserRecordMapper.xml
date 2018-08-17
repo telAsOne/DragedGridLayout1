@@ -13,10 +13,13 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.UserRecord" >
-    insert into user_record (id, login_Time, user_id, 
-      ip_address, login_address)
-    values (#{id,jdbcType=INTEGER}, #{loginTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, 
-      #{ipAddress,jdbcType=VARCHAR}, #{loginAddress,jdbcType=VARCHAR})
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user_record (login_Time, user_id, ip_address, 
+      login_address)
+    values (#{loginTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, #{ipAddress,jdbcType=VARCHAR}, 
+      #{loginAddress,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.UserRecord" >
     update user_record

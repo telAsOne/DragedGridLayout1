@@ -10,14 +10,8 @@
 				tipPosition: 'left',
 				panelAlign: 'right',
 				labelAlign: 'right',
+				reversed: true,	// defined for spinner plugins
 				deltaX: -19
-			});
-		}
-	});
-	$.map(['spinner','numberspinner','timespinner','datetimespinner'], function(plugin){
-		if ($.fn[plugin]){
-			$.extend($.fn[plugin].defaults, {
-				reversed: true	// defined for spinner plugins
 			});
 		}
 	});

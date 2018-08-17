@@ -1,7 +1,5 @@
 ﻿/*数据库*/
 CREATE DATABASE bilibili;
-
-
 /*后台用户表*/
 CREATE TABLE adminInfo(
 	/*编号*/
@@ -229,11 +227,12 @@ CREATE TABLE comiclabel(
 	/*录入数据的时间*/
 	end_time DATETIME 	
 );
-
 /*视频分类表*/
 CREATE TABLE videolabel(
 	/*编号*/
 	vl_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	/*上级分类id*/
+	vl_pid INT NOT NULL,
 	/*视频类型*/
 	vl_name NVARCHAR(50) NOT NULL,
 	/*录入数据的时间*/
@@ -448,4 +447,51 @@ CREATE TABLE integralRecord(
 	integral_state INT NOT NULL,
 	/*积分使用描述*/
 	integral_describe VARCHAR(100) NOT NULL
+);
+ 
+ /*首页话题列表*/
+CREATE TABLE slideImg(
+	/*编号*/
+	slide_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	/*图片标题*/
+	slide_title NVARCHAR(50) NOT NULL,
+	/*内容*/
+	slide_content NVARCHAR(100) NOT NULL,
+	/*是否显示在首页*/
+	IsShow INT NOT NULL,
+	/*图片路径*/
+	ImageUrl NVARCHAR(120) NOT NULL,
+	/*是否启用*/
+	IsEnabled INT NOT NULL,
+	linkAddress VARCHAR(100),
+ /*创建时间*/
+ start_time DATETIME ,
+ /*最后修改时间*/ 
+ end_time DATETIME 
+);
+
+/*系統消息通知表*/
+CREATE TABLE SystemMessage
+(	
+	/*编号*/
+	stM_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	/*标题*/
+	stM_title VARCHAR(100) NOT NULL,
+	/*内容*/
+	stM_content VARCHAR(500) NOT NULL,
+	/*跳转网址*/
+	stM_skipUrl VARCHAR(50) NOT NULL,
+	/*发布时间*/
+	stM_releaseTime DATETIME
+	
+);
+
+create table userjoin
+(
+  /*id 自动增长 */
+  id int primary key auto_increment,
+  /* 粉丝，来自用户信息表  */
+  joinfrom int,
+  /* 作者，来自用户信息表  */
+  jointo   int
 );

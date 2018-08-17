@@ -6,15 +6,16 @@
 <head>
 <meta charset="utf-8">
 <title>后台首页</title>
-<link href="/bilibiliThree/easyui/easyui_full.css" rel="stylesheet"
+<link href="/bilibiliThree/easyui/insdep.easyui.min.css" rel="stylesheet"
 	type="text/css">
-<link href="/bilibiliThree/easyui/theme.default/master.css" rel="stylesheet"
+	<link href="/bilibiliThree/easyui/insdep.theme_default.css" rel="stylesheet"
 	type="text/css">
-<script src="/bilibiliThree/js/jquery-3.1.1.min.js"></script>
-<script src="/bilibiliThree/easyui/jquery.easyui-1.5.2.min.js"></script>
-<script src="/bilibiliThree/easyui/insdep-extend.min.js"></script>
-<script src="/bilibiliThree/easyui/theme.default/master.js"></script>
-<script src="/bilibiliThree/easyui/theme.default/master.js"></script>
+<link href="/bilibiliThree/easyui/icon.css" rel="stylesheet"
+	type="text/css">
+<
+<script src="/bilibiliThree/easyui/jquery.min.js"></script>
+<script src="/bilibiliThree/easyui/jquery.easyui.min.js"></script>
+<script src="/bilibiliThree/easyui/insdep.extend.min.js"></script>
 
 <script type="text/javascript" src="/bilibiliThree/js/index.js"></script>
 </head>
@@ -22,7 +23,6 @@
 <body class="easyui-layout">
 
 	<div data-options="region:'north'" style="height: 80px;"></div>
-	<div data-options="region:'south'" style="height: 80px;"></div>
 	<div data-options="region:'west',title:'菜单栏'" style="width: 205px;">
 		<div id="big" class="easyui-accordion"
 			style="width: 190px; height: 200px;">

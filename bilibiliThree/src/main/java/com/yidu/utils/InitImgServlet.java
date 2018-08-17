@@ -40,7 +40,7 @@ public class InitImgServlet extends HttpServlet {
 	/**
 	 * 填写你的文件目录，这个文件改了后不要提交到git上（要不是你们文件目录不统一，也不用这么麻烦了o(≧口≦)o）
 	 */
-	private String filePath = "E:/Demo6/fileProject";
+	public static String filePath="E:/Demo55/fileProject";
 	@Override  
 	public void init() throws ServletException {
 

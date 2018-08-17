@@ -14,12 +14,13 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.UserChatDetails" >
-    insert into userchatdetails (id, chat_id, news_text, 
-      statr_time, user_send_msg_id, user_msg_id
-      )
-    values (#{id,jdbcType=INTEGER}, #{chatId,jdbcType=INTEGER}, #{newsText,jdbcType=VARCHAR}, 
-      #{statrTime,jdbcType=TIMESTAMP}, #{userSendMsgId,jdbcType=INTEGER}, #{userMsgId,jdbcType=INTEGER}
-      )
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into userchatdetails (chat_id, news_text, statr_time, 
+      user_send_msg_id, user_msg_id)
+    values (#{chatId,jdbcType=INTEGER}, #{newsText,jdbcType=VARCHAR}, #{statrTime,jdbcType=TIMESTAMP}, 
+      #{userSendMsgId,jdbcType=INTEGER}, #{userMsgId,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.UserChatDetails" >
     update userchatdetails

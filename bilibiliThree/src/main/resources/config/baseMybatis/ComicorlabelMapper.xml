@@ -12,10 +12,13 @@
     where col_id = #{colId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.Comicorlabel" >
-    insert into comicorlabel (col_id, cl_id, start_time, 
-      end_time)
-    values (#{colId,jdbcType=INTEGER}, #{clId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{endTime,jdbcType=TIMESTAMP})
+    <selectKey resultType="java.lang.Integer" keyProperty="colId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into comicorlabel (cl_id, start_time, end_time
+      )
+    values (#{clId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Comicorlabel" >
     update comicorlabel

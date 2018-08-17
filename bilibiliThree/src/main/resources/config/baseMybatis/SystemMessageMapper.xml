@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.SystemMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.SystemMessage" >
+    <id column="stM_id" property="stmId" jdbcType="INTEGER" />
+    <result column="stM_title" property="stmTitle" jdbcType="VARCHAR" />
+    <result column="stM_content" property="stmContent" jdbcType="VARCHAR" />
+    <result column="stM_skipUrl" property="stmSkipurl" jdbcType="VARCHAR" />
+    <result column="stM_releaseTime" property="stmReleasetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from systemmessage
+    where stM_id = #{stmId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.SystemMessage" >
+    <selectKey resultType="java.lang.Integer" keyProperty="stmId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into systemmessage (stM_title, stM_content, stM_skipUrl, 
+      stM_releaseTime)
+    values (#{stmTitle,jdbcType=VARCHAR}, #{stmContent,jdbcType=VARCHAR}, #{stmSkipurl,jdbcType=VARCHAR}, 
+      #{stmReleasetime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.SystemMessage" >
+    update systemmessage
+    set stM_title = #{stmTitle,jdbcType=VARCHAR},
+      stM_content = #{stmContent,jdbcType=VARCHAR},
+      stM_skipUrl = #{stmSkipurl,jdbcType=VARCHAR},
+      stM_releaseTime = #{stmReleasetime,jdbcType=TIMESTAMP}
+    where stM_id = #{stmId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select stM_id, stM_title, stM_content, stM_skipUrl, stM_releaseTime
+    from systemmessage
+    where stM_id = #{stmId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select stM_id, stM_title, stM_content, stM_skipUrl, stM_releaseTime
+    from systemmessage
+  </select>
+</mapper>

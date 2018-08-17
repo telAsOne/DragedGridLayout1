@@ -3,31 +3,21 @@ package com.yidu.base.allEntity;
 import java.util.Date;
 
 public class UserInfo {
-    private Integer userId;
-
-    private String userName;
-
-    private String uerPsw;
-
-    private String sex;
-
-    private Integer phone;
-
-    private Integer level;
-
-    private Integer integral;
-
-    private String email;
-
-    private String nickname;
-
-    private Date startTime;
-
-    private Date endLoginTime;
-
-    private Date endTime;
-
-    private String headPortrait;
+	
+    private Integer userId;   // ID
+    private String userName;  // 用户名
+    private String userPsw;   // 密码
+    private String sex;       // 性别，直接存储 男 女
+    private String phone;     // 电话号码
+    private Integer level;    // 会员等级
+    private Integer integral; // 积分
+    private String email;     // 邮件
+    private String nickname;  // 昵称
+    private Date startTime;   // 创建时间  即注册时间
+    private Date endLoginTime;// 最后一次登录时间
+    private Date endTime;     // 最后一次修改时间
+    private String headPortrait; // 头像 是个url
+    private String comments;  // 签名档
 
     public Integer getUserId() {
         return userId;
@@ -45,12 +35,12 @@ public class UserInfo {
         this.userName = userName == null ? null : userName.trim();
     }
 
-    public String getUerPsw() {
-        return uerPsw;
+    public String getUserPsw() {
+        return userPsw;
     }
 
-    public void setUerPsw(String uerPsw) {
-        this.uerPsw = uerPsw == null ? null : uerPsw.trim();
+    public void setUserPsw(String userPsw) {
+        this.userPsw = userPsw == null ? null : userPsw.trim();
     }
 
     public String getSex() {
@@ -61,11 +51,11 @@ public class UserInfo {
         this.sex = sex == null ? null : sex.trim();
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -133,7 +123,15 @@ public class UserInfo {
         this.headPortrait = headPortrait == null ? null : headPortrait.trim();
     }
 
-    @Override
+    public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	@Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
@@ -141,7 +139,7 @@ public class UserInfo {
         sb.append("Hash = ").append(hashCode());
         sb.append(", userId=").append(userId);
         sb.append(", userName=").append(userName);
-        sb.append(", uerPsw=").append(uerPsw);
+        sb.append(", userPsw=").append(userPsw);
         sb.append(", sex=").append(sex);
         sb.append(", phone=").append(phone);
         sb.append(", level=").append(level);
@@ -152,6 +150,7 @@ public class UserInfo {
         sb.append(", endLoginTime=").append(endLoginTime);
         sb.append(", endTime=").append(endTime);
         sb.append(", headPortrait=").append(headPortrait);
+        sb.append(", comments=").append(comments);
         sb.append("]");
         return sb.toString();
     }

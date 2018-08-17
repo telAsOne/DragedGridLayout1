@@ -14,12 +14,13 @@
     where c_id = #{cId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.Collection" >
-    insert into collection (c_id, user_id, state, 
-      items_id, start_time, end_time
-      )
-    values (#{cId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
-      #{itemsId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}
-      )
+    <selectKey resultType="java.lang.Integer" keyProperty="cId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into collection (user_id, state, items_id, 
+      start_time, end_time)
+    values (#{userId,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{itemsId,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Collection" >
     update collection

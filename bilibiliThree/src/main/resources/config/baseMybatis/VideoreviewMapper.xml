@@ -16,12 +16,15 @@
     where vr_id = #{vrId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.Videoreview" >
-    insert into videoreview (vr_id, user_id, vr_text, 
-      state, praises, reply, 
-      start_time, end_time)
-    values (#{vrId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{vrText,jdbcType=VARCHAR}, 
-      #{state,jdbcType=VARCHAR}, #{praises,jdbcType=INTEGER}, #{reply,jdbcType=INTEGER}, 
-      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
+    <selectKey resultType="java.lang.Integer" keyProperty="vrId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into videoreview (user_id, vr_text, state, 
+      praises, reply, start_time, 
+      end_time)
+    values (#{userId,jdbcType=INTEGER}, #{vrText,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{praises,jdbcType=INTEGER}, #{reply,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Videoreview" >
     update videoreview

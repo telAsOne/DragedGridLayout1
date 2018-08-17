@@ -101,9 +101,6 @@
 					options.menu = m;
 				}
 				var btn = $('<a href="javascript:void(0)"></a>').appendTo(p);
-				if (options.id){
-					btn.attr('id', options.id);
-				}
 				btn[type](options);
 				if (dir == 'v'){
 					btn.css('clear','both');

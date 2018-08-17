@@ -14,12 +14,13 @@
     where h_id = #{hId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.History" >
-    insert into history (h_id, user_id, items_id, 
-      TIME, start_time, end_time
-      )
-    values (#{hId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{itemsId,jdbcType=INTEGER}, 
-      #{time,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}
-      )
+    <selectKey resultType="java.lang.Integer" keyProperty="hId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into history (user_id, items_id, TIME, 
+      start_time, end_time)
+    values (#{userId,jdbcType=INTEGER}, #{itemsId,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.History" >
     update history

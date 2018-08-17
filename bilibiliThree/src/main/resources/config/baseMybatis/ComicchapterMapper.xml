@@ -14,12 +14,13 @@
     where cc_id = #{ccId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.Comicchapter" >
-    insert into comicchapter (cc_id, chapter, comic_id, 
-      cartoon_pictures, start_time, end_time
-      )
-    values (#{ccId,jdbcType=INTEGER}, #{chapter,jdbcType=INTEGER}, #{comicId,jdbcType=INTEGER}, 
-      #{cartoonPictures,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}
-      )
+    <selectKey resultType="java.lang.Integer" keyProperty="ccId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into comicchapter (chapter, comic_id, cartoon_pictures, 
+      start_time, end_time)
+    values (#{chapter,jdbcType=INTEGER}, #{comicId,jdbcType=INTEGER}, #{cartoonPictures,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Comicchapter" >
     update comicchapter

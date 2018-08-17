@@ -1,8 +1,11 @@
 package com.yidu.base.allMapper;
 
 import com.yidu.base.allEntity.Comiclabel;
+
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+@Repository
 public interface ComiclabelMapper {
     int deleteByPrimaryKey(Integer clId);
 

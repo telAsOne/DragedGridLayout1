@@ -17,14 +17,15 @@
     where topic_id = #{topicId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.Topic" >
-    insert into topic (topic_id, title, user_id, 
-      publishtime, modifytime, replycount, 
-      clickcount, start_time, end_time
-      )
-    values (#{topicId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
-      #{publishtime,jdbcType=DATE}, #{modifytime,jdbcType=DATE}, #{replycount,jdbcType=INTEGER}, 
-      #{clickcount,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}
-      )
+    <selectKey resultType="java.lang.Integer" keyProperty="topicId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into topic (title, user_id, publishtime, 
+      modifytime, replycount, clickcount, 
+      start_time, end_time)
+    values (#{title,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{publishtime,jdbcType=DATE}, 
+      #{modifytime,jdbcType=DATE}, #{replycount,jdbcType=INTEGER}, #{clickcount,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Topic" >
     update topic

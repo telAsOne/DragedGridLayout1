@@ -16,12 +16,15 @@
     where reply_id = #{replyId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yidu.base.allEntity.Reply" >
-    insert into reply (reply_id, title, user_id, 
-      publishtime, modifytime, topic_id, 
-      start_time, end_time)
-    values (#{replyId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
-      #{publishtime,jdbcType=DATE}, #{modifytime,jdbcType=DATE}, #{topicId,jdbcType=INTEGER}, 
-      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
+    <selectKey resultType="java.lang.Integer" keyProperty="replyId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into reply (title, user_id, publishtime, 
+      modifytime, topic_id, start_time, 
+      end_time)
+    values (#{title,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{publishtime,jdbcType=DATE}, 
+      #{modifytime,jdbcType=DATE}, #{topicId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Reply" >
     update reply

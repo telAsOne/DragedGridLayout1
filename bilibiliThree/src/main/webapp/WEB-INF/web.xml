@@ -38,6 +38,7 @@
 		<servlet-name>InitImgServlet</servlet-name>
 		<servlet-class>com.yidu.utils.InitImgServlet</servlet-class>
 		<load-on-startup>2</load-on-startup>
+		
 	</servlet>
 
 	<context-param>
