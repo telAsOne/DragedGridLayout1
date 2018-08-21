@@ -2,7 +2,9 @@ package com.yidu.jt.mapper;
 
 import java.util.List;
 
-import com.yidu.jyz.entity.Menu;
+import com.yidu.jt.entity.Menu;
+
+
 
 
 

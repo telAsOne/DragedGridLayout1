@@ -55,7 +55,7 @@
 	<import resource="lzh/applicationContext.xml"/>
 	
 	<!-- 配置后置处理器，加载属性文件 -->
-	<context:property-placeholder location="db.properties" />
+	<context:property-placeholder location="classpath:db.properties" />
 	<!-- 配置数据源 -->
 	<bean id="ds" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="user" value="${jdbc_username}"></property>
@@ -97,5 +97,8 @@
 			</list>
 		</property>
 	</bean>
-	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.yidu.base.allMapper"></property>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
 </beans>
