@@ -89,7 +89,7 @@
 			<div id="section_column_one" class="tougao">
 					<!-- 专栏表单 -->
 					<!-- columnContent -->
-				<form action="column/columnContent" method="POST" id="form1" >
+				<form action="columnContent" method="POST" id="form1" >
 					<div id="content">
 						<input id="content_title" name="title"  type="text"  placeholder="请输入标题（建议20字以内）"
 							 />
@@ -279,7 +279,7 @@
 			<p class="p1">点击下方按钮，即可前去发布相簿作品~</p>
 			<ul id="section_photo_ul">
 				<li>
-					<a href="column/paintingJump" target="_blank">
+					<a href="paintingJump" target="_blank">
 						<div class="selType">
 							<img src="${pageContext.request.contextPath}/fileProject/hj/img/album-draw.png"/>
 							<div style="background-color:#FF6D87;">
@@ -301,7 +301,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="column/photoJump" target="_blank">
+					<a href="photoJump" target="_blank">
 						<div class="selType">
 							<img src="${pageContext.request.contextPath}/fileProject/hj/img/album-daily.png"/>
 							<div style="background-color:#86B1FF;">

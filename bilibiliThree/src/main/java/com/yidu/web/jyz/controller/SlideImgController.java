@@ -69,10 +69,10 @@ public class SlideImgController {
 				//生成JPEG图片输出流，名字，保存路径            
 				FileOutputStream out = new FileOutputStream(realPath);
 				FileOutputStream outTomact = new FileOutputStream(realPathTomact);
-				outTomact.write(bytes);
 				out.write(bytes);
-				outTomact.flush();
+				outTomact.write(bytes);
 				out.flush();
+				outTomact.flush();
 				out.close();
 				outTomact.close();
 				
@@ -258,11 +258,9 @@ public class SlideImgController {
 		while ((len = fis.read(b)) != -1) {
 			fos.write(b, 0, len);
 		}
-
 		// 关闭流  先开后关  后开先关
 		fos.close(); // 后开先关
 		fis.close(); // 先开后关
 	}
-
 
 }

@@ -11,11 +11,11 @@
 <link href="${pageContext.request.contextPath}/fileProject/hj/css/photo.css" type="text/css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/fileProject/hj/css/common.css" type="text/css" rel="stylesheet" />
 	<script src="${pageContext.request.contextPath}/fileProject/hj/js/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/fileProject/hj/js/photoimgUp.js"></script>
 	<script src="${pageContext.request.contextPath}/fileProject/hj/js/photo.js"></script>
+	<script src="${pageContext.request.contextPath}/fileProject/hj/js/photoimgUp.js"></script>
 </head>
 <body>
-	<form action="column/photoData" method="POST" id="form1"  enctype="multipart/form-data">
+	<form  id="form1"  enctype="multipart/form-data">
 		<div id="day">
 			<h2>发布日常</h2>
 			<p class="p1">提示：标记·为必填项，否则无法发布</p>

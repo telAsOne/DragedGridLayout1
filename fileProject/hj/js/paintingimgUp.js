@@ -84,7 +84,7 @@ window.onload = function(){
         }
         // console.log('提交的数据：'+JSON.stringify(submitArr)) 
         $.ajax({    
-            url : 'dd',    
+            url : 'paintingData',    
             type : 'post', 
             dataType: 'json',   
              data:{

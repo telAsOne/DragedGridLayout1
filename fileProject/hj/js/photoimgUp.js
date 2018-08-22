@@ -88,20 +88,19 @@ window.onload = function(){
 			}  
 		}
 		// console.log('提交的数据：'+JSON.stringify(submitArr)) 
-		$.ajax({    
-			url : 'dd',    
-			type : 'post', 
-			dataType: 'json',   
+		$.ajax({  
+			async:false,	
+			type:"POST", 			
+			url:"photoData",   
+			dataType:"json",	
 			data:{
 				//提交图片
 				ds:JSON.stringify(submitArr),
 				inputName:inputName
 			},
-			//processData: false,   用FormData传fd时需有这两项    
-			//contentType: false,   
-			success : function(data){    
-				alert(data);  
-			}
+//			success : function(data){    
+//				alert(data);  
+//			}
 		});    
 	}    
 
