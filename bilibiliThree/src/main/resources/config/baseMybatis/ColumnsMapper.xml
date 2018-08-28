@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.ColumnsMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.Columns" >
+    <id column="column_id" property="columnId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="column_title" property="columnTitle" jdbcType="VARCHAR" />
+    <result column="column_content_address" property="columnContentAddress" jdbcType="VARCHAR" />
+    <result column="column_type" property="columnType" jdbcType="VARCHAR" />
+    <result column="column_classification" property="columnClassification" jdbcType="VARCHAR" />
+    <result column="favorites_classification" property="favoritesClassification" jdbcType="INTEGER" />
+    <result column="column_WhetherForwarded" property="columnWhetherforwarded" jdbcType="CHAR" />
+    <result column="audit" property="audit" jdbcType="CHAR" />
+    <result column="label" property="label" jdbcType="VARCHAR" />
+    <result column="reading_number" property="readingNumber" jdbcType="INTEGER" />
+    <result column="comments_number" property="commentsNumber" jdbcType="INTEGER" />
+    <result column="like_number" property="likeNumber" jdbcType="INTEGER" />
+    <result column="collection_number" property="collectionNumber" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="column_imgTitle" property="columnImgtitle" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from columns
+    where column_id = #{columnId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.Columns" >
+    <selectKey resultType="java.lang.Integer" keyProperty="columnId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into columns (user_id, column_title, column_content_address, 
+      column_type, column_classification, favorites_classification, 
+      column_WhetherForwarded, audit, label, 
+      reading_number, comments_number, like_number, 
+      collection_number, start_time, end_time, 
+      column_imgTitle)
+    values (#{userId,jdbcType=INTEGER}, #{columnTitle,jdbcType=VARCHAR}, #{columnContentAddress,jdbcType=VARCHAR}, 
+      #{columnType,jdbcType=VARCHAR}, #{columnClassification,jdbcType=VARCHAR}, #{favoritesClassification,jdbcType=INTEGER}, 
+      #{columnWhetherforwarded,jdbcType=CHAR}, #{audit,jdbcType=CHAR}, #{label,jdbcType=VARCHAR}, 
+      #{readingNumber,jdbcType=INTEGER}, #{commentsNumber,jdbcType=INTEGER}, #{likeNumber,jdbcType=INTEGER}, 
+      #{collectionNumber,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{columnImgtitle,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Columns" >
+    update columns
+    set user_id = #{userId,jdbcType=INTEGER},
+      column_title = #{columnTitle,jdbcType=VARCHAR},
+      column_content_address = #{columnContentAddress,jdbcType=VARCHAR},
+      column_type = #{columnType,jdbcType=VARCHAR},
+      column_classification = #{columnClassification,jdbcType=VARCHAR},
+      favorites_classification = #{favoritesClassification,jdbcType=INTEGER},
+      column_WhetherForwarded = #{columnWhetherforwarded,jdbcType=CHAR},
+      audit = #{audit,jdbcType=CHAR},
+      label = #{label,jdbcType=VARCHAR},
+      reading_number = #{readingNumber,jdbcType=INTEGER},
+      comments_number = #{commentsNumber,jdbcType=INTEGER},
+      like_number = #{likeNumber,jdbcType=INTEGER},
+      collection_number = #{collectionNumber,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      column_imgTitle = #{columnImgtitle,jdbcType=LONGVARCHAR}
+    where column_id = #{columnId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select column_id, user_id, column_title, column_content_address, column_type, column_classification, 
+    favorites_classification, column_WhetherForwarded, audit, label, reading_number, 
+    comments_number, like_number, collection_number, start_time, end_time, column_imgTitle
+    from columns
+    where column_id = #{columnId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select column_id, user_id, column_title, column_content_address, column_type, column_classification, 
+    favorites_classification, column_WhetherForwarded, audit, label, reading_number, 
+    comments_number, like_number, collection_number, start_time, end_time, column_imgTitle
+    from columns
+  </select>
+</mapper>

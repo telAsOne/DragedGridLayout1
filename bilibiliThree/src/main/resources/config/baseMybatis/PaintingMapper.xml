@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.PaintingMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.Painting" >
+    <id column="painting_id" property="paintingId" jdbcType="INTEGER" />
+    <result column="painting_user_id" property="paintingUserId" jdbcType="INTEGER" />
+    <result column="painting_comments_id" property="paintingCommentsId" jdbcType="INTEGER" />
+    <result column="painting_imgAddress" property="paintingImgaddress" jdbcType="VARCHAR" />
+    <result column="painting_WhetherForwarded" property="paintingWhetherforwarded" jdbcType="CHAR" />
+    <result column="painting_praiseNumber" property="paintingPraisenumber" jdbcType="INTEGER" />
+    <result column="painting_collection_number" property="paintingCollectionNumber" jdbcType="INTEGER" />
+    <result column="painting_attribute" property="paintingAttribute" jdbcType="VARCHAR" />
+    <result column="painting_classification" property="paintingClassification" jdbcType="INTEGER" />
+    <result column="painting_browse_number" property="paintingBrowseNumber" jdbcType="INTEGER" />
+    <result column="painting_sourceLabel_label" property="paintingSourcelabelLabel" jdbcType="VARCHAR" />
+    <result column="painting_otherLabel_label" property="paintingOtherlabelLabel" jdbcType="VARCHAR" />
+    <result column="painting_audit" property="paintingAudit" jdbcType="CHAR" />
+    <result column="favorites_classification" property="favoritesClassification" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="painting_content" property="paintingContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from painting
+    where painting_id = #{paintingId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.Painting" >
+    <selectKey resultType="java.lang.Integer" keyProperty="paintingId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into painting (painting_user_id, painting_comments_id, 
+      painting_imgAddress, painting_WhetherForwarded, 
+      painting_praiseNumber, painting_collection_number, 
+      painting_attribute, painting_classification, 
+      painting_browse_number, painting_sourceLabel_label, 
+      painting_otherLabel_label, painting_audit, favorites_classification, 
+      start_time, end_time, painting_content
+      )
+    values (#{paintingUserId,jdbcType=INTEGER}, #{paintingCommentsId,jdbcType=INTEGER}, 
+      #{paintingImgaddress,jdbcType=VARCHAR}, #{paintingWhetherforwarded,jdbcType=CHAR}, 
+      #{paintingPraisenumber,jdbcType=INTEGER}, #{paintingCollectionNumber,jdbcType=INTEGER}, 
+      #{paintingAttribute,jdbcType=VARCHAR}, #{paintingClassification,jdbcType=INTEGER}, 
+      #{paintingBrowseNumber,jdbcType=INTEGER}, #{paintingSourcelabelLabel,jdbcType=VARCHAR}, 
+      #{paintingOtherlabelLabel,jdbcType=VARCHAR}, #{paintingAudit,jdbcType=CHAR}, #{favoritesClassification,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{paintingContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Painting" >
+    update painting
+    set painting_user_id = #{paintingUserId,jdbcType=INTEGER},
+      painting_comments_id = #{paintingCommentsId,jdbcType=INTEGER},
+      painting_imgAddress = #{paintingImgaddress,jdbcType=VARCHAR},
+      painting_WhetherForwarded = #{paintingWhetherforwarded,jdbcType=CHAR},
+      painting_praiseNumber = #{paintingPraisenumber,jdbcType=INTEGER},
+      painting_collection_number = #{paintingCollectionNumber,jdbcType=INTEGER},
+      painting_attribute = #{paintingAttribute,jdbcType=VARCHAR},
+      painting_classification = #{paintingClassification,jdbcType=INTEGER},
+      painting_browse_number = #{paintingBrowseNumber,jdbcType=INTEGER},
+      painting_sourceLabel_label = #{paintingSourcelabelLabel,jdbcType=VARCHAR},
+      painting_otherLabel_label = #{paintingOtherlabelLabel,jdbcType=VARCHAR},
+      painting_audit = #{paintingAudit,jdbcType=CHAR},
+      favorites_classification = #{favoritesClassification,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      painting_content = #{paintingContent,jdbcType=LONGVARCHAR}
+    where painting_id = #{paintingId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select painting_id, painting_user_id, painting_comments_id, painting_imgAddress, 
+    painting_WhetherForwarded, painting_praiseNumber, painting_collection_number, painting_attribute, 
+    painting_classification, painting_browse_number, painting_sourceLabel_label, painting_otherLabel_label, 
+    painting_audit, favorites_classification, start_time, end_time, painting_content
+    from painting
+    where painting_id = #{paintingId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select painting_id, painting_user_id, painting_comments_id, painting_imgAddress, 
+    painting_WhetherForwarded, painting_praiseNumber, painting_collection_number, painting_attribute, 
+    painting_classification, painting_browse_number, painting_sourceLabel_label, painting_otherLabel_label, 
+    painting_audit, favorites_classification, start_time, end_time, painting_content
+    from painting
+  </select>
+</mapper>

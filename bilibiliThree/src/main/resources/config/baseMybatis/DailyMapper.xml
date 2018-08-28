@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.DailyMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.Daily" >
+    <id column="daily_id" property="dailyId" jdbcType="INTEGER" />
+    <result column="daily_user_id" property="dailyUserId" jdbcType="INTEGER" />
+    <result column="daily_comments_id" property="dailyCommentsId" jdbcType="INTEGER" />
+    <result column="daily_imgAddress" property="dailyImgaddress" jdbcType="VARCHAR" />
+    <result column="daily_WhetherForwarded" property="dailyWhetherforwarded" jdbcType="CHAR" />
+    <result column="daily_praiseNumber" property="dailyPraisenumber" jdbcType="INTEGER" />
+    <result column="daily_browse_number" property="dailyBrowseNumber" jdbcType="INTEGER" />
+    <result column="daily_collection_number" property="dailyCollectionNumber" jdbcType="INTEGER" />
+    <result column="label" property="label" jdbcType="VARCHAR" />
+    <result column="daily_audit" property="dailyAudit" jdbcType="CHAR" />
+    <result column="favorites_classification" property="favoritesClassification" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="daily_content" property="dailyContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from daily
+    where daily_id = #{dailyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.Daily" >
+    <selectKey resultType="java.lang.Integer" keyProperty="dailyId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into daily (daily_user_id, daily_comments_id, daily_imgAddress, 
+      daily_WhetherForwarded, daily_praiseNumber, 
+      daily_browse_number, daily_collection_number, 
+      label, daily_audit, favorites_classification, 
+      start_time, end_time, daily_content
+      )
+    values (#{dailyUserId,jdbcType=INTEGER}, #{dailyCommentsId,jdbcType=INTEGER}, #{dailyImgaddress,jdbcType=VARCHAR}, 
+      #{dailyWhetherforwarded,jdbcType=CHAR}, #{dailyPraisenumber,jdbcType=INTEGER}, 
+      #{dailyBrowseNumber,jdbcType=INTEGER}, #{dailyCollectionNumber,jdbcType=INTEGER}, 
+      #{label,jdbcType=VARCHAR}, #{dailyAudit,jdbcType=CHAR}, #{favoritesClassification,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{dailyContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Daily" >
+    update daily
+    set daily_user_id = #{dailyUserId,jdbcType=INTEGER},
+      daily_comments_id = #{dailyCommentsId,jdbcType=INTEGER},
+      daily_imgAddress = #{dailyImgaddress,jdbcType=VARCHAR},
+      daily_WhetherForwarded = #{dailyWhetherforwarded,jdbcType=CHAR},
+      daily_praiseNumber = #{dailyPraisenumber,jdbcType=INTEGER},
+      daily_browse_number = #{dailyBrowseNumber,jdbcType=INTEGER},
+      daily_collection_number = #{dailyCollectionNumber,jdbcType=INTEGER},
+      label = #{label,jdbcType=VARCHAR},
+      daily_audit = #{dailyAudit,jdbcType=CHAR},
+      favorites_classification = #{favoritesClassification,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      daily_content = #{dailyContent,jdbcType=LONGVARCHAR}
+    where daily_id = #{dailyId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select daily_id, daily_user_id, daily_comments_id, daily_imgAddress, daily_WhetherForwarded, 
+    daily_praiseNumber, daily_browse_number, daily_collection_number, label, daily_audit, 
+    favorites_classification, start_time, end_time, daily_content
+    from daily
+    where daily_id = #{dailyId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select daily_id, daily_user_id, daily_comments_id, daily_imgAddress, daily_WhetherForwarded, 
+    daily_praiseNumber, daily_browse_number, daily_collection_number, label, daily_audit, 
+    favorites_classification, start_time, end_time, daily_content
+    from daily
+  </select>
+</mapper>
