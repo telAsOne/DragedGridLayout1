@@ -1,42 +1,52 @@
 package com.yidu.base.allEntity;
 
 import java.util.Date;
-
+/**
+ * 
+ * TODO 对该类总结性的描述
+ * 
+ * @ClassName: Columns 
+ * @author Administrator
+ * @date 2018年8月29日 上午10:49:38
+ * @version V1.0 
+ *
+ */
 public class Columns {
+	//专栏id
     private Integer columnId;
-
+    //用户id
     private Integer userId;
-
+    //标题
     private String columnTitle;
-
+    //内容地址
     private String columnContentAddress;
-
+    //专栏类型
     private String columnType;
-
+    //专栏分类
     private String columnClassification;
-
+    //收藏夹分类
     private Integer favoritesClassification;
-
+    //是否可转发	(使用检查约束)1表示可以转发，2表示不可转发
     private String columnWhetherforwarded;
-
+    //审核是否通过  1代表通过、2代表不通过，3代表审核中   (默认约束 3)
     private String audit;
-
+    //标签
     private String label;
-
+    //阅读数量
     private Integer readingNumber;
-
+	//评论数量     
     private Integer commentsNumber;
-
+	//喜欢数量
     private Integer likeNumber;
-
+	//收藏数量
     private Integer collectionNumber;
-
+	//创建时间
     private Date startTime;
-
+	//最后修改时间
     private Date endTime;
-
+    //专栏标题图	
     private String columnImgtitle;
-
+   
     public Integer getColumnId() {
         return columnId;
     }
@@ -86,7 +96,7 @@ public class Columns {
     }
 
     public Integer getFavoritesClassification() {
-        return favoritesClassification;
+        return favoritesClassification=4;
     }
 
     public void setFavoritesClassification(Integer favoritesClassification) {
@@ -102,7 +112,7 @@ public class Columns {
     }
 
     public String getAudit() {
-        return audit;
+        return audit==null?"3":audit;
     }
 
     public void setAudit(String audit) {
@@ -118,7 +128,7 @@ public class Columns {
     }
 
     public Integer getReadingNumber() {
-        return readingNumber;
+        return readingNumber==null?0:commentsNumber;
     }
 
     public void setReadingNumber(Integer readingNumber) {
@@ -126,7 +136,7 @@ public class Columns {
     }
 
     public Integer getCommentsNumber() {
-        return commentsNumber;
+        return commentsNumber==null?0:commentsNumber;
     }
 
     public void setCommentsNumber(Integer commentsNumber) {
@@ -134,7 +144,7 @@ public class Columns {
     }
 
     public Integer getLikeNumber() {
-        return likeNumber;
+        return likeNumber==null?0:likeNumber;
     }
 
     public void setLikeNumber(Integer likeNumber) {
@@ -142,7 +152,7 @@ public class Columns {
     }
 
     public Integer getCollectionNumber() {
-        return collectionNumber;
+        return collectionNumber==null?0:collectionNumber;
     }
 
     public void setCollectionNumber(Integer collectionNumber) {

@@ -15,7 +15,7 @@
 <script src="${pageContext.request.contextPath}/fileProject/hj/js/painting.js"></script>
 </head>
 <body>
-	<form action="column/paintingData" method="POST"  enctype="multipart/form-data">
+	<form method="POST"  enctype="multipart/form-data">
 		<div id="day">
 			<h2>发布日常</h2>
 			<p class="p1">提示：标记·为必填项，否则无法发布</p>
@@ -52,21 +52,21 @@
 			<textarea placeholder="请输入作品介绍，临摹作品请一定要注明作品的出处来源" class="input" maxlength="233" id="textarea"></textarea>
 			<div class="hr" id="hr1"></div>
 			<div class="addLabel" id="addLabel1">
-				<span class="p1" >来源标签</span>
+				<span class="p1" >其他标签</span>
 				<div id="addLabel1_div">
 				</div> 
 					<span id="width_caculator1" hidden="hidden"></span>
-					<input class="i1" placeholder="添加作品来源，如阴阳师" id="input2" type="text"/>
+					<input class="i1" placeholder="添加作品，方便分享" id="input2" type="text"/>
 					<span class="i2" >添加</span>
 					<span class="ispan">按回车快速添加＼( ^▽^ )／</span>
 			</div>
 			
 			<div class="addLabel">
-				<span class="p1" id="p1">其他标签</span>
+				<span class="p1" id="p1">来源标签</span>
 				<div id="addLabel_div">
 				</div> 
 					<span id="width_caculator" hidden="hidden"></span>
-					<input class="i1" placeholder="添加作品，方便分享" type="text" id="i1"/>
+					<input class="i1" placeholder="添加作品来源，如阴阳师" type="text" id="i1"/>
 					<span class="i2"  id="i2">添加</span>
 					<span class="ispan" id="ispan2">按回车快速添加＼( ^▽^ )／</span>
 			</div>

@@ -3,7 +3,24 @@
     var a= {
         exec:function(editor){
         $("#a").click();
-        	var input = document.getElementById("a"); 
+        	
+        }
+    },
+    //Section 2 : 创建自定义按钮、绑定方法
+    b='linkbutton';
+    CKEDITOR.plugins.add(b,{
+        init:function(editor){
+            editor.addCommand(b,a);
+            editor.ui.addButton('linkbutton',{
+                label:'图片',
+                icon: this.path + 'im.png',
+                command:b
+            });
+        }
+    });
+	
+	
+	var input = document.getElementById("a"); 
         	
       		    var result;
       		    var data=null;
@@ -15,7 +32,10 @@
       		    }else{    
       		        input.addEventListener('change',readFile,false);    
       		    }   
-      		    function readFile(){   
+      		    function readFile(){ 
+						if (!$("#a").val().match(/.jpg|.gif|.png|.jpeg|.bmp/i)){
+      		                return alert("上传的图片格式不正确，请重新选择");    
+      		            }  				
       		        fd = new FormData();    
       		        var iLen = this.files.length;  
       		        var index = 0;  
@@ -23,9 +43,7 @@
       		        	if(i==0){
       		        		data=CKEDITOR.instances.editor1.getData();
       		        	}
-      		            if (!$("#a").val().match(/.jpg|.gif|.png|.jpeg|.bmp/i)){
-      		                return alert("上传的图片格式不正确，请重新选择");    
-      		            }  
+      		           
       		            var reader = new FileReader();  
       		            reader.index = i;    
       		            fd.append(i,this.files[i]);  
@@ -41,18 +59,4 @@
       		            }    
       		        }    
       		    }
-        }
-    },
-    //Section 2 : 创建自定义按钮、绑定方法
-    b='linkbutton';
-    CKEDITOR.plugins.add(b,{
-        init:function(editor){
-            editor.addCommand(b,a);
-            editor.ui.addButton('linkbutton',{
-                label:'图片',
-                icon: this.path + 'im.png',
-                command:b
-            });
-        }
-    });
 })(); 

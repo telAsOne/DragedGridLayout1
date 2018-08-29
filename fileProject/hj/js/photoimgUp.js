@@ -16,7 +16,12 @@ window.onload = function(){
 	var count=0;
 	function readFile(){   
 		fd = new FormData();    
-		var iLen = this.files.length;  
+		var iLen = this.files.length;
+			for(var i=0;i<iLen;i++){
+			if (!this.files[i].name.match(/.jpg|.gif|.png|.jpeg|.bmp/i)){//判断上传文件格式    
+                return alert("上传的图片格式不正确，请重新选择");    
+            }
+		}		
 		var index = 0;  
 		if(count+iLen>10){
 			alert("图片超过10张，请重新选择");
@@ -25,11 +30,9 @@ window.onload = function(){
 				$("#uploadImg").css("display","none");
 				$("#file_input").css("display","none");
 			}
-			count+=iLen;
+			
 			for(var i=0;i<iLen;i++){
-				if (!input['value'].match(/.png|.gif|.jpg|.jpeg|.bmp/i)){//判断上传文件格式    
-					return alert("上传的图片格式不正确，请重新选择");    
-				} 
+				
 				var reader = new FileReader();  
 				reader.index = i;    
 				fd.append(i,this.files[i]);  
@@ -73,13 +76,14 @@ window.onload = function(){
 				}    
 			}    
 		}
+		count+=iLen;
 	}    
 
 
 	function send(){ 
-		var inputName="";
+		var inputValue="";
 		$("input[name='inputName']").each(function(){
-			inputName+=$(this).val()+",";
+			inputValue+=$(this).val()+",";
 		});
 		var submitArr = [];  
 		for (var i = 0; i < dataArr.length; i++) {  
@@ -96,7 +100,8 @@ window.onload = function(){
 			data:{
 				//提交图片
 				ds:JSON.stringify(submitArr),
-				inputName:inputName
+				inputName:inputValue,
+				content:$("#textarea").val()
 			},
 //			success : function(data){    
 //				alert(data);  

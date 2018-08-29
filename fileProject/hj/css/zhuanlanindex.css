@@ -490,13 +490,13 @@ p{
 	width:940px;
 	height:600px;
 }
-[name=column_type],[name=column_classification]{
+[name=columnType],[name=columnClassification]{
 	display:inline-block;
 	width:70px;
 	height:20px;
 	border:none;
 }
-[name=column_classification]{
+[name=columnClassification]{
 	margin-left: 10px;
 }
 .content_info_input_class{
