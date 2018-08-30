@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <html>
 <head>
-<meta content="text/html; charset=UTF-8">
+<meta charset="utf-8">
 <title>Insert title here</title>
 </head>
-<body>
-
-</body>
+	<body>
+			${content}
+			${titlImgContent}
+	</body>
 </html>

@@ -4,9 +4,9 @@
   <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.UserInfo" >
     <id column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
-    <result column="uer_psw" property="uerPsw" jdbcType="VARCHAR" />
+    <result column="user_psw" property="userPsw" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="CHAR" />
-    <result column="phone" property="phone" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="LEVEL" property="level" jdbcType="INTEGER" />
     <result column="integral" property="integral" jdbcType="INTEGER" />
     <result column="email" property="email" jdbcType="VARCHAR" />
@@ -15,6 +15,7 @@
     <result column="end_login_time" property="endLoginTime" jdbcType="TIMESTAMP" />
     <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
     <result column="head_portrait" property="headPortrait" jdbcType="VARCHAR" />
+    <result column="comments" property="comments" jdbcType="VARCHAR" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from userinfo
@@ -24,23 +25,24 @@
     <selectKey resultType="java.lang.Integer" keyProperty="userId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into userinfo (user_name, uer_psw, sex, 
-      phone, LEVEL, integral, 
-      email, nickname, start_time, 
-      end_login_time, end_time, head_portrait
+    insert into userinfo (user_name, user_psw, sex, 
+      phone, LEVEL, integral, email, nickname, 
+      start_time, end_login_time, end_time, 
+      head_portrait, comments
       )
-    values (#{userName,jdbcType=VARCHAR}, #{uerPsw,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, 
-      #{phone,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, 
+    values (#{userName,jdbcType=VARCHAR}, #{userPsw,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, 
       #{email,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{endLoginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{headPortrait,jdbcType=VARCHAR}
+      #{endLoginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{headPortrait,jdbcType=VARCHAR},
+      #{comments,jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.UserInfo" >
     update userinfo
     set user_name = #{userName,jdbcType=VARCHAR},
-      uer_psw = #{uerPsw,jdbcType=VARCHAR},
+      user_psw = #{userPsw,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=CHAR},
-      phone = #{phone,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
       LEVEL = #{level,jdbcType=INTEGER},
       integral = #{integral,jdbcType=INTEGER},
       email = #{email,jdbcType=VARCHAR},
@@ -48,18 +50,19 @@
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_login_time = #{endLoginTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},
-      head_portrait = #{headPortrait,jdbcType=VARCHAR}
+      head_portrait = #{headPortrait,jdbcType=VARCHAR},
+      comments = #{comments,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select user_id, user_name, uer_psw, sex, phone, LEVEL, integral, email, nickname, 
-    start_time, end_login_time, end_time, head_portrait
+    select user_id, user_name, user_psw, sex, phone, LEVEL, integral, email, nickname, 
+    start_time, end_login_time, end_time, head_portrait,comments
     from userinfo
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select user_id, user_name, uer_psw, sex, phone, LEVEL, integral, email, nickname, 
-    start_time, end_login_time, end_time, head_portrait
+    select user_id, user_name, user_psw, sex, phone, LEVEL, integral, email, nickname, 
+    start_time, end_login_time, end_time, head_portrait,comments
     from userinfo
   </select>
 </mapper>

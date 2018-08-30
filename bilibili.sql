@@ -495,3 +495,174 @@ create table userjoin
   /* 作者，来自用户信息表  */
   jointo   int
 );
+
+
+
+
+/*草稿表*/
+CREATE  TABLE draft(
+	#主键
+	draft_id INT PRIMARY KEY	AUTO_INCREMENT,
+	#用户
+	id  INT,
+	#标题图片
+	draft_img   NVARCHAR(100) NOT NULL,
+	#标题
+	draft_title     NVARCHAR(100) NOT NULL,
+	#内容
+	draft_content   NVARCHAR(500) NOT NULL,
+	#标签
+	draft_label   NVARCHAR(100),   	 
+	start_time  DATETIME,
+	#最后修改时间
+	end_time DATETIME
+);
+
+
+/*用户日常表(相当于qq里的说说)*/
+CREATE TABLE daily(
+	#日常主键	id  
+	 daily_id  INT  PRIMARY KEY AUTO_INCREMENT ,     				
+	#用户id  
+     daily_user_id INT  ,  					
+	#连接日常评论表的id   
+	daily_comments_id  	INT ,
+	#日常图片地址
+        daily_imgAddress    NVARCHAR(300)  NOT NULL,
+	#日常内容  //注意： 字段类型  TEXT      VARCHAR表示不了
+	daily_content      TEXT,			
+	#是否可转发(使用检查约束)1表示可以转发，2表示不可转发
+	 daily_WhetherForwarded CHAR  CHECK (daily_WhetherForwarded IN('1','2')) ,		  
+	#点赞数
+	daily_praiseNumber  INT,
+	#浏览数  
+	 daily_browse_number  INT,
+	#收藏数 
+	daily_collection_number	INT,
+	//标签
+	label varchar(300),					
+	#审核是否通过 1代表通过、2代表不通过，3代表审核中(默认约束 3)
+	 daily_audit  CHAR CHECK(daily_audit IN('1','2','3')) , 	
+	#收藏夹分类 		这个字段是（5）
+	favorites_classification	INT, 	 
+	#创建时间
+	start_time  DATETIME,
+	#最后修改时间
+	end_time DATETIME
+);
+
+/*日常评论表 dailyComments*/
+CREATE TABLE dailyComments(
+	#日常评论表id 主键
+	    id   INT  PRIMARY 	KEY AUTO_INCREMENT,			
+	#连接日常表 
+	  daily_id    		INT, 
+	#用户Aid
+	 user_comments_A    INT ,
+	#用户Bid 
+	 user_comments_B   INT ,
+	#评论内容
+	  content    NVARCHAR(300)   NOT NULL,
+	#创建时间
+	start_time  DATETIME,
+	#最后修改时间
+	end_time DATETIME
+);
+
+
+/*绘画表*/
+CREATE TABLE painting(
+	#绘画主键id   主键INT
+	painting_id    INT PRIMARY KEY AUTO_INCREMENT,     					
+	#用户id
+	painting_user_id  INT,
+	#连接绘画评论表的id 
+	painting_comments_id  	INT,
+	#绘画图片地址
+	painting_imgAddress	NVARCHAR(300) NOT NULL,
+	#绘画内容//注意： 字段类型  TEXT        VARCHAR表示不了
+	painting_content        TEXT,			   
+	#是否可转发(使用检查约束)1表示可以转发，2表示不可转发
+	painting_WhetherForwarded   CHAR CHECK(painting_WhetherForwarded IN('1','2')),			
+	#点赞数
+	painting_praiseNumber		INT ,
+	#收藏数    	
+	painting_collection_number	INT ,		
+	#属性		
+	painting_attribute  	NVARCHAR(300),
+	#分类        默认约束（4）因为4表示相簿分类
+	painting_classification	INT DEFAULT 4,
+	#浏览数        
+	painting_browse_number	INT,		
+	#资源标签          
+	painting_sourceLabel_label    NVARCHAR(300),
+	#其他标签          
+	painting_otherLabel_label    NVARCHAR(300),
+	#审核是否通过  	1代表通过、2代表不通过，3代表审核中(默认约束 3)
+	painting_audit   CHAR CHECK(painting_audit IN('1','2','3')),
+	#收藏夹分类 		这个字段是（5）
+	favorites_classification	INT, 
+	#创建时间
+	start_time  DATETIME,
+	#最后修改时间
+	end_time DATETIME
+);
+
+/*绘画评论表  paintingComments*/
+
+CREATE TABLE paintingComments(
+	#绘画评论表id    主键
+	id     INT PRIMARY KEY AUTO_INCREMENT,				
+	#连接绘画表   
+	daily_id    INT,	
+	#用户Aid    
+	user_comments_A  INT,	
+	#用户Bid  
+	user_comments_B   INT,		
+	#评论内容        
+	content     NVARCHAR(300) NOT NULL,		
+	#创建时间
+	start_time  DATETIME,
+	#最后修改时间
+	end_time DATETIME
+);
+
+
+
+/*专栏投稿表*/
+CREATE TABLE columns(
+	#专栏id    	主键
+	column_id   INT PRIMARY KEY AUTO_INCREMENT,		
+	#用户id
+	user_id  INT,
+	#专栏标题   
+	column_title    NVARCHAR(300)  NOT NULL,
+	#专栏标题图	
+	column_imgTitle      text  NOT NULL, 
+	#专栏内容    注意： 字段类型  TEXT
+	column_content_address   varchar,   					
+	#类型    
+	column_type    NVARCHAR (300),
+	#分类    
+	column_classification    NVARCHAR (300),
+	#收藏夹分类 		这个字段是（4）
+	favorites_classification	INT, 
+	#是否可转发	(使用检查约束)1表示可以转发，2表示不可转发
+	column_WhetherForwarded  CHAR CHECK (column_WhetherForwarded IN('1','2')),	
+	#审核是否通过  1代表通过、2代表不通过，3代表审核中   (默认约束 3)
+	audit   CHAR CHECK(audit IN('1','2','3')), 
+	#标签
+	label varchar(300),	
+	#阅读数量      
+	reading_number     INT,
+	#评论数量      
+	comments_number     INT,
+	#喜欢数量	
+	like_number    INT, 	
+	#收藏数量	
+	collection_number     	INT,
+	#创建时间
+	start_time  DATETIME,
+	#最后修改时间
+	end_time DATETIME
+);

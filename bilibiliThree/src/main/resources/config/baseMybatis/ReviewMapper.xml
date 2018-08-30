@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.ReviewMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.Review" >
+    <id column="review_id" property="reviewId" jdbcType="INTEGER" />
+    <result column="userA_id" property="useraId" jdbcType="INTEGER" />
+    <result column="review_text" property="reviewText" jdbcType="VARCHAR" />
+    <result column="reviewContentUrl" property="reviewcontenturl" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="praises" property="praises" jdbcType="INTEGER" />
+    <result column="reply" property="reply" jdbcType="INTEGER" />
+    <result column="reviewState" property="reviewstate" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from review
+    where review_id = #{reviewId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.Review" >
+    <selectKey resultType="java.lang.Integer" keyProperty="reviewId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into review (userA_id, review_text, reviewContentUrl, 
+      state, praises, reply, 
+      reviewState, start_time, end_time
+      )
+    values (#{useraId,jdbcType=INTEGER}, #{reviewText,jdbcType=VARCHAR}, #{reviewcontenturl,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{praises,jdbcType=INTEGER}, #{reply,jdbcType=INTEGER}, 
+      #{reviewstate,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Review" >
+    update review
+    set userA_id = #{useraId,jdbcType=INTEGER},
+      review_text = #{reviewText,jdbcType=VARCHAR},
+      reviewContentUrl = #{reviewcontenturl,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      praises = #{praises,jdbcType=INTEGER},
+      reply = #{reply,jdbcType=INTEGER},
+      reviewState = #{reviewstate,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where review_id = #{reviewId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select review_id, userA_id, review_text, reviewContentUrl, state, praises, reply, 
+    reviewState, start_time, end_time
+    from review
+    where review_id = #{reviewId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select review_id, userA_id, review_text, reviewContentUrl, state, praises, reply, 
+    reviewState, start_time, end_time
+    from review
+  </select>
+</mapper>
