@@ -506,7 +506,7 @@ CREATE  TABLE draft(
 	#用户
 	id  INT,
 	#标题图片
-	draft_img   NVARCHAR(100) NOT NULL,
+	draft_img   longtext NOT NULL,
 	#标题
 	draft_title     NVARCHAR(100) NOT NULL,
 	#内容
@@ -638,9 +638,9 @@ CREATE TABLE columns(
 	#专栏标题   
 	column_title    NVARCHAR(300)  NOT NULL,
 	#专栏标题图	
-	column_imgTitle      text  NOT NULL, 
+	column_imgTitle      longtext  NOT NULL, 
 	#专栏内容    注意： 字段类型  TEXT
-	column_content_address   varchar,   					
+	column_content_address   varchar(300),   					
 	#类型    
 	column_type    NVARCHAR (300),
 	#分类    
