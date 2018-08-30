@@ -200,7 +200,7 @@ $(function(){
 		});
 		$.ajax({
 			async:false,		
-            url : 'columnContent',    
+            url : 'draft',    
             type : 'post', 
             dataType: 'text',  
 			data:{
