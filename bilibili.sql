@@ -486,33 +486,27 @@ CREATE TABLE SystemMessage
 	
 );
 
-create table userjoin
-(
-  /*id 自动增长 */
-  id int primary key auto_increment,
-  /* 粉丝，来自用户信息表  */
-  joinfrom int,
-  /* 作者，来自用户信息表  */
-  jointo   int
-);
-
-
-
 
 /*草稿表*/
-CREATE  TABLE draft(
-	#主键
-	draft_id INT PRIMARY KEY	AUTO_INCREMENT,
-	#用户
-	id  INT,
-	#标题图片
-	draft_img   longtext NOT NULL,
-	#标题
-	draft_title     NVARCHAR(100) NOT NULL,
-	#内容
-	draft_content   NVARCHAR(500) NOT NULL,
+CREATE TABLE draft(
+	draft_id INT PRIMARY KEY AUTO_INCREMENT,
+	
+	#用户id
+	user_id  INT,
+
+	#草稿标题   
+	draft_title    NVARCHAR(300)  NOT NULL,
+	#草稿标题图	
+	draft_imgTitle      LONGTEXT, 
+	#草稿内容地址  
+	draft_content_address   VARCHAR(300),   					
+	#类型    
+	draft_type    NVARCHAR (300),
+	#分类    
+	draft_classification    NVARCHAR (300),
 	#标签
-	draft_label   NVARCHAR(100),   	 
+	draft_label VARCHAR(300),	
+	#创建时间
 	start_time  DATETIME,
 	#最后修改时间
 	end_time DATETIME
