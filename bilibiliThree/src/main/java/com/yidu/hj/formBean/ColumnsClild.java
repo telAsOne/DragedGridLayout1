@@ -1,8 +1,10 @@
-package com.yidu.hj.entity;
+package com.yidu.hj.formBean;
 
 import java.util.Arrays;
 
-public class Columns extends com.yidu.base.allEntity.Columns{
+import com.yidu.base.allEntity.Columns;
+
+public class ColumnsClild extends Columns{
 	private String [] array;
 
 	public String[] getArray() {
@@ -13,12 +15,12 @@ public class Columns extends com.yidu.base.allEntity.Columns{
 		this.array = array;
 	}
 
-	public Columns(String[] array) {
+	public ColumnsClild(String[] array) {
 		super();
 		this.array = array;
 	}
 
-	public Columns() {
+	public ColumnsClild() {
 		super();
 	}
 
