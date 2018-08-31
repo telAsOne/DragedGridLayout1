@@ -67,15 +67,6 @@
 
 	<!-- zch html -->
 	<servlet>
-		<servlet-name>uploadVideo</servlet-name>
-		<jsp-file>/WEB-INF/pages/uploadVideo.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>uploadVideo</servlet-name>
-		<url-pattern>/uploadVideo</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
 		<servlet-name>manageVideo</servlet-name>
 		<jsp-file>/WEB-INF/pages/manageVideo.jsp</jsp-file>
 	</servlet>
