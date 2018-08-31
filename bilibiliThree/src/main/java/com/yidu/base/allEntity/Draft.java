@@ -7,7 +7,7 @@ public class Draft {
     //用户id
     private Integer userId;
     //图片二进制
-    private String draftImg;
+    private String draftImgTitle;
     //标题
     private String draftTitle;
     //草稿内容地址
@@ -34,11 +34,11 @@ public class Draft {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-	public String getDraftImg() {
-		return draftImg;
+	public String getDraftImgTitle() {
+		return draftImgTitle;
 	}
-	public void setDraftImg(String draftImg) {
-		this.draftImg = draftImg;
+	public void setDraftImgTitle(String draftImgTitle) {
+		this.draftImgTitle = draftImgTitle;
 	}
 	public String getDraftTitle() {
 		return draftTitle;
@@ -82,14 +82,14 @@ public class Draft {
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
-	public Draft(Integer draftId, Integer userId, String draftImg,
+	public Draft(Integer draftId, Integer userId, String draftImgTitle,
 			String draftTitle, String draftContentAddress, String draftType,
 			String draftClassification, String draftLabel, Date startTime,
 			Date endTime) {
 		super();
 		this.draftId = draftId;
 		this.userId = userId;
-		this.draftImg = draftImg;
+		this.draftImgTitle = draftImgTitle;
 		this.draftTitle = draftTitle;
 		this.draftContentAddress = draftContentAddress;
 		this.draftType = draftType;
@@ -104,8 +104,8 @@ public class Draft {
 	@Override
 	public String toString() {
 		return "Draft [draftId=" + draftId + ", userId=" + userId
-				+ ", draftImg=" + draftImg + ", draftTitle=" + draftTitle
-				+ ", draftContentAddress=" + draftContentAddress
+				+ ", draftImgTitle=" + draftImgTitle + ", draftTitle="
+				+ draftTitle + ", draftContentAddress=" + draftContentAddress
 				+ ", draftType=" + draftType + ", draftClassification="
 				+ draftClassification + ", draftLabel=" + draftLabel
 				+ ", startTime=" + startTime + ", endTime=" + endTime + "]";

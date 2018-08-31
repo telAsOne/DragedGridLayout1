@@ -85,25 +85,27 @@ CREATE TABLE userInfo(
 	/*用户密码*/
 	uer_psw NVARCHAR(25) NOT NULL,
 	/*用户性别*/
-	sex CHAR(4) NOT NULL,
+	sex CHAR(4) ,
 	/*用户电话*/
 	phone INT,
 	/*用户等级*/
-	user_level INT NOT NULL,
+	user_level INT ,
 	/*用户积分*/
-	integral INT NOT NULL,
+	integral INT ,
 	/*用户邮箱*/
 	email NVARCHAR(25) UNIQUE,
 	/*用户昵称*/
 	nickname NVARCHAR(25) NOT NULL UNIQUE,
 	/*录入数据的时间*/
 	start_time DATETIME,
+	/*签名档*/
+	comments  varchar(255),
 	/*最后登录时间*/
-	end_login_time DATETIME NOT NULL,
+	end_login_time DATETIME ,
 	/*录入数据的时间*/
 	end_time DATETIME,
 	/*头像*/
-	head_portrait VARCHAR(50) NOT NULL
+	head_portrait VARCHAR(50) 
 );
 
 /*视频评论表*/

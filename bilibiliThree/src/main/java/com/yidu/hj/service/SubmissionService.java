@@ -51,4 +51,19 @@ public interface SubmissionService {
 	 * @return
 	 */
 	public int insertDraft(Draft draft);
+	/**
+	 * 方法描述: 根据草稿id修改地址
+	 * 业务逻辑说明: TODO(总结性的归纳方法业务逻辑) 
+	 * 1、处理…………<br/>
+	 * 2、处理…………<br/>
+	 * 3、处理…………<br/>
+	 * @Title: getDraftIdUpdateContentAddress 
+	 * @date 2018年8月30日 下午5:04:14
+	 * @author Administrator
+	 * @modifier 无
+	 * @modifydate 无
+	 * @param draft
+	 * @return
+	 */
+	public int getDraftIdUpdateContentAddress(Draft draft);
 }

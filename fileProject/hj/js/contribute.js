@@ -204,14 +204,12 @@ $(function(){
             type : 'post', 
             dataType: 'text',  
 			data:{
-				columnTitle:$("[name=columnTitle]").val(),
-				columnImgtitle:$("#titlImgContent").val(),
-				columnContent:CKEDITOR.instances.editor1.getData(),
-				columnWhetherforwarded:$("[name=columnWhetherforwarded]").val(),
-				columnType:$("[name=columnType]").val(),
-				columnClassification:$("[name=columnClassification]").val(),
-				columnLanguage:$("[name=columnLanguage]").val(),
-				label:inputValue
+				draftTitle:$("[name=columnTitle]").val(),
+				draftImgTitle:$("#titlImgContent").val(),
+				draftContent:CKEDITOR.instances.editor1.getData(),
+				draftType:$("[name=columnType]").val(),
+				draftClassification:$("[name=columnClassification]").val(),
+				draftLabel:inputValue
 			}
 		});
 	});

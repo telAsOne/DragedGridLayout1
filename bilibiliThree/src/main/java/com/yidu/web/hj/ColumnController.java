@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -225,12 +224,47 @@ public class ColumnController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="draft",method=RequestMethod.POST)
-	public void draft(Draft draft,
-			@RequestParam("columnContent") String columnContent){
-	
-	
-	
+	@RequestMapping(value="/draft",method=RequestMethod.POST)
+	public void draft(Draft d,
+			@RequestParam("draftContent") String draftContent){
 		
+	
+		d.setUserId(1);
+		d.setStartTime(TimeUtil.Time());
+		d.setEndTime(TimeUtil.Time());
+		int insertDraft = ss.insertDraft(d);
+		if(insertDraft>0){
+			String path=InitImgServlet.filePath+"/hj/sbumissionContent/draftContent/userId_"+1+"/";
+			String path2=path+2+".txt";
+			File file=new File(path);
+			File file2=new File(path2);
+			//用户id
+			d.setUserId(1);
+			//修改内容地址
+			d.setDraftContentAddress(path2);
+			//根据用户id修改专栏内容地址
+			ss.getDraftIdUpdateContentAddress(d);
+			if(!file.exists()  && !file .isDirectory()){
+				//创建目录
+				file.mkdir();
+			}
+			if(!file2.exists()){
+				try {
+					file2.createNewFile();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block 2
+					e.printStackTrace();
+				}
+			}
+			try {
+				PrintWriter pw = new PrintWriter(new FileWriter(file2));
+				pw.print(draftContent);
+				pw.flush();
+				pw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 }

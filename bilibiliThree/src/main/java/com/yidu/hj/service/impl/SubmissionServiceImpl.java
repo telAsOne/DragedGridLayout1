@@ -8,7 +8,6 @@ import com.yidu.base.allEntity.Columns;
 import com.yidu.base.allEntity.Draft;
 import com.yidu.base.allMapper.ColumnsMapper;
 import com.yidu.base.allMapper.DraftMapper;
-import com.yidu.hj.dao.forntDao.SubmissionDao;
 import com.yidu.hj.service.SubmissionService;
 @Service("subscription")
 public class SubmissionServiceImpl implements SubmissionService{
@@ -33,5 +32,10 @@ public class SubmissionServiceImpl implements SubmissionService{
 	public int insertDraft(Draft draft) {
 		int insert = draftMapper.insert(draft);
 		return insert;
+	}
+	@Override
+	public int getDraftIdUpdateContentAddress(Draft draft) {
+		int updateByPrimaryKey = draftMapper.updateByPrimaryKey(draft);
+		return updateByPrimaryKey;
 	}
 }
