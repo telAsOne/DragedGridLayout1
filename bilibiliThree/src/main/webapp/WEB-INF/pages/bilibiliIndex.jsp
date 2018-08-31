@@ -115,7 +115,8 @@
 							<a href="#">登录</a> <span></span> <a href="#">注册</a>
 						</div>
 						<div class="user-post">
-							<a href="bi?iframeSrc=loadingHead" class="link">投稿</a>
+							<!-- <a href="bi?iframeSrc=loadingHead" class="link">投稿</a> -->
+							<a href="${pageContext.request.contextPath}/zchMenu?iframeSrc=loadingHead" class="link">投稿</a>
 							<div class="user-post__hover header-hover">
 								<a href="#" class="post">视频投稿</a> <a href="#" class="manage">投稿管理</a>
 								<a href="#" class="create">创作中心</a>
@@ -337,7 +338,6 @@
 		<div class="sideBar-line"></div>
 		<a href="javascript:void(0);" class="sideBar-toTop" id="backTop"></a>
 	</div>
-
 
 	<script
 		src="${pageContext.request.contextPath}/fileProject/baseJs/jquery.js"></script>

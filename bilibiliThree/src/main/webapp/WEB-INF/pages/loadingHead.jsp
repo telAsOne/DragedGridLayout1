@@ -29,7 +29,25 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/fileProject/hj/css/upType.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/fileProject/hj/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
-
+<script>
+		$(function() {
+			$(".fileButton").click(function() {
+				$(".upFile").click();
+			});
+	
+			/*批量导入*/
+			/*#load:为按钮,点击后生成一个隐藏的input file标签*/
+			$('#load').after('<input type="file" id="load_xls" name="file" style="display:none" onchange="uploadFile()">');
+			$('#load').click(function() {
+				document.getElementById("load_xls").click();
+			});
+	
+			$('#load_xls').change(function() {
+				$("#uploadForm").submit();
+			});
+	
+		});
+	</script>
 </head>
 <body>
 	<header>
@@ -45,16 +63,21 @@
 		</ul>
 	</header>
 	<section>
+	<form id="uploadForm" name="Form2" action="/bilibiliThree/springUpload" method="post"
+		enctype="multipart/form-data">
 		<div id="section_video" class="tougao">
-			<div class='fileButton'>
+		
+			<div id="load" class='fileButton'>
 				<i class='fa fa-share-square-o fa-fw'></i> 上传视频
 			</div>
+			
 			<div id='backImg'>
 				<img src='${pageContext.request.contextPath}/fileProject/hj/img/background.png' alt='loading'>
 			</div>
 			<div id='peopleImg'>
 				<img src='${pageContext.request.contextPath}/fileProject/hj/img/people.png' alt='loading'>
 			</div>
+			
 			<p class='loadingFont'>点击此处选择文件上传</p>
 			<p class='loadingFont'>
 				<span id='span_one'>当前审核队列</span> <a id='span_two'>流畅</a>
@@ -78,7 +101,7 @@
 			</div>
 			<img id='soccerImg' src='${pageContext.request.contextPath}/fileProject/hj/img/soccer.png' alt='广告'>
 		</div>
-
+	</form>
 		<!-- 专栏投稿图片上传 -->
 		<div  id="section_column"  class="tougao" >
 			<div id="head">
@@ -237,7 +260,7 @@
 				<ul id="box">
 					<li>
 						<a href="javascript:void(0)"><img alt="" src="${pageContext.request.contextPath}/fileProject/hj/img/a11.png"></a>
-						<a href="javascript:void(0)"><span  class="title">aaaaaaa</span></a>
+						<a href="javascript:void(0)"><span class="title">aaaaaaa</span></a>
 						<span class="content">489561895648954</span>
 						<span class="time">最后修改时间:2018-07-26 13:03:19</span>
 						<p>

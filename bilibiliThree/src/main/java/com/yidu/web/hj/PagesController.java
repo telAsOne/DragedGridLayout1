@@ -1,33 +1,31 @@
 package com.yidu.web.hj;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PagesController {
+	
 	private static Logger LOGGER = LoggerFactory.getLogger(PagesController.class);
-	@RequestMapping(value="/index/bi",method=RequestMethod.GET)
+	@RequestMapping(value="/zchMenu",method=RequestMethod.GET)
 	public String zchHtml(@RequestParam(value="iframeSrc") String iframeSrc,
-						  HttpServletRequest req,
-						  Map<String, String> map){
+						  HttpServletRequest req){
 		if (req.getHeader("X-PJAX") != null) {
+			System.out.println("局部");
 			LOGGER.info("pjax request");
 			return String.format("forward:/upOne?%s", iframeSrc);
 		}
-		map.put("iframeSrc", iframeSrc);
+		req.getSession().setAttribute("iframeSrc", iframeSrc);
 		LOGGER.info("normal request");
 		return "uploading";
 	}
+	
 	/**
 	 * iframe页面
 	 */
@@ -38,4 +36,7 @@ public class PagesController {
 				 + "</iframe>";
 		return iframe;
 	}
+	
+	
+	
 }
