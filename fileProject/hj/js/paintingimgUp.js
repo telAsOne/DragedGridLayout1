@@ -15,7 +15,12 @@ window.onload = function(){
         var count=0;
     function readFile(){   
         fd = new FormData();    
-        var iLen = this.files.length;  
+        var iLen = this.files.length;
+			for(var i=0;i<iLen;i++){
+			if (!this.files[i].name.match(/.jpg|.gif|.png|.jpeg|.bmp/i)){//判断上传文件格式    
+                return alert("上传的图片格式不正确，请重新选择");    
+            }
+		}
         var index = 0;  
         if(count+iLen>10){
         	alert("图片超过10张，请重新选择");
@@ -24,11 +29,9 @@ window.onload = function(){
         		$("#uploadImg").css("display","none");
         		$("#file_input").css("display","none");
         	}
-        	count+=iLen;
+        	
         	for(var i=0;i<iLen;i++){
-            if (!input['value'].match(/.jpg|.gif|.png|.jpeg|.bmp/i)){//判断上传文件格式    
-                return alert("上传的图片格式不正确，请重新选择");    
-            }  
+           
             var reader = new FileReader();  
             reader.index = i;    
             fd.append(i,this.files[i]);  
@@ -71,11 +74,22 @@ window.onload = function(){
             }    
         }    
         }
+		count+=iLen;
     }    
         
         
-    function send(){   
-  
+    function send(){ 
+		//资源标签
+		var sourceLabel="";
+		$("input[name='sourceLabel']").each(function(){
+			sourceLabel+=$(this).val()+",";
+		});
+		
+		//其他标签
+		var otherLabel="";
+		$("input[name='otherLabel']").each(function(){
+			otherLabel+=$(this).val()+",";
+		});
         var submitArr = [];  
         for (var i = 0; i < dataArr.length; i++) {  
             if (dataArr[i]) {  
@@ -83,12 +97,28 @@ window.onload = function(){
             }  
         }
         // console.log('提交的数据：'+JSON.stringify(submitArr)) 
-        $.ajax({    
+        $.ajax({ 
+			async:false,		
             url : 'paintingData',    
             type : 'post', 
             dataType: 'json',   
              data:{
-            	 ds:JSON.stringify(submitArr)
+				 //图片
+            	 ds:JSON.stringify(submitArr),
+				 //属性
+				 attribute:$("[name=attribute]").val(),
+				 //分类
+				 classification:$("[name=classification]").val(),
+				 //标题
+				 title:$("[name=title]").val(),
+				 //资源标签
+				 sourceLabel:sourceLabel,
+				 //其他标签
+				 otherLabel:otherLabel,
+				 //内容
+				 introduction:$("#textarea").val(),
+				 //是否可转载
+				 reprinted:$("[name=reprinted]").val()
             },
             //processData: false,   用FormData传fd时需有这两项    
             //contentType: false,   

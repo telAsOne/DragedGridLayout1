@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.yidu.zch.dao.VideoDao">
+
+	<!-- 查询视频 -->
+	<select id="selectAllVideo" resultType="com.yidu.zch.entity.Video" parameterType="com.yidu.zch.entity.Video">
+		SELECT
+			video_id videoId,
+			video_name videoName,
+			video_image videoImage,
+			video_district videoDistrict,
+			video_tag videoTag,
+			video_state videoState,
+			video_type videoType,
+			video_info videoInfo,
+			video_upOfUser videoUpOfUser,
+			video_UpTime videoUpTime,
+			playSum,collectSum,supportSum,comentSum  
+		FROM 
+			video 
+		WHERE 
+			video_upOfUser = #{videoUpOfUser} 
+			 <choose>
+	            <when test="videoState lt 0 or videoState gt 2">
+	              and video_state like CONCAT('%', '', '%') 
+	            </when>
+	            <otherwise>
+	              and video_state = #{videoState} 
+	            </otherwise>
+       	 	</choose>
+		order by 
+			video_UpTime desc 
+	</select>
+	
+	<!-- 根据id查询视频 -->
+	<select id="selectVideoById" resultType="com.yidu.zch.entity.Video" parameterType="int">
+		SELECT
+			video_id videoId,
+			video_name videoName,
+			video_image videoImage,
+			video_state videoState,
+			video_district videoDistrict,
+			video_tag videoTag,
+			video_type videoType,
+			video_info videoInfo,
+			video_upOfUser videoUpOfUser,
+			video_UpTime videoUpTime,
+			playSum,collectSum,supportSum,comentSum 
+		FROM 
+			video 
+		WHERE 
+			video_id = #{videoId}
+	</select>
+
+	<!-- 插入上传的视频 -->
+	<insert id="uploadVideo" parameterType="com.yidu.zch.entity.Video">
+		INSERT INTO video
+			(video_name,
+			 video_image,
+			 video_district,
+			 video_tag,
+			 video_type,
+			 video_state,
+			 video_info,
+			 video_upOfUser,
+			 video_UpTime,
+			 playSum,collectSum,supportSum,comentSum) 
+		VALUES
+			(#{videoName},#{videoImage},#{videoDistrict},#{videoTag},#{videoType},
+			 default,#{videoInfo},#{videoUpOfUser},#{videoUpTime},
+			 #{playSum},#{collectSum},#{supportSum},#{comentSum})
+	</insert>
+	
+	<!-- 删除视频 -->
+	<delete id="delVideo" parameterType="int">
+		DELETE FROM video WHERE video_id = #{videoId}
+	</delete>
+	
+	<!-- 修改视频信息 -->
+	<update id="updateVideo" parameterType="com.yidu.zch.entity.Video">
+		UPDATE video SET video_name = #{videoName}, video_info = #{videoInfo}, video_image = #{videoImage}, video_tag = #{videoTag}  
+		WHERE video_id = #{videoId}
+	</update>
+
+</mapper>

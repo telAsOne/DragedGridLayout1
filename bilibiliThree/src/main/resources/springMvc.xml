@@ -9,44 +9,9 @@
 	<!-- 配置自动扫描的包 -->
 	<context:component-scan base-package="com.yidu.web"></context:component-scan>
 	
-	<!-- 樊佳臣  -->
-	<import resource="fjc/springMvc.xml"/>
+	<!-- 所有人的子配置文件   -->
+	<import resource="classpath:*/springMvc.xml"/>
 	
-	<!-- 胡平  -->
-	<import resource="hp/springMvc.xml"/>
-	
-	<!-- 江扬正  -->
-	<import resource="jyz/springMvc.xml"/>
-	
-	<!-- 朱辞涵  -->
-	<import resource="zch/springMvc.xml"/>
-	
-	<!-- 李玉婷  -->
-	<import resource="lyt/springMvc.xml"/>
-	
-	<!-- 王冰玉  -->
-	<import resource="wby/springMvc.xml"/>
-	
-	<!-- 谢成辉 -->
-	<import resource="xch/springMvc.xml"/>
-	
-	<!-- 陈然  -->
-	<import resource="cr/springMvc.xml"/>
-	
-	<!-- 黄杰  -->
-	<import resource="hj/springMvc.xml"/>
-	
-	<!-- 金天  -->
-	<import resource="jt/springMvc.xml"/>
-	
-	<!-- 罗坤凤  -->
-	<import resource="lkf/springMvc.xml"/>
-	
-	<!-- 尤思迪  -->
-	<import resource="ysd/springMvc.xml"/>
-	
-	<!-- 李子豪  -->
-	<import resource="lzh/springMvc.xml"/>
 	
 
 	<!-- 配置视图解析器 -->

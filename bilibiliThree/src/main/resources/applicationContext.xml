@@ -5,54 +5,21 @@
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<!-- 配置自动扫描的包 -->
 	<context:component-scan base-package="com.yidu">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-	</context:component-scan>
+	</context:component-scan> 
 	
-	<!-- 樊佳臣  -->
-	<import resource="fjc/applicationContext.xml"/>
+	<!-- 所有人的子配置文件  -->
+	<import resource="classpath:*/applicationContext.xml"/>
 	
-	<!-- 胡平  -->
-	<import resource="hp/applicationContext.xml"/>
-	
-	<!-- 江扬正  -->
-	<import resource="jyz/applicationContext.xml"/>
-	
-	<!-- 朱辞涵  -->
-	<import resource="zch/applicationContext.xml"/>
-	
-	<!-- 李玉婷  -->
-	<import resource="lyt/applicationContext.xml"/>
-	
-	<!-- 王冰玉  -->
-	<import resource="wby/applicationContext.xml"/>
-	
-	<!-- 谢成辉 -->
-	<import resource="xch/applicationContext.xml"/>
-	
-	<!-- 陈然  -->
-	<import resource="cr/applicationContext.xml"/>
-	
-	<!-- 黄杰  -->
-	<import resource="hj/applicationContext.xml"/>
-	
-	<!-- 金天  -->
-	<import resource="jt/applicationContext.xml"/>
-	
-	<!-- 罗坤凤  -->
-	<import resource="lkf/applicationContext.xml"/>
-	
-	<!-- 尤思迪  -->
-	<import resource="ysd/applicationContext.xml"/>
-	
-	<!-- 李子豪  -->
-	<import resource="lzh/applicationContext.xml"/>
 	
 	<!-- 配置后置处理器，加载属性文件 -->
 	<context:property-placeholder location="classpath:db.properties" />
@@ -63,38 +30,21 @@
 		<property name="driverClass" value="${jdbc_driver}"></property>
 		<property name="jdbcUrl" value="${jdbc_url}"></property>
 	</bean>
-<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds"></property>
+	</bean>
+
+	<!-- 开启申明式事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- aop切面编程 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<!-- 配置MyBatis的sqlsession工厂 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds"></property>
-		<property name="mapperLocations">
-			<list>
-				<value>classpath:config/zchMybatis/*.xml</value>
-				<value>classpath:config/baseMybatis/*.xml</value>
-				<value>classpath:config/hpMybatis/*.xml</value>
-				
-				<value>classpath:config/jyzMybatis/*.xml</value>
-				
-				<value>classpath:config/wbyMybatis/*.xml</value>
-				
-				<value>classpath:config/lytMybatis/*.xml</value>
-				
-				<value>classpath:config/xchMybatis/*.xml</value>
-				
-				<value>classpath:config/ysdMybatis/*.xml</value>
-				
-				<value>classpath:config/lkfMybatis/*.xml</value>
-				
-				<value>classpath:config/lzhMybatis/*.xml</value>
-				
-				<value>classpath:config/fjcMybatis/*.xml</value>
-				
-				<value>classpath:config/jtMybatis/*.xml</value>
-				
-				<value>classpath:config/crMybatis/*.xml</value>
-				
-				<value>classpath:config/hjMybatis/*.xml</value>
-			</list>
+		<property name="mapperLocations" value="classpath:config/*Mybatis/*.xml">
 		</property>
 	</bean>
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

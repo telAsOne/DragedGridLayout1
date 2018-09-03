@@ -58,16 +58,16 @@ button:hover {
 	background-color: #00ACE6;
 }
 
-
-#menuDiv .menu {
-	margin-top: 30px;
-	list-style-type: none;
-	margin-left: 35px;
+.menu{
+	list-style-type:none;
 }
-#menuDiv .menu>li {
-	text-align: center;
-	width: 150px;
-	line-height: 60px;
+
+#menuDiv .menu{
+	margin-top:30px;
+}
+#menuDiv .menu>li{
+	margin-left:60px;
+	line-height:60px;
 }
 
 .li-blue {
@@ -187,7 +187,7 @@ header>ul>li {
 	color: #000000;
 	text-decoration: none;
 }
-section>#section_video .fileButton {
+section>#uploadForm>#section_video .fileButton {
 	border-left: 1px solid black;
 	width: 370px;
 	height: 75px;
@@ -202,11 +202,11 @@ section>#section_video .fileButton {
 	line-height: 70px;
 }
 
-section>#section_video .fileButton:hover {
+section>#uploadForm>#section_video .fileButton:hover {
 	cursor: pointer;
 }
 
-section>#section_video .fileButton span {
+section>#uploadForm>#section_video .fileButton span {
 	height: 5px;
 	vertical-align: middle;
 }
@@ -260,23 +260,21 @@ section {
 
 
 
-#backImg {
-	width: 750px;
-	margin-left: 150px;
+#backImg{
+	width:750px;
 }
-
-#peopleImg {
-	z-index: 1;
-	position: relative;
-	bottom: 420px;
-	right: 200px;
-	width: 235px;
-	height: 155px;
+#peopleImg{
+	z-index:1;
+	position:relative;
+	bottom:392px;
+	right:200px;
+	width:235px;
+	height:155px;
 }
 
 .loadingFont {
 	position: relative;
-	bottom: 370px;
+	bottom: 350px;
 	left: 70px;
 	font-size: 18px;
 	width: 300px;
@@ -569,6 +567,8 @@ section {
 }
 
 #basicInfo {
+	margin-left:100px;
+	margin-top:20px;
 	height: 800px;
 	width: 850px;
 }

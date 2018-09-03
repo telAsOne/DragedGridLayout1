@@ -3,11 +3,13 @@
 <mapper namespace="com.yidu.base.allMapper.DraftMapper" >
   <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.Draft" >
     <id column="draft_id" property="draftId" jdbcType="INTEGER" />
-    <result column="id" property="id" jdbcType="INTEGER" />
-    <result column="draft_img" property="draftImg" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="draft_imgTitle" property="draftImgTitle" jdbcType="LONGVARCHAR" />
     <result column="draft_title" property="draftTitle" jdbcType="VARCHAR" />
-    <result column="draft_content" property="draftContent" jdbcType="VARCHAR" />
+    <result column="draft_content_address" property="draftContentAddress" jdbcType="VARCHAR" />
     <result column="draft_label" property="draftLabel" jdbcType="VARCHAR" />
+    <result column="draft_type" property="draftType" jdbcType="VARCHAR" />
+    <result column="draft_classification" property="draftClassification" jdbcType="VARCHAR" />
     <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
     <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -19,33 +21,37 @@
     <selectKey resultType="java.lang.Integer" keyProperty="draftId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into draft (id, draft_img, draft_title, 
-      draft_content, draft_label, start_time, 
+    insert into draft (draft_id,user_id, draft_imgTitle, draft_title, 
+      draft_content_address,draft_type,draft_classification, draft_label, start_time, 
       end_time)
-    values (#{id,jdbcType=INTEGER}, #{draftImg,jdbcType=VARCHAR}, #{draftTitle,jdbcType=VARCHAR}, 
-      #{draftContent,jdbcType=VARCHAR}, #{draftLabel,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+    values (#{draftId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{draftImgTitle,jdbcType=LONGVARCHAR}, #{draftTitle,jdbcType=VARCHAR}, 
+      #{draftContentAddress,jdbcType=VARCHAR},#{draftType,jdbcType=VARCHAR},
+      #{draftClassification,jdbcType=VARCHAR}, #{draftLabel,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
       #{endTime,jdbcType=TIMESTAMP})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Draft" >
     update draft
-    set id = #{id,jdbcType=INTEGER},
-      draft_img = #{draftImg,jdbcType=VARCHAR},
+    set draft_id = #{draftId,jdbcType=INTEGER},
       draft_title = #{draftTitle,jdbcType=VARCHAR},
-      draft_content = #{draftContent,jdbcType=VARCHAR},
+      user_id =#{userId,jdbcType=INTEGER},
+      draft_imgTitle=#{draftImgTitle,jdbcType=LONGVARCHAR},
+      draft_content_address = #{draftContentAddress,jdbcType=VARCHAR},
+      draft_type=#{draftType,jdbcType=VARCHAR},
+      draft_classification = #{draftClassification,jdbcType=VARCHAR},
       draft_label = #{draftLabel,jdbcType=VARCHAR},
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP}
     where draft_id = #{draftId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select draft_id, id, draft_img, draft_title, draft_content, draft_label, start_time, 
-    end_time
-    from draft
+    SELECT
+    draft_id,user_id,draft_title,draft_imgTitle,draft_content_address,draft_type ,draft_classification,draft_label,start_time,end_time
+    FROM  draft
     where draft_id = #{draftId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select draft_id, id, draft_img, draft_title, draft_content, draft_label, start_time, 
-    end_time
-    from draft
+    SELECT
+    draft_id,user_id,draft_title,draft_imgTitle,draft_content_address,draft_type ,draft_classification,draft_label,start_time,end_time
+    FROM  draft
   </select>
 </mapper>

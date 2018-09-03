@@ -52,13 +52,13 @@ $(function(){
 			var keyCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode; //兼容IE 火狐 谷歌
 			if (keyCode == 13) {
 				if(a>0){
-					var id=document.getElementById("txt_search").value;
+					var value=document.getElementById("txt_search").value;
 					if(document.getElementById("txt_search").value!=""){
 						a--;
 						var d=document.createElement("input");
-						d.setAttribute("name","inputName");
+						d.setAttribute("name","label");
 						d.setAttribute("class","content_info_input_class");
-						d.setAttribute("value",id);
+						d.setAttribute("value",value);
 						d.setAttribute("readonly","readonly");
 						
 						d.onclick = function() {
@@ -180,7 +180,7 @@ function count(){
 $(function(){
 	//分类
 	$("#content_info_ul1 ul li").click(function(){
-		$("[name=column_classification]").attr("value",$(this).html());
+		$("[name=columnClassification]").attr("value",$(this).html());
 		$("#content_info_ul1 ul li").css("color","black");
 		$("#content_info_ul1 ul li").css("backgroundColor","white");
 		$(this).css("backgroundColor","#f1f3f7");
@@ -189,6 +189,29 @@ $(function(){
 		$(".content_info_ul1_li").css("color","black");
 		$(this).parent("ul").parent("li").css("backgroundColor","#37c8f7");
 		$(this).parent("ul").parent("li").css("color","white");
-		$("[name=column_type]").attr("value",$(this).parent("ul").prev("span").html());
+		$("[name=columnType]").attr("value",$(this).parent("ul").prev("span").html());
+	});
+	
+	
+	$("#draft").click(function(){
+		var inputValue="";
+		$("input[name='label']").each(function(){
+			inputValue+=$(this).val()+",";
+		});
+		$.ajax({
+			async:false,		
+            url : 'draft',    
+            type : 'post', 
+            dataType: 'text',  
+			data:{
+				draftTitle:$("[name=columnTitle]").val(),
+				draftImgTitle:$("#titlImgContent").val(),
+				draftContent:CKEDITOR.instances.editor1.getData(),
+				draftType:$("[name=columnType]").val(),
+				draftClassification:$("[name=columnClassification]").val(),
+				draftLabel:inputValue
+			}
+		});
 	});
 });
+

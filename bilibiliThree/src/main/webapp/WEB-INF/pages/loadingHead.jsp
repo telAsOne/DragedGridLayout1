@@ -29,7 +29,25 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/fileProject/hj/css/upType.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/fileProject/hj/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
-
+<script>
+		$(function() {
+			$(".fileButton").click(function() {
+				$(".upFile").click();
+			});
+	
+			/*批量导入*/
+			/*#load:为按钮,点击后生成一个隐藏的input file标签*/
+			$('#load').after('<input type="file" id="load_xls" name="file" style="display:none" onchange="uploadFile()">');
+			$('#load').click(function() {
+				document.getElementById("load_xls").click();
+			});
+	
+			$('#load_xls').change(function() {
+				$("#uploadForm").submit();
+			});
+	
+		});
+	</script>
 </head>
 <body>
 	<header>
@@ -45,16 +63,21 @@
 		</ul>
 	</header>
 	<section>
+	<form id="uploadForm" name="Form2" action="/bilibiliThree/springUpload" method="post"
+		enctype="multipart/form-data">
 		<div id="section_video" class="tougao">
-			<div class='fileButton'>
+		
+			<div id="load" class='fileButton'>
 				<i class='fa fa-share-square-o fa-fw'></i> 上传视频
 			</div>
+			
 			<div id='backImg'>
 				<img src='${pageContext.request.contextPath}/fileProject/hj/img/background.png' alt='loading'>
 			</div>
 			<div id='peopleImg'>
 				<img src='${pageContext.request.contextPath}/fileProject/hj/img/people.png' alt='loading'>
 			</div>
+			
 			<p class='loadingFont'>点击此处选择文件上传</p>
 			<p class='loadingFont'>
 				<span id='span_one'>当前审核队列</span> <a id='span_two'>流畅</a>
@@ -78,7 +101,7 @@
 			</div>
 			<img id='soccerImg' src='${pageContext.request.contextPath}/fileProject/hj/img/soccer.png' alt='广告'>
 		</div>
-
+	</form>
 		<!-- 专栏投稿图片上传 -->
 		<div  id="section_column"  class="tougao" >
 			<div id="head">
@@ -91,25 +114,26 @@
 					<!-- columnContent -->
 				<form action="columnContent" method="POST" id="form1" >
 					<div id="content">
-						<input id="content_title" name="title"  type="text"  placeholder="请输入标题（建议20字以内）"
+						<input id="content_title" name="columnTitle"  type="text"  placeholder="请输入标题（建议20字以内）"
 							 />
 					 <div class="container"  id="container">   
 					     	  <img src="${pageContext.request.contextPath}/fileProject/hj/img/a11.png" id="uploadImg"/>
 					     	  <input type="file" id="file_input" name="titleImg" class="file_input" enctype="multipart/form-data" /> 
 					 </div>   
-					 <textarea rows="10" hidden="hidden" cols="10" name="titlImgContent" id="titlImgContent" ></textarea>
+					 <textarea rows="10" hidden="hidden" cols="10" name="columnImgtitle" id="titlImgContent" ></textarea>
 						<!-- 专栏内容 -->
 						<div
-							style="margin-top: 20px;margin-left:12px; width: 800px; height: 600px; word-wrap: break-word; word-break: break-all;">
+							style="margin-top: 20px;margin-left:12px; width: l800px; height: 600px; word-wrap: break-word; word-break: break-all;">
 							<textarea name="columnContent" id="editor1" rows="10" cols="80"></textarea>
 						<input type="file"   style="display: none;" id="a" />
 						</div>
 						<div id="content_info">
 							<h4 class="content_info_h4">请选择转载权限</h4>
 							<div id="content_info_radiobutton">
-								<span>禁止转载</span><input type="radio" name="radiobutton"
-									value="2" checked> <span>可转载</span><input type="radio"
-									name="radiobutton" value="1">
+								<span>禁止转载</span>
+								<input type="radio" name="columnWhetherforwarded" value="2" checked> 
+								<span>可转载</span>
+								<input type="radio" name="columnWhetherforwarded" value="1">
 							</div>
 							<!-- 专栏分类 -->
 							<h4 class="content_info_h4">请选择专栏分类</h4>
@@ -176,8 +200,8 @@
 							</ul>
 							<p id="content_info_p">
 							<span id="content_info_p_span1">当前选择分类:</span> 
-							<input type="text"  readonly="readonly" name="column_type" value="">
-							<input type="text"  readonly="readonly" name="column_classification" value="">
+							<input type="text"  readonly="readonly" name="columnType" value="">
+							<input type="text"  readonly="readonly" name="columnClassification" value="">
 							</p>
 							<p id="content_info_p2">
 								<span id="content_info_p2_span1" class="span_family1">请选择标签</span>
@@ -206,8 +230,8 @@
 							</div>
 							<ul id="content_info_ul">
 								<li id="content_info_ul2_li"><span>提交文章</span></li>
-								<li class="content_info_ul2_li"><button
-										class="content_info_ul2_li_button" onClick="return false;">&nbsp;&nbsp;&nbsp;存&nbsp;草&nbsp;稿&nbsp;&nbsp;&nbsp;</button></li>
+								<li class="content_info_ul2_li" id="draft"><button type="button"
+										class="content_info_ul2_li_button" >&nbsp;&nbsp;&nbsp;存&nbsp;草&nbsp;稿&nbsp;&nbsp;&nbsp;</button></li>
 								<li class="content_info_ul2_li"><button
 										class="content_info_ul2_li_button"onClick="return false;">手机端预览</button></li>
 								<li class="content_info_ul2_li"><button
@@ -236,7 +260,7 @@
 				<ul id="box">
 					<li>
 						<a href="javascript:void(0)"><img alt="" src="${pageContext.request.contextPath}/fileProject/hj/img/a11.png"></a>
-						<a href="javascript:void(0)"><span  class="title">aaaaaaa</span></a>
+						<a href="javascript:void(0)"><span class="title">aaaaaaa</span></a>
 						<span class="content">489561895648954</span>
 						<span class="time">最后修改时间:2018-07-26 13:03:19</span>
 						<p>
@@ -315,39 +339,9 @@
 		</div>
 	</section>
 	<script src='${pageContext.request.contextPath}/fileProject/hj/js/jquery.pjax.js'></script>
-	<script>
-		$.pjax({
-			selector: 'a[target!=_blank]',
-			container: 'section',
-			show: 'fade',
-			cache: false,
-			storage: false,
-			timeout : 0
-		});
-		NProgress.configure({ showSpinner: false });
-		$('section').bind('pjax.start', function(){
-	   		NProgress.start();
-	    });
-	    $('section').bind('pjax.end', function(){
-	        NProgress.done();
-	    });
-	 
-	</script>
 	<script type="text/javascript">
 			  var editor = CKEDITOR.replace( 'editor1');
 		      CKFinder.setupCKEditor(editor, 'fileProject/hj/assets/ckfinder');
-		      
-		 /*      
-		   	//显示剩余字数
-		  	  editor.on('key',function(evt){
-	  	  			count=editor.getData().length;
-	  	  		editor.setReadOnly(true); 
-	  	  		var count=0;
-	  	  	if($("#editor1").val().length<10){
-  	  			return true;
-  	  		}else{
-  	  			return false;
-		  	}); */
 	</script>
 </body>
 </html>

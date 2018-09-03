@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel = "Shortcut Icon" href="${pageContext.request.contextPath}/fileProject/hj/img/resizeApi.png">
+	<link rel="Shortcut Icon" href="${pageContext.request.contextPath}/fileProject/hj/img/resizeApi.png">
 	<meta charset="UTF-8">
 	<title>创作中心 - 哔哩哔哩弹幕视频网 - ( ゜- ゜)つロ 乾杯~</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/fileProject/hj/css/uploading.css">
@@ -25,6 +25,66 @@
 				c.addClass("li-blue-button");
 				c.children(".interactManager").toggle();
 			});
+			
+			$.ajax({
+				
+				url : 'zch/menus',
+				type : 'get',
+				dataType : 'json',
+
+				success : function(data) {
+
+					var html = "";
+					var createId;
+					var createName;
+					var createIcon;
+					var createUrl;
+					var topId;
+
+					for (var i = 0; i < data.length; i++) {
+
+						createId = data[i].createId;
+						createName = data[i].createName;
+						createIcon = data[i].createIcon;
+						createUrl = data[i].createUrl;
+						topId = data[i].topId;
+						
+						if(topId==0){
+							var className = "li-blue";
+							
+							if(createUrl == 'null' || createUrl == '' || createUrl == null){
+								className = "li-blue-button";
+							}
+							html = html
+									+ '<li>'
+									+ '<i class="'+createIcon+'"></i> &nbsp;&nbsp;'
+									+ '<span class="'+className+'"><a href="'+createUrl+'">'+createName+'</a></span>';
+						}
+						
+						var isOpen = true;
+						
+						for (var j = 0; j < data.length; j++) {
+							if (createId == data[j].topId) {
+								
+								if(isOpen){
+									isOpen = false;
+									html = html
+									+ '&nbsp<i class="fa fa-angle-down fa-fw"></i>';
+								}
+								
+								html = html
+										+ '<p class="interactManager li-blue"><a href="'+createUrl+'">'
+										+ data[j].createName +'</a></p>';
+							}
+						}
+
+					}
+					
+					html = html  + '</li>';
+					$('.menu').append(html);
+				}
+			});
+			
 		});
 	</script>
 </head>
@@ -32,38 +92,16 @@
 	<div id="bigDiv">
 		<aside id="uploadingMenu">
 			<img src="${pageContext.request.contextPath}/fileProject/hj/img/logo.png" alt="logo">
-				<a href="bi?iframeSrc=loadingHead" ><button style="color:white;font-size:15px;" id="contributeButton">投稿</button></a>
+				<a href="zchMenu?iframeSrc=loadingHead"><button style="color:white;font-size:15px;" id="contributeButton">投稿</button></a>
+			
 			<div id="menuDiv">
 				<ul class="menu">
-					<li class="li-blue"><i class="fa fa-home fa-fw"></i> &nbsp;&nbsp;首页管理</li>
-					<li class="li-blue"><i class="fa fa-clipboard fa-fw"></i> &nbsp;&nbsp;
-						<a href="bi?iframeSrc=manageVideo" >内容管理</a>
-					</li>
-					<li class="li-blue-button">&nbsp;&nbsp;&nbsp;&nbsp;
-						<i class="fa fa-area-chart fa-fw"></i> &nbsp;&nbsp;数据中心
-						<i class="fa fa-angle-down fa-fw"></i>
-						<p class="interactManager li-blue">数据总览</p>
-						<p class="interactManager li-blue">观众分析</p>
-					</li>
-					<li class="li-blue"><i class="fa fa-user-circle fa-fw"></i> &nbsp;&nbsp;粉丝管理</li>
-					<li class="li-blue-button">&nbsp;&nbsp;&nbsp;&nbsp;
-						<i class="fa fa-commenting-o fa-fw "></i> &nbsp;&nbsp;互动管理
-						<i class="fa fa-angle-down fa-fw"></i>
-							<p class="interactManager li-blue">评论管理</p>
-							<p class="interactManager li-blue">弹幕管理</p>
-					</li>
-					<li class="li-blue-button">&nbsp;&nbsp;&nbsp;&nbsp;
-						<i class="fa fa-money fa-fw"></i> &nbsp;&nbsp;收益管理
-						<i class="fa fa-angle-down fa-fw"></i>
-						<p class="interactManager li-blue">创作激励</p>
-						<p class="interactManager li-blue">充电计划</p>
-					</li>
-					<li class="li-blue"><i class="fa fa-cog fa-fw"></i> &nbsp;&nbsp;水印设置</li>
-					<li class="li-blue"><i class="fa fa-warning fa-fw"></i> &nbsp;&nbsp;申诉管理</li>
+				
 				</ul>
 				
-				
 				<div id="upSetting">
+				<hr
+					style="width: 100px; border: none; height: 1px; background-color: #E7E7E7; margin-left: 60px;" />
 					<div class="util">
 						<img src="${pageContext.request.contextPath}/fileProject/hj/img/smallTv.png" alt="" style="width:50px;">
 						<div class="rightDiv">
@@ -93,7 +131,8 @@
 						</div>
 					</div>
 				</div>
-				
+					<hr
+					style="width: 100px; border: none; height: 1px; background-color: #E7E7E7; margin-left:60px;" />
 				
 				<p class="help">帮助中心</p>
 				<p class="help">在线客服</p>
@@ -103,7 +142,7 @@
 		<div id="uploadingDiv">
 			 <div id="section" >
 				<!--视屏投稿 等专栏 -->
-				<iframe    name="indexFrame" id="indexFrame" scrolling="no"  src="${pageContext.request.contextPath}/${iframeSrc}" frameborder="0"></iframe>
+				<iframe name="indexFrame" id="indexFrame" scrolling="no" src="${pageContext.request.contextPath}/${iframeSrc}" frameborder="0"></iframe>
 			 </div> 
 		</div>
 	</div>
