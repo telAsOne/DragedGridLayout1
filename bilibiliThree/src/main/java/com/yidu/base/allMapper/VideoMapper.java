@@ -1,11 +1,11 @@
 package com.yidu.base.allMapper;
 
 import com.yidu.base.allEntity.Video;
+import com.yidu.jyz.fromBean.VideoAllFromBean;
+import com.yidu.jyz.fromBean.VideoFormBean;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-@Repository
 public interface VideoMapper {
     int deleteByPrimaryKey(Integer videoId);
 
@@ -16,4 +16,8 @@ public interface VideoMapper {
     List<Video> selectAll();
 
     int updateByPrimaryKey(Video record);
+    
+    public List<VideoAllFromBean> queryLabelAll();
+    
+    public List<VideoFormBean> getVideoByLabelId(Integer vlId);
 }

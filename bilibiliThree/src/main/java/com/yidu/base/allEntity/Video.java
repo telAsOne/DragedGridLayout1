@@ -1,25 +1,29 @@
 package com.yidu.base.allEntity;
 
 public class Video {
-    private Integer videoId;
+    protected Integer videoId;
 
-    private String videoName;
+    protected String videoName;
 
-    private String videoImage;
+    protected String videoImage;
 
-    private String videoInfo;
+    protected String videoInfo;
 
-    private Integer videoUpofuser;
+    protected Integer videoUpofuser;
 
-    private Integer videoUptime;
+    protected Integer videoUptime;
 
-    private Integer playsum;
+    protected String videoType;
 
-    private Integer collectsum;
+    protected Integer videoState;
 
-    private Integer supportsum;
+    protected Integer playsum;
 
-    private Integer comentsum;
+    protected Integer collectsum;
+
+    protected Integer supportsum;
+
+    protected Integer comentsum;
 
     public Integer getVideoId() {
         return videoId;
@@ -69,6 +73,22 @@ public class Video {
         this.videoUptime = videoUptime;
     }
 
+    public String getVideoType() {
+        return videoType;
+    }
+
+    public void setVideoType(String videoType) {
+        this.videoType = videoType == null ? null : videoType.trim();
+    }
+
+    public Integer getVideoState() {
+        return videoState;
+    }
+
+    public void setVideoState(Integer videoState) {
+        this.videoState = videoState;
+    }
+
     public Integer getPlaysum() {
         return playsum;
     }
@@ -113,6 +133,8 @@ public class Video {
         sb.append(", videoInfo=").append(videoInfo);
         sb.append(", videoUpofuser=").append(videoUpofuser);
         sb.append(", videoUptime=").append(videoUptime);
+        sb.append(", videoType=").append(videoType);
+        sb.append(", videoState=").append(videoState);
         sb.append(", playsum=").append(playsum);
         sb.append(", collectsum=").append(collectsum);
         sb.append(", supportsum=").append(supportsum);
