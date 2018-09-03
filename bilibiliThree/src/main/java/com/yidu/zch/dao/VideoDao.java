@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.yidu.zch.entity.Video;
+import com.yidu.base.allEntity.Video;
+
 
 /**
  * 视频信息管理

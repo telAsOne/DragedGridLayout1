@@ -7,8 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yidu.base.allEntity.Video;
 import com.yidu.zch.dao.VideoDao;
-import com.yidu.zch.entity.Video;
 import com.yidu.zch.service.VideoService;
 
 /**
@@ -38,7 +38,7 @@ public class VideoServiceImpl implements VideoService{
 	public Map<String, Object> selectAllVideo(int userId, int stateId) {
 		Video video = new Video();
 		
-		video.setVideoUpOfUser(userId);
+		video.setVideoUpofuser(userId);
 		video.setVideoState(stateId);
 		
 		List<Video> allVideo = videoDao.selectAllVideo(video);
@@ -48,7 +48,6 @@ public class VideoServiceImpl implements VideoService{
 		int notVideo = 0;
 		
 		for (int j = 0; j < allVideo.size(); j++) {
-
 			Video video2 = allVideo.get(j);
 			if(video2.getVideoState() == 0){
 				goVideo++;

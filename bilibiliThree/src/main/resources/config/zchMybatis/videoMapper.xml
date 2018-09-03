@@ -3,23 +3,21 @@
 <mapper namespace="com.yidu.zch.dao.VideoDao">
 
 	<!-- 查询视频 -->
-	<select id="selectAllVideo" resultType="com.yidu.zch.entity.Video" parameterType="com.yidu.zch.entity.Video">
+	<select id="selectAllVideo" resultType="com.yidu.base.allEntity.Video" parameterType="com.yidu.base.allEntity.Video">
 		SELECT
 			video_id videoId,
 			video_name videoName,
 			video_image videoImage,
-			video_district videoDistrict,
-			video_tag videoTag,
 			video_state videoState,
 			video_type videoType,
 			video_info videoInfo,
-			video_upOfUser videoUpOfUser,
-			video_UpTime videoUpTime,
+			video_upOfUser videoUpofuser,
+			video_UpTime videoUptime,
 			playSum,collectSum,supportSum,comentSum  
 		FROM 
 			video 
 		WHERE 
-			video_upOfUser = #{videoUpOfUser} 
+			video_upOfUser = #{videoUpofuser} 
 			 <choose>
 	            <when test="videoState lt 0 or videoState gt 2">
 	              and video_state like CONCAT('%', '', '%') 
@@ -33,18 +31,16 @@
 	</select>
 	
 	<!-- 根据id查询视频 -->
-	<select id="selectVideoById" resultType="com.yidu.zch.entity.Video" parameterType="int">
+	<select id="selectVideoById" resultType="com.yidu.base.allEntity.Video" parameterType="int">
 		SELECT
 			video_id videoId,
 			video_name videoName,
 			video_image videoImage,
 			video_state videoState,
-			video_district videoDistrict,
-			video_tag videoTag,
 			video_type videoType,
 			video_info videoInfo,
-			video_upOfUser videoUpOfUser,
-			video_UpTime videoUpTime,
+			video_upOfUser videoUpofuser,
+			video_UpTime videoUptime,
 			playSum,collectSum,supportSum,comentSum 
 		FROM 
 			video 
@@ -53,12 +49,10 @@
 	</select>
 
 	<!-- 插入上传的视频 -->
-	<insert id="uploadVideo" parameterType="com.yidu.zch.entity.Video">
+	<insert id="uploadVideo" parameterType="com.yidu.base.allEntity.Video">
 		INSERT INTO video
 			(video_name,
 			 video_image,
-			 video_district,
-			 video_tag,
 			 video_type,
 			 video_state,
 			 video_info,
@@ -66,9 +60,9 @@
 			 video_UpTime,
 			 playSum,collectSum,supportSum,comentSum) 
 		VALUES
-			(#{videoName},#{videoImage},#{videoDistrict},#{videoTag},#{videoType},
-			 default,#{videoInfo},#{videoUpOfUser},#{videoUpTime},
-			 #{playSum},#{collectSum},#{supportSum},#{comentSum})
+			(#{videoName},#{videoImage},#{videoType},
+			 default,#{videoInfo},#{videoUpofuser},#{videoUptime},
+			 #{playsum},#{collectsum},#{supportsum},#{comentsum})
 	</insert>
 	
 	<!-- 删除视频 -->
@@ -77,8 +71,8 @@
 	</delete>
 	
 	<!-- 修改视频信息 -->
-	<update id="updateVideo" parameterType="com.yidu.zch.entity.Video">
-		UPDATE video SET video_name = #{videoName}, video_info = #{videoInfo}, video_image = #{videoImage}, video_tag = #{videoTag}  
+	<update id="updateVideo" parameterType="com.yidu.base.allEntity.Video">
+		UPDATE video SET video_name = #{videoName}, video_info = #{videoInfo}, video_image = #{videoImage}   
 		WHERE video_id = #{videoId}
 	</update>
 

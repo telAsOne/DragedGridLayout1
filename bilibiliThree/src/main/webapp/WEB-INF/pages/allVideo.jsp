@@ -1,6 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
@@ -44,12 +43,18 @@
 </script>
 </head>
 <body>
+	
 	<header>
-		<iframe src="uploadManage.jsp" scrolling="no" frameborder="0"
-			width="1030px" height="50px"></iframe>
+		<ul class="menu">
+			<li id="video"><a href="">视频管理</a></li>
+			<li>专栏管理</li>
+			<li>音频管理</li>
+			<li>相簿管理</li>
+		</ul>
 	</header>
-
+	
 	<section>
+	
 		<div id="manuscript">
 			<ul>
 				<li id="allVideos">全部稿件(${fn:length(videoList)})</li>
@@ -68,32 +73,39 @@
 		<form id="delVideo" method="post">
 			<input type="hidden" name="_method" value="DELETE" />
 		</form>
-
+		
+		<c:if test="${empty videoList}">
+			<p id="no-file">你还没有投过一个稿件("▔□▔)</p>
+			<div class="videos"><img src="${pageContext.request.contextPath}/fileProject/zch/images/no-video.png" alt="loading"></div>
+			<div id="goLoad" class="fileButton">立即投稿 <i class="fa fa-arrow-circle-o-right"></i></div>
+		</c:if>
+		
+		<c:if test="${!empty videoList}">
 		<div style="overflow-y: auto; max-height: 630px; width: 1050px;">
 			<c:forEach items="${videoList}" var="videoList" varStatus="status">
 				<div class="upVideo state${videoList.videoState}" style="margin-bottom: 15px;">
 
-					<img src="${pageContext.request.contextPath}/fileProject/zch/images/${videoList.videoImage}" alt="略缩图">
+					<img src="fileProject/zch/images/yu.png" alt="略缩图">
 					<div class="detailInfo">
-						<p class="tag">${videoList.videoDistrict}</p>
+						<p class="tag">生活</p>
 						<p class="title">标题：${videoList.videoName}</p>
 						<br />
-						<p class="time">${videoList.videoUpTime}</p>
+						<p class="time">${videoList.videoUptime}</p>
 						<br />
 						<p class="detailP">
-							<i class="fa fa-play-circle"></i> 播放 ${videoList.playSum}
+							<i class="fa fa-play-circle"></i> 播放 ${videoList.playsum}
 						</p>
 						<p class="detailP">
 							<i class="fa fa-bars"></i> 弹幕 11
 						</p>
 						<p class="detailP">
-							<i class="fa fa-commenting"></i> 评论 ${videoList.comentSum}
+							<i class="fa fa-commenting"></i> 评论 ${videoList.comentsum}
 						</p>
 						<p class="detailP">
 							<i class="fa fa-bullseye"></i> 硬币 5
 						</p>
 						<p class="detailP">
-							<i class="fa fa-star"></i> 收藏 ${videoList.collectSum}
+							<i class="fa fa-star"></i> 收藏 ${videoList.collectsum}
 						</p>
 
 						<input type="hidden" value="${videoList.videoId}" />
@@ -112,6 +124,7 @@
 
 			</c:forEach>
 		</div>
+		</c:if>
 
 		<div id="bottomDiv">
 			<ul>

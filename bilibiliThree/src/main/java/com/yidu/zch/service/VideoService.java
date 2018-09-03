@@ -3,7 +3,7 @@ package com.yidu.zch.service;
 import java.util.List;
 import java.util.Map;
 
-import com.yidu.zch.entity.Video;
+import com.yidu.base.allEntity.Video;
 
 /**
  * 视频信息管理
