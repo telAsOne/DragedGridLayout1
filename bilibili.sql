@@ -85,11 +85,11 @@ CREATE TABLE userInfo(
 	/*用户密码*/
 	uer_psw NVARCHAR(25) NOT NULL,
 	/*用户性别*/
-	sex CHAR(4) ,
+	sex NVARCHAR(4) ,
 	/*用户电话*/
-	phone INT,
+	phone Nvarchar(25),
 	/*用户等级*/
-	user_level INT ,
+	level INT ,
 	/*用户积分*/
 	integral INT ,
 	/*用户邮箱*/
@@ -99,7 +99,7 @@ CREATE TABLE userInfo(
 	/*录入数据的时间*/
 	start_time DATETIME,
 	/*签名档*/
-	comments  varchar(255),
+	comments  Nvarchar(255),
 	/*最后登录时间*/
 	end_login_time DATETIME ,
 	/*录入数据的时间*/
