@@ -5,8 +5,11 @@
     <id column="vl_id" property="vlId" jdbcType="INTEGER" />
     <result column="vl_pid" property="vlPid" jdbcType="INTEGER" />
     <result column="vl_name" property="vlName" jdbcType="VARCHAR" />
+    <result column="isLookHome" property="islookhome" jdbcType="VARCHAR" />
+    <result column="HomeName" property="homename" jdbcType="VARCHAR" />
     <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
     <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from videolabel
@@ -16,26 +19,31 @@
     <selectKey resultType="java.lang.Integer" keyProperty="vlId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into videolabel (vl_pid, vl_name, start_time, 
-      end_time)
-    values (#{vlPid,jdbcType=INTEGER}, #{vlName,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{endTime,jdbcType=TIMESTAMP})
+    insert into videolabel (vl_pid, vl_name, isLookHome, 
+      HomeName, start_time, end_time, 
+      icon)
+    values (#{vlPid,jdbcType=INTEGER}, #{vlName,jdbcType=VARCHAR}, #{islookhome,jdbcType=VARCHAR}, 
+      #{homename,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{icon,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Videolabel" >
     update videolabel
     set vl_pid = #{vlPid,jdbcType=INTEGER},
       vl_name = #{vlName,jdbcType=VARCHAR},
+      isLookHome = #{islookhome,jdbcType=VARCHAR},
+      HomeName = #{homename,jdbcType=VARCHAR},
       start_time = #{startTime,jdbcType=TIMESTAMP},
-      end_time = #{endTime,jdbcType=TIMESTAMP}
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      icon = #{icon,jdbcType=VARCHAR}
     where vl_id = #{vlId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select vl_id, vl_pid, vl_name, start_time, end_time
+    select vl_id, vl_pid, vl_name, isLookHome, HomeName, start_time, end_time, icon
     from videolabel
     where vl_id = #{vlId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select vl_id, vl_pid, vl_name, start_time, end_time
+    select vl_id, vl_pid, vl_name, isLookHome, HomeName, start_time, end_time, icon
     from videolabel
   </select>
 </mapper>
