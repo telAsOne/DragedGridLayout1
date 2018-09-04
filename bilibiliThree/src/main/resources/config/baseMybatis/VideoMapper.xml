@@ -27,42 +27,61 @@
 		</selectKey>
 		insert into video (video_name, video_image, video_info,
 		video_upOfUser, video_UpTime, video_type,
-		video_state, playSum, collectSum,
+		video_state, playSum,
+		collectSum,
 		supportSum, comentSum)
-		values (#{videoName,jdbcType=VARCHAR}, #{videoImage,jdbcType=VARCHAR},
+		values
+		(#{videoName,jdbcType=VARCHAR}, #{videoImage,jdbcType=VARCHAR},
 		#{videoInfo,jdbcType=VARCHAR},
-		#{videoUpofuser,jdbcType=INTEGER}, #{videoUptime,jdbcType=INTEGER}, #{videoType,jdbcType=VARCHAR},
+		#{videoUpofuser,jdbcType=INTEGER},
+		#{videoUptime,jdbcType=INTEGER}, #{videoType,jdbcType=VARCHAR},
 		#{videoState,jdbcType=INTEGER}, #{playsum,jdbcType=INTEGER},
 		#{collectsum,jdbcType=INTEGER},
-		#{supportsum,jdbcType=INTEGER}, #{comentsum,jdbcType=INTEGER})
+		#{supportsum,jdbcType=INTEGER},
+		#{comentsum,jdbcType=INTEGER})
 	</insert>
 	<update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Video">
 		update video
-		set video_name = #{videoName,jdbcType=VARCHAR},
-		video_image = #{videoImage,jdbcType=VARCHAR},
-		video_info = #{videoInfo,jdbcType=VARCHAR},
-		video_upOfUser = #{videoUpofuser,jdbcType=INTEGER},
-		video_UpTime = #{videoUptime,jdbcType=INTEGER},
-		video_type = #{videoType,jdbcType=VARCHAR},
-		video_state = #{videoState,jdbcType=INTEGER},
+		set
+		video_name = #{videoName,jdbcType=VARCHAR},
+		video_image =
+		#{videoImage,jdbcType=VARCHAR},
+		video_info =
+		#{videoInfo,jdbcType=VARCHAR},
+		video_upOfUser =
+		#{videoUpofuser,jdbcType=INTEGER},
+		video_UpTime =
+		#{videoUptime,jdbcType=INTEGER},
+		video_type =
+		#{videoType,jdbcType=VARCHAR},
+		video_state =
+		#{videoState,jdbcType=INTEGER},
 		playSum = #{playsum,jdbcType=INTEGER},
 		collectSum = #{collectsum,jdbcType=INTEGER},
-		supportSum = #{supportsum,jdbcType=INTEGER},
-		comentSum = #{comentsum,jdbcType=INTEGER}
-		where video_id = #{videoId,jdbcType=INTEGER}
+		supportSum =
+		#{supportsum,jdbcType=INTEGER},
+		comentSum =
+		#{comentsum,jdbcType=INTEGER}
+		where video_id =
+		#{videoId,jdbcType=INTEGER}
 	</update>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
-		select video_id, video_name, video_image, video_info, video_upOfUser,
+		select video_id, video_name, video_image, video_info,
+		video_upOfUser,
 		video_UpTime,
-		video_type, video_state, playSum, collectSum, supportSum, comentSum
+		video_type, video_state, playSum,
+		collectSum, supportSum, comentSum
 		from video
-		where video_id = #{videoId,jdbcType=INTEGER}
+		where video_id =
+		#{videoId,jdbcType=INTEGER}
 	</select>
 	<select id="selectAll" resultMap="BaseResultMap">
-		select video_id, video_name, video_image, video_info, video_upOfUser,
+		select video_id, video_name,
+		video_image, video_info, video_upOfUser,
 		video_UpTime,
-		video_type, video_state, playSum, collectSum, supportSum, comentSum
+		video_type,
+		video_state, playSum, collectSum, supportSum, comentSum
 		from video
 	</select>
 
@@ -73,38 +92,43 @@
 		from videolabel
 		where isLookHome = 0
 	</select>
-	
+
 	<resultMap type="com.yidu.jyz.fromBean.VideoAllFromBean" id="queryVideoByLabelIdMap">
 		<id column="vl_id" property="vlId" jdbcType="INTEGER" />
 		<result column="vl_pid" property="vlPid" jdbcType="INTEGER" />
 		<result column="vl_name" property="vlName" jdbcType="VARCHAR" />
 		<result column="isLookHome" property="islookhome" jdbcType="VARCHAR" />
 		<result column="HomeName" property="homename" jdbcType="VARCHAR" />
-   		<result column="icon" jdbcType="VARCHAR" property="icon" />
-		<collection property="bean" column="vl_id"
+		<result column="icon" jdbcType="VARCHAR" property="icon" />
+		<collection property="news" column="{id=vl_id,news=isLookHome}"
+			ofType="com.yidu.jyz.fromBean.VideoFormBean" select="getVideoByLabelId" />
+		<collection property="latestPosts" column="{id=vl_id,latestPosts=isLookHome}"
 			ofType="com.yidu.jyz.fromBean.VideoFormBean" select="getVideoByLabelId" />
 	</resultMap>
 
 	<!-- 根据分类Id和业务请求查询对应的视频 -->
 	<select id="getVideoByLabelId" resultMap="getVideoByLabelIdResultMap"
-		parameterType="java.lang.Integer">
+		parameterType="java.util.HashMap">
 		select a.video_id, video_name, video_image, video_info,
-		video_upOfUser,
-		video_UpTime,
-		playSum, collectSum, supportSum,
-		comentSum,user_name, sex, phone, LEVEL,
-		integral, email, nickname,
-		end_login_time, head_portrait,comments,vol_id, d.vl_id, vl_pid,
-		vl_name,b.user_id
-		from video a,userInfo b,videoorlabel c,videolabel d
-		where
-		a.video_upOfUser = b.user_id
-		and a.video_id = c.video_id
-		and
-		c.vl_id =
-		d.vl_id
-		and d.vl_id = #{vlId,jdbcType=INTEGER}
-		and a.video_state = 1
+		video_upOfUser, video_UpTime,playSum, collectSum, supportSum,
+		comentSum,user_name, sex, phone, LEVEL,integral, email, nickname,
+		end_login_time, head_portrait,comments,vol_id, d.vl_id,
+		vl_pid,vl_name,b.user_id
+		from video a,userInfo b,videoorlabel
+		c,videolabel d
+		where a.video_upOfUser = b.user_id
+		and a.video_id =
+		c.video_id
+		and c.vl_id = d.vl_id
+		and d.vl_id = #{id}
+		and a.video_state =
+		1
+		<if test="news != null and news != '' ">
+			order by a.end_time desc limit 8
+		</if>
+		<if test="latestPosts != null and latestPosts != '' ">
+			order by a.video_UpTime desc limit 8
+		</if>
 	</select>
 
 	<resultMap id="getVideoByLabelIdResultMap" type="com.yidu.jyz.fromBean.VideoFormBean">
@@ -128,7 +152,7 @@
 			<result column="user_name" property="userName" jdbcType="VARCHAR" />
 			<result column="sex" property="sex" jdbcType="CHAR" />
 			<result column="phone" property="phone" jdbcType="VARCHAR" />
-			<result column="LEVEL" property="level" jdbcType="INTEGER" />
+			<result column="LEVEL" property="userLevel" jdbcType="INTEGER" />
 			<result column="integral" property="integral" jdbcType="INTEGER" />
 			<result column="email" property="email" jdbcType="VARCHAR" />
 			<result column="nickname" property="nickname" jdbcType="VARCHAR" />

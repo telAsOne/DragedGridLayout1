@@ -4,7 +4,7 @@
 	<!-- 查询一级菜单 -->
 	<select id="getMenuList" parameterType="com.yidu.wby.entity.Menu" resultType="com.yidu.wby.entity.Menu">
 		select a.menu_id menuId,a.text,a.state,a.url,a.pid,a.iconCls 
-		from menuinfo a,menuorrole b,adminorrole c
+		from menuinfo a,roleormenu b,adminorrole c
 		where a.pid=0 and a.menu_id=b.menu_id and b.role_id=c.role_id and c.admin_id=#{adminId}
 	</select>
 	

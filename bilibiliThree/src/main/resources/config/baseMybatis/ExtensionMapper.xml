@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.base.allMapper.ExtensionMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.base.allEntity.Extension" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="video_id" property="videoId" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="video_name" property="videoName" jdbcType="VARCHAR" />
+    <result column="video_image" property="videoImage" jdbcType="VARCHAR" />
+    <result column="video_info" property="videoInfo" jdbcType="VARCHAR" />
+    <result column="video_upOfUser" property="videoUpofuser" jdbcType="INTEGER" />
+    <result column="video_UpTime" property="videoUptime" jdbcType="INTEGER" />
+    <result column="playSum" property="playsum" jdbcType="INTEGER" />
+    <result column="collectSum" property="collectsum" jdbcType="INTEGER" />
+    <result column="supportSum" property="supportsum" jdbcType="INTEGER" />
+    <result column="comentSum" property="comentsum" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from extension
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.base.allEntity.Extension" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into extension (video_id, start_time, end_time
+      )
+    values (#{videoId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.base.allEntity.Extension" >
+    update extension
+    set video_id = #{videoId,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, video.video_id, start_time, end_time,video_name, video_image, video_info, video_upOfUser, video_UpTime, 
+    playSum, collectSum, supportSum, comentSum
+    from extension,video
+    where id = #{id,jdbcType=INTEGER} 
+    and extension.video_id = video.video_id
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, video.video_id, start_time, extension.end_time, video_name, video_image, video_info, video_upOfUser, video_UpTime, 
+    playSum, collectSum, supportSum, comentSum 
+    from extension,video 
+    where extension.video_id = video.video_id
+  </select>
+</mapper>

@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html >
 <html>
@@ -115,8 +115,7 @@
 							<a href="#">登录</a> <span></span> <a href="#">注册</a>
 						</div>
 						<div class="user-post">
-							<!-- <a href="bi?iframeSrc=loadingHead" class="link">投稿</a> -->
-							<a href="${pageContext.request.contextPath}/zchMenu?iframeSrc=loadingHead" class="link">投稿</a>
+							<a href="bi?iframeSrc=loadingHead" class="link">投稿</a>
 							<div class="user-post__hover header-hover">
 								<a href="#" class="post">视频投稿</a> <a href="#" class="manage">投稿管理</a>
 								<a href="#" class="create">创作中心</a>
@@ -293,6 +292,155 @@
 			</div>
 		</div>
 	</div>
+	<div id="main">
+		<div class="page-width">
+			<!-- 推广 -->
+			<div class="mainCont clearfix" id="promote">
+				<div class="pic-list fl">
+					<div class="pic-list__title">
+						<i class="icon icon-promote"></i>
+						<h2>推广</h2>
+						<a href="#" class="promote-link">来感受创作的力量吧！</a>
+					</div>
+					<ul class="pic-list__wrapper clearfix">
+						<c:forEach items="${extension}" var="ex">
+							<li class="item"><a href="#" class="img-link"> <img
+									src="${ex.videoImage}" alt="#"> <span class="mask"></span>
+									<span class="time">3:39</span>
+							</a>
+								<div class="img-info">
+									<a href="#">${ex.videoName}</a>
+								</div></li>
+						</c:forEach>
+					</ul>
+				</div>
+				<div class="main-side fr">
+					<div class="promote-side__title">
+						<a href="#">在线人数：715509</a> <span>|</span> <a href="#">最新投稿：5806</a>
+					</div>
+					<a href="#" class="promote-side__img"><img
+						src="images/cont/main_pic.jpg" alt="#"></a>
+				</div>
+
+				<c:forEach items="${video}" var="label">
+					<div class="mainCont clearfix" id="${label.homename}" js-move="true">
+						<div class="pic-list fl" js-tab="true">
+							<div class="pic-list__title">
+								<i class="icon ${label.icon}"></i>
+								<h2>${label.vlName}</h2>
+								<div class="tab-title">
+									<a href="#" class="cur">有新动态</a> <a href="#">最新投稿</a>
+								</div>
+								<a href="#" class="main-link"><i></i>我的十月新番打开方式一定有问题</a>
+								<div class="more-wrap">
+									<a href="#" class="dynamic"><i></i>392条新动态</a> <a href="#"
+										class="more">更多<i></i></a>
+								</div>
+							</div>
+							<ul
+								class="pic-list__wrapper clearfix tab-cont__item tab-cont__cur">
+								<c:forEach items="${label.news}" var="news">
+									<li class="item"><a href="#" class="img-link"> <img
+											src="${news.video.videoImage}" alt="#"> <span
+											class="mask"></span> <span class="time">3:39</span>
+									</a>
+										<div class="img-info">
+											<a href="#">${news.video.videoName}</a>
+											<div class="btm">
+												<div class="user">
+													<i></i>${news.userInfo.nickname}
+												</div>
+												<div class="online">
+													<i></i>${news.video.playsum}
+												</div>
+											</div>
+										</div></li>
+								</c:forEach>
+							</ul>
+							<ul class="pic-list__wrapper clearfix tab-cont__item">
+								<c:forEach items="${label.latestPosts}" var="latestPosts">
+									<li class="item"><a href="#" class="img-link"> <img
+											src="${latestPosts.video.videoImage}" alt="#"> <span
+											class="mask"></span> <span class="time">3:39</span>
+									</a>
+										<div class="img-info">
+											<a href="#">${latestPosts.video.videoName}</a>
+											<div class="btm">
+												<div class="user">
+													<i></i>${latestPosts.userInfo.nickname}
+												</div>
+												<div class="online">
+													<i></i>${latestPosts.video.playsum}
+												</div>
+											</div>
+										</div></li>
+								</c:forEach>
+								
+							</ul>
+						</div>
+						<div class="main-side fr" js-tab="true">
+							<div class="main-side__title">
+								<div class="rank-t">
+									<h3>排行</h3>
+								</div>
+								<div class="tab-title">
+									<a href="#" class="cur">全部</a> <a href="#">原创</a>
+								</div>
+								<div class="side-select">
+									<span>三日</span> <i></i>
+								</div>
+							</div>
+							<div class="main-side__cont">
+								<div class="tab-cont">
+									<ul class="tab-cont__item main-rank">
+										<li class="item item-one"><a href="#"> <i class="n1">1</i>
+												<img src="images/cont/main-rank__img1.jpg" alt="#">
+												<div>
+													<p class="title">【1月】小林家的龙女仆 10【独家正版】</p>
+													<p class="mark">综合评分: 109.3万</p>
+												</div>
+										</a></li>
+										<li class="item"><a href="#"><i class="n2">2</i>
+												【1月】火影忍者 疾风传 719</a></li>
+										<li class="item"><a href="#"><i class="n3">3</i>
+												【4月】双星之阴阳师 48</a></li>
+										<li class="item"><a href="#"><i>4</i>狐妖小红娘 52 狗血大戏正上演
+												OP特效又更换</a></li>
+										<li class="item"><a href="#"><i>5</i>少年锦衣卫 第一季 06 怪谈</a></li>
+										<li class="item"><a href="#"><i>6</i>画江湖之不良人Ⅱ 35 阋墙之祸</a>
+										</li>
+										<li class="item"><a href="#"><i>7</i>【1月】黑白来看守所
+												24【独家正版】</a></li>
+									</ul>
+									<ul class="tab-cont__item main-rank">
+										<li class="item item-one"><a href="#"> <i class="n1">1</i>
+												<img src="images/cont/main-rank__img2.jpg" alt="#">
+												<div>
+													<p class="title">【1月】小林家的龙女仆 10【独家正版】</p>
+													<p class="mark">综合评分: 109.3万</p>
+												</div>
+										</a></li>
+										<li class="item"><a href="#"><i class="n2">2</i>
+												【1月】火影忍者 疾风传 719</a></li>
+										<li class="item"><a href="#"><i class="n3">3</i>
+												【4月】双星之阴阳师 48</a></li>
+										<li class="item"><a href="#"><i>4</i>狐妖小红娘 52 狗血大戏正上演
+												OP特效又更换</a></li>
+										<li class="item"><a href="#"><i>5</i>少年锦衣卫 第一季 06 怪谈</a></li>
+										<li class="item"><a href="#"><i>6</i>画江湖之不良人Ⅱ 35 阋墙之祸</a>
+										</li>
+										<li class="item"><a href="#"><i>7</i>【1月】黑白来看守所
+												24【独家正版】</a></li>
+									</ul>
+								</div>
+								<a href="#" class="more">查看更多<i></i></a>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
 	<footer id="footer">
 		<div class="page-width">
 			<ul class="footer-c clearfix">
@@ -326,19 +474,14 @@
 
 	<div id="sideBar">
 		<div class="sideBar-list">
-			<a href="#" id="live-a">直播</a> <a href="#" id="animation-a">动画</a> <a
-				href="#" id="bangumi-a">番剧</a> <a href="#" id="china-a">国创</a> <a
-				href="#" id="music-a">音乐</a> <a href="#" id="dance-a">舞蹈</a> <a
-				href="#" id="game-a">游戏</a> <a href="#" id="technology-a">科技</a> <a
-				href="#" id="life-a">生活</a> <a href="#" id="guichu-a">鬼畜</a> <a
-				href="#" id="fasion-a">时尚</a> <a href="#" id="gg-a">广告</a> <a
-				href="#" id="yule-a">娱乐</a> <a href="#" id="movie-a">电影</a> <a
-				href="#" id="tv-a">TV剧</a> <a href="javascript:void(0);"><i></i>排序</a>
+			<c:forEach items="${video}" var="label">
+				<a href="#" id="${label.homename}-a">${label.vlName}</a>
+			</c:forEach>
+			  <a href="javascript:void(0);"><i></i>排序</a>
 		</div>
 		<div class="sideBar-line"></div>
 		<a href="javascript:void(0);" class="sideBar-toTop" id="backTop"></a>
 	</div>
-
 	<script
 		src="${pageContext.request.contextPath}/fileProject/baseJs/jquery.js"></script>
 	<script

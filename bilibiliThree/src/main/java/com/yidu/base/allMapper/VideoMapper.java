@@ -5,6 +5,7 @@ import com.yidu.jyz.fromBean.VideoAllFromBean;
 import com.yidu.jyz.fromBean.VideoFormBean;
 
 import java.util.List;
+import java.util.Map;
 
 public interface VideoMapper {
     int deleteByPrimaryKey(Integer videoId);
@@ -19,5 +20,5 @@ public interface VideoMapper {
     
     public List<VideoAllFromBean> queryLabelAll();
     
-    public List<VideoFormBean> getVideoByLabelId(Integer vlId);
+    public List<VideoFormBean> getVideoByLabelId(Map<Object, Object> id);
 }
