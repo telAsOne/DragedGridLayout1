@@ -2,12 +2,12 @@
 # Date: 2018-09-04 15:48:10
 # Generator: MySQL-Front 5.3  (Build 4.234)
 
-/*!40101 SET NAMES utf8 */;
+
 
 #
 # Structure for table "admininfo"
 #
-
+use testbilibili;
 DROP TABLE IF EXISTS `admininfo`;
 CREATE TABLE `admininfo` (
   `admin_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -111,42 +111,6 @@ CREATE TABLE `collection` (
 #
 # Data for table "collection"
 #
-
-/*!40000 ALTER TABLE `collection` DISABLE KEYS */;
-/*!40000 ALTER TABLE `collection` ENABLE KEYS */;
-
-#
-# Structure for table "columns"
-#
-
-DROP TABLE IF EXISTS `columns`;
-CREATE TABLE `columns` (
-  `column_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `column_title` varchar(300) NOT NULL,
-  `column_imgTitle` text NOT NULL,
-  `column_content_address` varchar(300) DEFAULT NULL,
-  `column_type` varchar(300) DEFAULT NULL,
-  `column_classification` varchar(300) DEFAULT NULL,
-  `favorites_classification` int(11) DEFAULT NULL,
-  `column_WhetherForwarded` char(1) DEFAULT NULL,
-  `audit` char(1) DEFAULT NULL,
-  `label` varchar(300) DEFAULT NULL,
-  `reading_number` int(11) DEFAULT NULL,
-  `comments_number` int(11) DEFAULT NULL,
-  `like_number` int(11) DEFAULT NULL,
-  `collection_number` int(11) DEFAULT NULL,
-  `start_time` datetime DEFAULT NULL,
-  `end_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`column_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-#
-# Data for table "columns"
-#
-
-/*!40000 ALTER TABLE `columns` DISABLE KEYS */;
-/*!40000 ALTER TABLE `columns` ENABLE KEYS */;
 
 #
 # Structure for table "comic"
@@ -263,79 +227,9 @@ CREATE TABLE `comicorlabel` (
 /*!40000 ALTER TABLE `comicorlabel` DISABLE KEYS */;
 /*!40000 ALTER TABLE `comicorlabel` ENABLE KEYS */;
 
-#
-# Structure for table "daily"
-#
 
-DROP TABLE IF EXISTS `daily`;
-CREATE TABLE `daily` (
-  `daily_id` int(11) NOT NULL AUTO_INCREMENT,
-  `daily_user_id` int(11) DEFAULT NULL,
-  `daily_comments_id` int(11) DEFAULT NULL,
-  `daily_imgAddress` varchar(300) NOT NULL,
-  `daily_content` text,
-  `daily_WhetherForwarded` char(1) DEFAULT NULL,
-  `daily_praiseNumber` int(11) DEFAULT NULL,
-  `daily_browse_number` int(11) DEFAULT NULL,
-  `daily_collection_number` int(11) DEFAULT NULL,
-  `label` varchar(300) DEFAULT NULL,
-  `daily_audit` char(1) DEFAULT NULL,
-  `favorites_classification` int(11) DEFAULT NULL,
-  `start_time` datetime DEFAULT NULL,
-  `end_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`daily_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-#
-# Data for table "daily"
-#
 
-/*!40000 ALTER TABLE `daily` DISABLE KEYS */;
-/*!40000 ALTER TABLE `daily` ENABLE KEYS */;
-
-#
-# Structure for table "dailycomments"
-#
-
-DROP TABLE IF EXISTS `dailycomments`;
-CREATE TABLE `dailycomments` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `daily_id` int(11) DEFAULT NULL,
-  `user_comments_A` int(11) DEFAULT NULL,
-  `user_comments_B` int(11) DEFAULT NULL,
-  `content` varchar(300) NOT NULL,
-  `start_time` datetime DEFAULT NULL,
-  `end_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-#
-# Data for table "dailycomments"
-#
-
-/*!40000 ALTER TABLE `dailycomments` DISABLE KEYS */;
-/*!40000 ALTER TABLE `dailycomments` ENABLE KEYS */;
-
-#
-# Structure for table "draft"
-#
-
-DROP TABLE IF EXISTS `draft`;
-CREATE TABLE `draft` (
-  `draft_id` int(11) NOT NULL AUTO_INCREMENT,
-  `id` int(11) DEFAULT NULL,
-  `draft_img` varchar(100) NOT NULL,
-  `draft_title` varchar(100) NOT NULL,
-  `draft_content` varchar(500) NOT NULL,
-  `draft_label` varchar(100) DEFAULT NULL,
-  `start_time` datetime DEFAULT NULL,
-  `end_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`draft_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-#
-# Data for table "draft"
-#
 
 /*!40000 ALTER TABLE `draft` DISABLE KEYS */;
 /*!40000 ALTER TABLE `draft` ENABLE KEYS */;
@@ -429,61 +323,6 @@ CREATE TABLE `menuinfo` (
 INSERT INTO `menuinfo` VALUES (1,'系统管理','close',NULL,0,NULL,NULL,NULL),(2,'作品管理','close',NULL,0,NULL,NULL,NULL),(3,'参数管理','close',NULL,0,NULL,NULL,NULL),(4,'用户管理','close','http://localhost:8080/bilibiliThree/user',1,NULL,NULL,NULL),(5,'角色管理','close','http://localhost:8080/bilibiliThree/role',1,NULL,NULL,NULL),(6,'漫画管理','close',NULL,2,NULL,NULL,NULL),(7,'文章管理','close',NULL,2,NULL,NULL,NULL),(8,'首页管理','close','',0,NULL,NULL,NULL),(9,'滑动图片管理','close','http://localhost:8080/bilibiliThree/admin/index/slide/ui',8,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `menuinfo` ENABLE KEYS */;
 
-#
-# Structure for table "painting"
-#
-
-DROP TABLE IF EXISTS `painting`;
-CREATE TABLE `painting` (
-  `painting_id` int(11) NOT NULL AUTO_INCREMENT,
-  `painting_user_id` int(11) DEFAULT NULL,
-  `painting_comments_id` int(11) DEFAULT NULL,
-  `painting_imgAddress` varchar(300) NOT NULL,
-  `painting_content` text,
-  `painting_WhetherForwarded` char(1) DEFAULT NULL,
-  `painting_praiseNumber` int(11) DEFAULT NULL,
-  `painting_collection_number` int(11) DEFAULT NULL,
-  `painting_attribute` varchar(300) DEFAULT NULL,
-  `painting_classification` int(11) DEFAULT '4',
-  `painting_browse_number` int(11) DEFAULT NULL,
-  `painting_sourceLabel_label` varchar(300) DEFAULT NULL,
-  `painting_otherLabel_label` varchar(300) DEFAULT NULL,
-  `painting_audit` char(1) DEFAULT NULL,
-  `favorites_classification` int(11) DEFAULT NULL,
-  `start_time` datetime DEFAULT NULL,
-  `end_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`painting_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-#
-# Data for table "painting"
-#
-
-/*!40000 ALTER TABLE `painting` DISABLE KEYS */;
-/*!40000 ALTER TABLE `painting` ENABLE KEYS */;
-
-#
-# Structure for table "paintingcomments"
-#
-
-DROP TABLE IF EXISTS `paintingcomments`;
-CREATE TABLE `paintingcomments` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `daily_id` int(11) DEFAULT NULL,
-  `user_comments_A` int(11) DEFAULT NULL,
-  `user_comments_B` int(11) DEFAULT NULL,
-  `content` varchar(300) NOT NULL,
-  `start_time` datetime DEFAULT NULL,
-  `end_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-#
-# Data for table "paintingcomments"
-#
-
-/*!40000 ALTER TABLE `paintingcomments` DISABLE KEYS */;
-/*!40000 ALTER TABLE `paintingcomments` ENABLE KEYS */;
 
 #
 # Structure for table "reply"
@@ -889,3 +728,184 @@ CREATE TABLE `videoreview` (
 
 /*!40000 ALTER TABLE `videoreview` DISABLE KEYS */;
 /*!40000 ALTER TABLE `videoreview` ENABLE KEYS */;
+
+
+
+
+
+
+DROP TABLE IF EXISTS `draft`;
+/*草稿表*/
+CREATE TABLE draft(
+	draft_id INT PRIMARY KEY AUTO_INCREMENT,
+	
+	#用户id
+	user_id  INT,
+
+	#草稿标题   
+	draft_title    NVARCHAR(300)  NOT NULL,
+	#草稿标题图	
+	draft_imgTitle      LONGTEXT, 
+	#草稿内容地址  
+	draft_content_address   VARCHAR(300),   					
+	#类型    
+	draft_type    NVARCHAR (300),
+	#分类    
+	draft_classification    NVARCHAR (300),
+	#标签
+	draft_label VARCHAR(300),	
+	#创建时间
+	start_time  DATETIME,
+	#最后修改时间
+	end_time DATETIME
+);
+
+DROP TABLE IF EXISTS `daily`;
+/*用户日常表(相当于qq里的说说)*/
+CREATE TABLE daily(
+	#日常主键	id  
+	 daily_id  INT  PRIMARY KEY AUTO_INCREMENT ,     				
+	#用户id  
+     daily_user_id INT  ,  					
+	#连接日常评论表的id   
+	daily_comments_id  	INT ,
+	#日常图片地址
+        daily_imgAddress    NVARCHAR(300)  NOT NULL,
+	#日常内容  //注意： 字段类型  TEXT      VARCHAR表示不了
+	daily_content      TEXT,			
+	#是否可转发(使用检查约束)1表示可以转发，2表示不可转发
+	 daily_WhetherForwarded CHAR  CHECK (daily_WhetherForwarded IN('1','2')) ,		  
+	#点赞数
+	daily_praiseNumber  INT,
+	#浏览数  
+	 daily_browse_number  INT,
+	#收藏数 
+	daily_collection_number	INT,
+	#标签
+	label varchar(300),					
+	#审核是否通过 1代表通过、2代表不通过，3代表审核中(默认约束 3)
+	 daily_audit  CHAR CHECK(daily_audit IN('1','2','3')) , 	
+	#收藏夹分类 		这个字段是（5）
+	favorites_classification	INT, 	 
+	#创建时间
+	start_time  DATETIME,
+	#最后修改时间
+	end_time DATETIME
+);
+DROP TABLE IF EXISTS `dailyComments`;
+/*日常评论表 dailyComments*/
+CREATE TABLE dailyComments(
+	#日常评论表id 主键
+	    id   INT  PRIMARY 	KEY AUTO_INCREMENT,			
+	#连接日常表 
+	  daily_id    		INT, 
+	#用户Aid
+	 user_comments_A    INT ,
+	#用户Bid 
+	 user_comments_B   INT ,
+	#评论内容
+	  content    NVARCHAR(300)   NOT NULL,
+	#创建时间
+	start_time  DATETIME,
+	#最后修改时间
+	end_time DATETIME
+);
+
+DROP TABLE IF EXISTS `painting`;
+/*绘画表*/
+CREATE TABLE painting(
+	#绘画主键id   主键INT
+	painting_id    INT PRIMARY KEY AUTO_INCREMENT,     					
+	#用户id
+	painting_user_id  INT,
+	#连接绘画评论表的id 
+	painting_comments_id  	INT,
+	#绘画图片地址
+	painting_imgAddress	NVARCHAR(300) NOT NULL,
+	#绘画内容//注意： 字段类型  TEXT        VARCHAR表示不了
+	painting_content        TEXT,			   
+	#是否可转发(使用检查约束)1表示可以转发，2表示不可转发
+	painting_WhetherForwarded   CHAR CHECK(painting_WhetherForwarded IN('1','2')),			
+	#点赞数
+	painting_praiseNumber		INT ,
+	#收藏数    	
+	painting_collection_number	INT ,		
+	#属性		
+	painting_attribute  	NVARCHAR(300),
+	#分类        默认约束（4）因为4表示相簿分类
+	painting_classification	INT DEFAULT 4,
+	#浏览数        
+	painting_browse_number	INT,		
+	#资源标签          
+	painting_sourceLabel_label    NVARCHAR(300),
+	#其他标签          
+	painting_otherLabel_label    NVARCHAR(300),
+	#审核是否通过  	1代表通过、2代表不通过，3代表审核中(默认约束 3)
+	painting_audit   CHAR CHECK(painting_audit IN('1','2','3')),
+	#收藏夹分类 		这个字段是（5）
+	favorites_classification	INT, 
+	#创建时间
+	start_time  DATETIME,
+	#最后修改时间
+	end_time DATETIME
+);
+
+/*绘画评论表  paintingComments*/
+
+DROP TABLE IF EXISTS `paintingComments`;
+CREATE TABLE paintingComments(
+	#绘画评论表id    主键
+	id     INT PRIMARY KEY AUTO_INCREMENT,				
+	#连接绘画表   
+	daily_id    INT,	
+	#用户Aid    
+	user_comments_A  INT,	
+	#用户Bid  
+	user_comments_B   INT,		
+	#评论内容        
+	content     NVARCHAR(300) NOT NULL,		
+	#创建时间
+	start_time  DATETIME,
+	#最后修改时间
+	end_time DATETIME
+);
+
+
+DROP TABLE IF EXISTS `columns`;
+/*专栏投稿表*/
+CREATE TABLE columns(
+	#专栏id    	主键
+	column_id   INT PRIMARY KEY AUTO_INCREMENT,		
+	#用户id
+	user_id  INT,
+	#专栏标题   
+	column_title    NVARCHAR(300)  NOT NULL,
+	#专栏标题图	
+	column_imgTitle      longtext  NOT NULL, 
+	#专栏内容    注意： 字段类型  TEXT
+	column_content_address   varchar(300),   					
+	#类型    
+	column_type    NVARCHAR (300),
+	#分类    
+	column_classification    NVARCHAR (300),
+	#收藏夹分类 		这个字段是（4）
+	favorites_classification	INT, 
+	#是否可转发	(使用检查约束)1表示可以转发，2表示不可转发
+	column_WhetherForwarded  CHAR CHECK (column_WhetherForwarded IN('1','2')),	
+	#审核是否通过  1代表通过、2代表不通过，3代表审核中   (默认约束 3)
+	audit   CHAR CHECK(audit IN('1','2','3')), 
+	#标签
+	label varchar(300),	
+	#阅读数量      
+	reading_number     INT,
+	#评论数量      
+	comments_number     INT,
+	#喜欢数量	
+	like_number    INT, 	
+	#收藏数量	
+	collection_number     	INT,
+	#创建时间
+	start_time  DATETIME,
+	#最后修改时间
+	end_time DATETIME
+);
