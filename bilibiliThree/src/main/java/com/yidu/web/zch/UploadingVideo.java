@@ -30,6 +30,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.yidu.base.allEntity.UserInfo;
 import com.yidu.base.allEntity.Video;
+import com.yidu.utils.InitImgServlet;
 import com.yidu.web.hj.PagesController;
 import com.yidu.zch.service.VideoService;
 
@@ -40,6 +41,7 @@ import com.yidu.zch.service.VideoService;
  */
 @Controller
 public class UploadingVideo {
+	
 	private static Logger LOGGER = LoggerFactory.getLogger(UploadingVideo.class);
 	@Autowired
 	private VideoService videoService;
@@ -77,28 +79,33 @@ public class UploadingVideo {
 					file.transferTo(new File(path));
 				}
 			}
-
 		}
 		long endTime=System.currentTimeMillis();
 
 		System.out.println("文件传输运行时间："+String.valueOf(endTime-startTime)+"ms");
 		return "/videoInfo"; 
 	}
-
 	/**
 	 * 查询所有视频
 	 */
-	@RequestMapping(value="/selectVideo/{videoState}", method=RequestMethod.GET)
-	public String selectAllVideo(@PathVariable("videoState") Integer id, Map<String, Object> videoMap, HttpServletRequest req){
-		//获取当前登录用户id
-		UserInfo user = (UserInfo)req.getSession().getAttribute("userInfo");
+	@RequestMapping(value="/selectVideo", method=RequestMethod.GET)
+	public String selectAllVideo(@RequestParam("iframeSrc") String iframeSrc,Map<String, Object> videoMap, 
+			HttpServletRequest req){
+		Map<String, Object> selectAllVideo = videoService.selectAllVideo(0, 10);
+		//作用于必须全局页面
+		req.getServletContext().setAttribute("map", selectAllVideo);
 		
-		Map<String, Object> selectAllVideo = videoService.selectAllVideo(0, id);
-		videoMap.putAll(selectAllVideo);
-		
-		
-		return "/allVideo";
-		
+		/*新增方法要调用这行代码不然不会立刻更新
+		req.getServletContext().setAttribute("map", selectAllVideo);*/
+		if(req.getHeader("X-PJAX") != null){
+			req.getSession().setAttribute("iframeSrc", iframeSrc);
+			LOGGER.info("pjax request");
+			//获取当前登录用户id
+			UserInfo user = (UserInfo)req.getSession().getAttribute("userInfo");
+			return "NewFiles";
+		}
+		LOGGER.info("normal request");
+		return "uploading";
 	}
 	
 	/**
@@ -108,13 +115,13 @@ public class UploadingVideo {
 	public String  uploadVideo(@RequestParam("imgFile")MultipartFile imgFile, Video video, HttpServletRequest request){
 
 		//获取编译后服务器地址
-		String pathVal = request.getSession().getServletContext().getRealPath("/");
+//		String pathVal = request.getSession().getServletContext().getRealPath("/");
 		//根据配置文件获取服务器图片存放路径
 		String newFileName = String.valueOf(System.currentTimeMillis());
 		String saveFilePath = "/zch/images/";
 
 		//构建文件目录
-		File fileDir = new File(pathVal + saveFilePath);
+		File fileDir = new File(InitImgServlet.filePath + saveFilePath);
 		if (!fileDir.exists()) {
 			fileDir.mkdirs();
 		}
@@ -126,7 +133,7 @@ public class UploadingVideo {
 
 		try {
 			String imgPath = saveFilePath + newFileName + "." + longName;
-			FileOutputStream out = new FileOutputStream(pathVal + imgPath);
+			FileOutputStream out = new FileOutputStream(InitImgServlet.filePath + imgPath);
 
 			//写入文件
 			out.write(imgFile.getBytes());
@@ -139,25 +146,37 @@ public class UploadingVideo {
 		video.setVideoImage(newFileName + "." + longName);
 		video.setVideoUpofuser(0);
 		video.setVideoImage("null");
-//		String format = df.format(new Date());
-		video.setVideoUptime(11);
+		
+		//获取当前时间
+//		String str = df.format(df.format(new Date()));
+//		Integer it = Integer.valueOf(str);
+//		video.setVideoUptime(it);
+		video.setVideoUptime(0);
 
 		video.setVideoImage(newFileName + "." + longName);
 
 		videoService.uploadVideo(video);
 		
-		return "redirect:/selectVideo/10";
+		Map<String, Object> selectAllVideo = videoService.selectAllVideo(0, 10);
+		//作用于必须全局页面
+		request.getServletContext().setAttribute("map", selectAllVideo);
+		
+		return "allVideo";
 	}
 
 	/**
 	 * 删除视频信息
 	 */
 	@RequestMapping(value="/delVideo/{videoId}", method=RequestMethod.DELETE)
-	public String delVideo(@PathVariable("videoId") int videoId){
+	public String delVideo(@PathVariable("videoId") int videoId, HttpServletRequest request){
 
 		videoService.delVideo(videoId);
+		
+		Map<String, Object> selectAllVideo = videoService.selectAllVideo(0, 10);
+		//作用于必须全局页面
+		request.getServletContext().setAttribute("map", selectAllVideo);
 
-		return "redirect:/selectVideo/10";
+		return "allVideo";
 	}
 
 	/**
@@ -179,41 +198,41 @@ public class UploadingVideo {
 	@RequestMapping(value="/updateVideo")
 	public String updateVideo(@RequestParam("imgFile")MultipartFile imgFile, Video video, HttpServletRequest request){
 		//获取编译后服务器地址
-		String pathVal = request.getSession().getServletContext().getRealPath("/");
-		System.out.println(pathVal);
+//		String pathVal = request.getSession().getServletContext().getRealPath("/");
 		//根据配置文件获取服务器图片存放路径
-		String newFileName = String.valueOf(System.currentTimeMillis());
-		System.out.println(newFileName);
-		String saveFilePath = "/zch/images/";
-
+//		String newFileName = String.valueOf(System.currentTimeMillis());
+		String saveFilePath = "/zch/images";
 		//构建文件目录
-		File fileDir = new File(pathVal + saveFilePath);
+		File fileDir = new File(InitImgServlet.filePath + saveFilePath);
 		if (!fileDir.exists()) {
 			fileDir.mkdirs();
 		}
-
 		//上传的文件名
 		String fileName = imgFile.getOriginalFilename();
 		//文件的扩张名
-		String longName = fileName.substring(fileName.lastIndexOf(".") + 1);
-
+		String imgPath=InitImgServlet.filePath+saveFilePath+"/"+fileName;
 		try {
-			String imgPath = saveFilePath + newFileName + "." + longName;
-			FileOutputStream out = new FileOutputStream(pathVal + imgPath);
-
-			//写入文件
-			out.write(imgFile.getBytes());
-			out.flush();
-			out.close();
+//			String imgPath = saveFilePath + newFileName + "." + longName;
+			System.out.println("图片地址\t"+imgPath);
+			if(!fileName.equals("")){
+				
+				
+				
+				FileOutputStream out = new FileOutputStream(imgPath);
+				//写入文件
+				out.write(imgFile.getBytes());
+				out.flush();
+				out.close();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		video.setVideoImage(newFileName + "." + longName);
-
-		int i = videoService.updateVideo(video);
-
-		return "redirect:/selectVideo/10";
+		video.setVideoImage(imgPath);
+		videoService.updateVideo(video);
+		Map<String, Object> selectAllVideo = videoService.selectAllVideo(0, 10);
+		//作用于必须全局页面
+		request.getServletContext().setAttribute("map", selectAllVideo);
+		
+		return "allVideo";
 	}
-
 }

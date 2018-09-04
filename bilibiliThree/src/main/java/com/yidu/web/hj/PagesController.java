@@ -17,26 +17,13 @@ public class PagesController {
 	public String zchHtml(@RequestParam(value="iframeSrc") String iframeSrc,
 						  HttpServletRequest req){
 		if (req.getHeader("X-PJAX") != null) {
-			System.out.println("局部");
 			LOGGER.info("pjax request");
-			return String.format("forward:/upOne?%s", iframeSrc);
+			req.getSession().setAttribute("iframeSrc", iframeSrc);
+			return "NewFiles";
 		}
 		req.getSession().setAttribute("iframeSrc", iframeSrc);
 		LOGGER.info("normal request");
 		return "uploading";
 	}
-	
-	/**
-	 * iframe页面
-	 */
-	@RequestMapping(value="/upOne",method=RequestMethod.GET)
-	public String getIframePage(@RequestParam("iframeSrc") String iframeSrc){
-		String iframe = 
-				"<iframe id='iframe' scrolling='no' src='"+iframeSrc+"' frameborder='0' height='1400px' width='960px'>"
-				 + "</iframe>";
-		return iframe;
-	}
-	
-	
 	
 }

@@ -12,18 +12,17 @@
 <script src="${pageContext.request.contextPath}/fileProject/baseJs/jquery.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$(".dataVideo").click(function() {
+		$(".dataVideo").click(function(){
 			var href = $(this).children().attr("href");
 			$("#delVideo").attr("action", href).submit();
 			return false;
 		});
-
-		$("#allVideos").click(function() {
+		$("#allVideos").click(function(){
 			$(".state0").show();
 			$(".state1").show();
 			$(".state2").show();
 		});
-		$("#goVideos").click(function() {
+		$("#goVideos").click(function(){
 			$(".state0").show();
 			$(".state1").hide();
 			$(".state2").hide();
@@ -38,14 +37,12 @@
 			$(".state1").hide();
 			$(".state2").show();
 		});
-		
 	});
 </script>
 </head>
 <body>
-	
 	<header>
-		<ul class="menu">
+		<ul class="menu" style="margin-left:250px;margin-bottom:20px;">
 			<li id="video"><a href="">视频管理</a></li>
 			<li>专栏管理</li>
 			<li>音频管理</li>
@@ -54,38 +51,35 @@
 	</header>
 	
 	<section>
-	
-		<div id="manuscript">
+		<div id="manuscript"style="margin-left:40px;">
 			<ul>
-				<li id="allVideos">全部稿件(${fn:length(videoList)})</li>
-				<li id="goVideos">进行中(${goVideo})</li>
-				<li id="okVideos">已通过(${okVideo})</li>
-				<li id="notVideos">未通过(${notVideo})</li>
+				<li id="allVideos">全部稿件(${fn:length(map.videoList)})</li>
+				<li id="goVideos">进行中(${map.goVideo})</li>
+				<li id="okVideos">已通过(${map.okVideo})</li>
+				<li id="notVideos">未通过(${map.notVideo})</li>
 			</ul>
-
 			<div id="searchManuscript">
 				<input type="text" placeholder="搜索稿件">
 				<p class="selectP">全部分区</p>
 				<p class="selectP">投稿时间排序</p>
 			</div>
 		</div>
-
+		
 		<form id="delVideo" method="post">
 			<input type="hidden" name="_method" value="DELETE" />
 		</form>
 		
-		<c:if test="${empty videoList}">
+		<c:if test="${empty map.videoList}">
 			<p id="no-file">你还没有投过一个稿件("▔□▔)</p>
 			<div class="videos"><img src="${pageContext.request.contextPath}/fileProject/zch/images/no-video.png" alt="loading"></div>
 			<div id="goLoad" class="fileButton">立即投稿 <i class="fa fa-arrow-circle-o-right"></i></div>
 		</c:if>
 		
-		<c:if test="${!empty videoList}">
+		<c:if test="${!empty map.videoList}">
 		<div style="overflow-y: auto; max-height: 630px; width: 1050px;">
-			<c:forEach items="${videoList}" var="videoList" varStatus="status">
+			<c:forEach items="${map.videoList}" var="videoList" varStatus="status">
 				<div class="upVideo state${videoList.videoState}" style="margin-bottom: 15px;">
-
-					<img src="fileProject/zch/images/yu.png" alt="略缩图">
+					<img src="F:/demo/fileProject/zch/images/WIN_20180404_084313.JPG" alt="略缩图">
 					<div class="detailInfo">
 						<p class="tag">生活</p>
 						<p class="title">标题：${videoList.videoName}</p>
@@ -121,7 +115,6 @@
 						<i id="more" class="fa fa-plus-circle"></i>
 					</div>
 				</div>
-
 			</c:forEach>
 		</div>
 		</c:if>
